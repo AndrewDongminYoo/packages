@@ -14,25 +14,26 @@ import android.widget.VideoView
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class VideoViewProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiVideoView(pigeonRegistrar) {
-
-  override fun pigeon_defaultConstructor(): VideoView {
-    val instance = VideoView(pigeonRegistrar.context)
-    instance.setOnPreparedListener { player: MediaPlayer -> onPrepared(instance, player) {} }
-    instance.setOnErrorListener { player: MediaPlayer, what: Int, extra: Int ->
-      onError(instance, player, what.toLong(), extra.toLong()) {}
-      true
+class VideoViewProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiVideoView(pigeonRegistrar) {
+    override fun pigeon_defaultConstructor(): VideoView {
+        val instance = VideoView(pigeonRegistrar.context)
+        instance.setOnPreparedListener { player: MediaPlayer -> onPrepared(instance, player) {} }
+        instance.setOnErrorListener { player: MediaPlayer, what: Int, extra: Int ->
+            onError(instance, player, what.toLong(), extra.toLong()) {}
+            true
+        }
+        instance.setOnCompletionListener { player: MediaPlayer -> onCompletion(instance, player) {} }
+        return instance
     }
-    instance.setOnCompletionListener { player: MediaPlayer -> onCompletion(instance, player) {} }
-    return instance
-  }
 
-  override fun setVideoUri(pigeon_instance: VideoView, uri: String) {
-    pigeon_instance.setVideoURI(Uri.parse(uri))
-  }
+    override fun setVideoUri(
+        pigeon_instance: VideoView,
+        uri: String,
+    ) {
+        pigeon_instance.setVideoURI(Uri.parse(uri))
+    }
 
-  override fun getCurrentPosition(pigeon_instance: VideoView): Long {
-    return pigeon_instance.currentPosition.toLong()
-  }
+    override fun getCurrentPosition(pigeon_instance: VideoView): Long = pigeon_instance.currentPosition.toLong()
 }

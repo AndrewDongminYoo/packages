@@ -12,9 +12,8 @@ import android.widget.FrameLayout
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class FrameLayoutProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiFrameLayout(pigeonRegistrar) {
-  override fun pigeon_defaultConstructor(): FrameLayout {
-    return FrameLayout(pigeonRegistrar.context)
-  }
+class FrameLayoutProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiFrameLayout(pigeonRegistrar) {
+    override fun pigeon_defaultConstructor(): FrameLayout = FrameLayout(pigeonRegistrar.context)
 }

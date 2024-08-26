@@ -11,7 +11,7 @@ import org.mockito.kotlin.mock
  * instead of posting them.
  */
 class TestProxyApiRegistrar : ProxyApiRegistrar(mock(), mock()) {
-  override fun runOnMainThread(callback: Runnable) {
-    callback.run()
-  }
+    override fun runOnMainThread(callback: Runnable) {
+        callback.run()
+    }
 }

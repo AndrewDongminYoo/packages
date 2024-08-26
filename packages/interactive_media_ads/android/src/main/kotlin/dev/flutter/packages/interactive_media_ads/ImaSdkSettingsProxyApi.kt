@@ -10,5 +10,6 @@ package dev.flutter.packages.interactive_media_ads
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class ImaSdkSettingsProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiImaSdkSettings(pigeonRegistrar)
+class ImaSdkSettingsProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiImaSdkSettings(pigeonRegistrar)

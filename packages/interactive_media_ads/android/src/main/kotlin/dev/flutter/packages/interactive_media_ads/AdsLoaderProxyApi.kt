@@ -14,23 +14,27 @@ import com.google.ads.interactivemedia.v3.api.AdsRequest
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class AdsLoaderProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiAdsLoader(pigeonRegistrar) {
-  override fun addAdErrorListener(
-      pigeon_instance: AdsLoader,
-      listener: AdErrorEvent.AdErrorListener
-  ) {
-    pigeon_instance.addAdErrorListener(listener)
-  }
+class AdsLoaderProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiAdsLoader(pigeonRegistrar) {
+    override fun addAdErrorListener(
+        pigeon_instance: AdsLoader,
+        listener: AdErrorEvent.AdErrorListener,
+    ) {
+        pigeon_instance.addAdErrorListener(listener)
+    }
 
-  override fun addAdsLoadedListener(
-      pigeon_instance: AdsLoader,
-      listener: AdsLoader.AdsLoadedListener
-  ) {
-    pigeon_instance.addAdsLoadedListener(listener)
-  }
+    override fun addAdsLoadedListener(
+        pigeon_instance: AdsLoader,
+        listener: AdsLoader.AdsLoadedListener,
+    ) {
+        pigeon_instance.addAdsLoadedListener(listener)
+    }
 
-  override fun requestAds(pigeon_instance: AdsLoader, request: AdsRequest) {
-    pigeon_instance.requestAds(request)
-  }
+    override fun requestAds(
+        pigeon_instance: AdsLoader,
+        request: AdsRequest,
+    ) {
+        pigeon_instance.requestAds(request)
+    }
 }

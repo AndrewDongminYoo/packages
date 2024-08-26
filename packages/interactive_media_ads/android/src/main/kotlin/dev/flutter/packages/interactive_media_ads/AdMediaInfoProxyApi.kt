@@ -12,9 +12,8 @@ import com.google.ads.interactivemedia.v3.api.player.AdMediaInfo
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class AdMediaInfoProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiAdMediaInfo(pigeonRegistrar) {
-  override fun url(pigeon_instance: AdMediaInfo): String {
-    return pigeon_instance.url
-  }
+class AdMediaInfoProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiAdMediaInfo(pigeonRegistrar) {
+    override fun url(pigeon_instance: AdMediaInfo): String = pigeon_instance.url
 }

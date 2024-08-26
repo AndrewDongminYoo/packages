@@ -12,17 +12,18 @@ import com.google.ads.interactivemedia.v3.api.AdsManager
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class AdsManagerProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiAdsManager(pigeonRegistrar) {
-  override fun discardAdBreak(pigeon_instance: AdsManager) {
-    pigeon_instance.discardAdBreak()
-  }
+class AdsManagerProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiAdsManager(pigeonRegistrar) {
+    override fun discardAdBreak(pigeon_instance: AdsManager) {
+        pigeon_instance.discardAdBreak()
+    }
 
-  override fun pause(pigeon_instance: AdsManager) {
-    pigeon_instance.pause()
-  }
+    override fun pause(pigeon_instance: AdsManager) {
+        pigeon_instance.pause()
+    }
 
-  override fun start(pigeon_instance: AdsManager) {
-    pigeon_instance.start()
-  }
+    override fun start(pigeon_instance: AdsManager) {
+        pigeon_instance.start()
+    }
 }

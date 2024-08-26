@@ -14,65 +14,69 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
 
 /** InteractiveMediaAdsPlugin */
-class InteractiveMediaAdsPlugin : FlutterPlugin, ActivityAware {
-  private lateinit var pluginBinding: FlutterPlugin.FlutterPluginBinding
-  private lateinit var registrar: ProxyApiRegistrar
+class InteractiveMediaAdsPlugin :
+    FlutterPlugin,
+    ActivityAware {
+    private lateinit var pluginBinding: FlutterPlugin.FlutterPluginBinding
+    private lateinit var registrar: ProxyApiRegistrar
 
-  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    pluginBinding = flutterPluginBinding
+    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        pluginBinding = flutterPluginBinding
 
-    registrar =
-        ProxyApiRegistrar(pluginBinding.binaryMessenger, context = pluginBinding.applicationContext)
-    registrar.setUp()
+        registrar =
+            ProxyApiRegistrar(pluginBinding.binaryMessenger, context = pluginBinding.applicationContext)
+        registrar.setUp()
 
-    flutterPluginBinding.platformViewRegistry.registerViewFactory(
-        "interactive_media_ads.packages.flutter.dev/view",
-        FlutterViewFactory(registrar.instanceManager))
-  }
+        flutterPluginBinding.platformViewRegistry.registerViewFactory(
+            "interactive_media_ads.packages.flutter.dev/view",
+            FlutterViewFactory(registrar.instanceManager),
+        )
+    }
 
-  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-    registrar.ignoreCallsToDart = true
-    registrar.tearDown()
-    registrar.instanceManager.clear()
-  }
+    override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        registrar.ignoreCallsToDart = true
+        registrar.tearDown()
+        registrar.instanceManager.clear()
+    }
 
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    registrar.context = binding.activity
-  }
+    override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        registrar.context = binding.activity
+    }
 
-  override fun onDetachedFromActivityForConfigChanges() {
-    registrar.context = pluginBinding.applicationContext
-  }
+    override fun onDetachedFromActivityForConfigChanges() {
+        registrar.context = pluginBinding.applicationContext
+    }
 
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    registrar.context = binding.activity
-  }
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+        registrar.context = binding.activity
+    }
 
-  override fun onDetachedFromActivity() {
-    registrar.context = pluginBinding.applicationContext
-  }
+    override fun onDetachedFromActivity() {
+        registrar.context = pluginBinding.applicationContext
+    }
 }
 
 internal class FlutterViewFactory(
-    private val instanceManager: InteractiveMediaAdsLibraryPigeonInstanceManager
+    private val instanceManager: InteractiveMediaAdsLibraryPigeonInstanceManager,
 ) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+    override fun create(
+        context: Context,
+        viewId: Int,
+        args: Any?,
+    ): PlatformView {
+        val identifier =
+            args as Int?
+                ?: throw IllegalStateException("An identifier is required to retrieve a View instance.")
+        val instance: Any? = instanceManager.getInstance(identifier.toLong())
+        if (instance is PlatformView) {
+            return instance
+        } else if (instance is View) {
+            return object : PlatformView {
+                override fun getView(): View = instance
 
-  override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
-    val identifier =
-        args as Int?
-            ?: throw IllegalStateException("An identifier is required to retrieve a View instance.")
-    val instance: Any? = instanceManager.getInstance(identifier.toLong())
-    if (instance is PlatformView) {
-      return instance
-    } else if (instance is View) {
-      return object : PlatformView {
-        override fun getView(): View {
-          return instance
+                override fun dispose() {}
+            }
         }
-
-        override fun dispose() {}
-      }
+        throw IllegalStateException("Unable to find a PlatformView or View instance: $args, $instance")
     }
-    throw IllegalStateException("Unable to find a PlatformView or View instance: $args, $instance")
-  }
 }

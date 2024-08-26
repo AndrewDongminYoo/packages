@@ -8,10 +8,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class NonNullFieldsTests {
-
-  @Test
-  fun testMake() {
-    val request = NonNullFieldSearchRequest("hello")
-    assertEquals("hello", request.query)
-  }
+    @Test
+    fun testMake() {
+        val request = NonNullFieldSearchRequest("hello")
+        assertEquals("hello", request.query)
+    }
 }

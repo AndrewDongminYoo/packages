@@ -5,31 +5,31 @@
 package dev.flutter.packages.interactive_media_ads
 
 import com.google.ads.interactivemedia.v3.api.AdErrorEvent
-import kotlin.test.Test
-import kotlin.test.assertTrue
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.whenever
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 internal class AdErrorListenerProxyApiTest {
-  @Test
-  fun pigeon_defaultConstructor() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdErrorListener()
+    @Test
+    fun pigeon_defaultConstructor() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdErrorListener()
 
-    assertTrue(api.pigeon_defaultConstructor() is AdErrorListenerProxyApi.AdErrorListenerImpl)
-  }
+        assertTrue(api.pigeon_defaultConstructor() is AdErrorListenerProxyApi.AdErrorListenerImpl)
+    }
 
-  @Test
-  fun onAdError() {
-    val mockApi = mock<AdErrorListenerProxyApi>()
-    whenever(mockApi.pigeonRegistrar).thenReturn(TestProxyApiRegistrar())
+    @Test
+    fun onAdError() {
+        val mockApi = mock<AdErrorListenerProxyApi>()
+        whenever(mockApi.pigeonRegistrar).thenReturn(TestProxyApiRegistrar())
 
-    val instance = AdErrorListenerProxyApi.AdErrorListenerImpl(mockApi)
-    val mockEvent = mock<AdErrorEvent>()
-    instance.onAdError(mockEvent)
+        val instance = AdErrorListenerProxyApi.AdErrorListenerImpl(mockApi)
+        val mockEvent = mock<AdErrorEvent>()
+        instance.onAdError(mockEvent)
 
-    verify(mockApi).onAdError(eq(instance), eq(mockEvent), any())
-  }
+        verify(mockApi).onAdError(eq(instance), eq(mockEvent), any())
+    }
 }

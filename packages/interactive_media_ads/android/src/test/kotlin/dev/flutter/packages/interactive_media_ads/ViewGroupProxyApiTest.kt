@@ -6,19 +6,19 @@ package dev.flutter.packages.interactive_media_ads
 
 import android.view.View
 import android.view.ViewGroup
-import kotlin.test.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
+import kotlin.test.Test
 
 class ViewGroupProxyApiTest {
-  @Test
-  fun addView() {
-    val api = TestProxyApiRegistrar().getPigeonApiViewGroup()
+    @Test
+    fun addView() {
+        val api = TestProxyApiRegistrar().getPigeonApiViewGroup()
 
-    val instance = mock<ViewGroup>()
-    val mockView = mock<View>()
-    api.addView(instance, mockView)
+        val instance = mock<ViewGroup>()
+        val mockView = mock<View>()
+        api.addView(instance, mockView)
 
-    verify(instance).addView(mockView)
-  }
+        verify(instance).addView(mockView)
+    }
 }

@@ -5,29 +5,29 @@
 package dev.flutter.packages.interactive_media_ads
 
 import com.google.ads.interactivemedia.v3.api.AdEvent
-import kotlin.test.Test
-import kotlin.test.assertEquals
 import org.mockito.Mockito
 import org.mockito.kotlin.whenever
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class AdEventProxyApiTest {
-  @Test
-  fun type() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdEvent()
+    @Test
+    fun type() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdEvent()
 
-    val instance = Mockito.mock<AdEvent>()
-    whenever(instance.type).thenReturn(AdEvent.AdEventType.PAUSED)
+        val instance = Mockito.mock<AdEvent>()
+        whenever(instance.type).thenReturn(AdEvent.AdEventType.PAUSED)
 
-    assertEquals(AdEventType.PAUSED, api.type(instance))
-  }
+        assertEquals(AdEventType.PAUSED, api.type(instance))
+    }
 
-  @Test
-  fun adData() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdEvent()
+    @Test
+    fun adData() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdEvent()
 
-    val instance = Mockito.mock<AdEvent>()
-    whenever(instance.adData).thenReturn(mapOf("a" to "b", "c" to "d"))
+        val instance = Mockito.mock<AdEvent>()
+        whenever(instance.adData).thenReturn(mapOf("a" to "b", "c" to "d"))
 
-    assertEquals(mapOf("a" to "b", "c" to "d"), api.adData(instance))
-  }
+        assertEquals(mapOf("a" to "b", "c" to "d"), api.adData(instance))
+    }
 }

@@ -15,66 +15,72 @@ import com.google.ads.interactivemedia.v3.api.player.VideoProgressUpdate
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class VideoAdPlayerProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiVideoAdPlayer(pigeonRegistrar) {
-  override fun pigeon_defaultConstructor(): VideoAdPlayer {
-    return VideoAdPlayerImpl(this)
-  }
+class VideoAdPlayerProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiVideoAdPlayer(pigeonRegistrar) {
+    override fun pigeon_defaultConstructor(): VideoAdPlayer = VideoAdPlayerImpl(this)
 
-  internal class VideoAdPlayerImpl(val api: VideoAdPlayerProxyApi) : VideoAdPlayer {
-    var savedVolume: Int = 0
+    internal class VideoAdPlayerImpl(
+        val api: VideoAdPlayerProxyApi,
+    ) : VideoAdPlayer {
+        var savedVolume: Int = 0
 
-    var savedAdProgress: VideoProgressUpdate = VideoProgressUpdate.VIDEO_TIME_NOT_READY
+        var savedAdProgress: VideoProgressUpdate = VideoProgressUpdate.VIDEO_TIME_NOT_READY
 
-    override fun getAdProgress(): VideoProgressUpdate {
-      return savedAdProgress
+        override fun getAdProgress(): VideoProgressUpdate = savedAdProgress
+
+        override fun getVolume(): Int = savedVolume
+
+        override fun addCallback(callback: VideoAdPlayer.VideoAdPlayerCallback) {
+            api.pigeonRegistrar.runOnMainThread { api.addCallback(this, callbackArg = callback) {} }
+        }
+
+        override fun loadAd(
+            adMediaInfo: AdMediaInfo,
+            adPodInfo: AdPodInfo,
+        ) {
+            api.pigeonRegistrar.runOnMainThread { api.loadAd(this, adMediaInfo, adPodInfo) {} }
+        }
+
+        override fun pauseAd(adMediaInfo: AdMediaInfo) {
+            api.pigeonRegistrar.runOnMainThread { api.pauseAd(this, adMediaInfo) {} }
+        }
+
+        override fun playAd(adMediaInfo: AdMediaInfo) {
+            api.pigeonRegistrar.runOnMainThread { api.playAd(this, adMediaInfo) {} }
+        }
+
+        override fun release() {
+            api.pigeonRegistrar.runOnMainThread { api.release(this) {} }
+        }
+
+        override fun removeCallback(callback: VideoAdPlayer.VideoAdPlayerCallback) {
+            api.pigeonRegistrar.runOnMainThread { api.removeCallback(this, callbackArg = callback) {} }
+        }
+
+        override fun stopAd(adMediaInfo: AdMediaInfo) {
+            api.pigeonRegistrar.runOnMainThread { api.stopAd(this, adMediaInfo) {} }
+        }
     }
 
-    override fun getVolume(): Int {
-      return savedVolume
+    /**
+     * Sets the internal `volume` variable that is returned in the [VideoAdPlayer.getVolume] callback.
+     */
+    override fun setVolume(
+        pigeon_instance: VideoAdPlayer,
+        value: Long,
+    ) {
+        (pigeon_instance as VideoAdPlayerImpl).savedVolume = value.toInt()
     }
 
-    override fun addCallback(callback: VideoAdPlayer.VideoAdPlayerCallback) {
-      api.pigeonRegistrar.runOnMainThread { api.addCallback(this, callbackArg = callback) {} }
+    /**
+     * Sets the internal `adProgress` variable that is returned in the [VideoAdPlayer.getAdProgress]
+     * callback.
+     */
+    override fun setAdProgress(
+        pigeon_instance: VideoAdPlayer,
+        progress: VideoProgressUpdate,
+    ) {
+        (pigeon_instance as VideoAdPlayerImpl).savedAdProgress = progress
     }
-
-    override fun loadAd(adMediaInfo: AdMediaInfo, adPodInfo: AdPodInfo) {
-      api.pigeonRegistrar.runOnMainThread { api.loadAd(this, adMediaInfo, adPodInfo) {} }
-    }
-
-    override fun pauseAd(adMediaInfo: AdMediaInfo) {
-      api.pigeonRegistrar.runOnMainThread { api.pauseAd(this, adMediaInfo) {} }
-    }
-
-    override fun playAd(adMediaInfo: AdMediaInfo) {
-      api.pigeonRegistrar.runOnMainThread { api.playAd(this, adMediaInfo) {} }
-    }
-
-    override fun release() {
-      api.pigeonRegistrar.runOnMainThread { api.release(this) {} }
-    }
-
-    override fun removeCallback(callback: VideoAdPlayer.VideoAdPlayerCallback) {
-      api.pigeonRegistrar.runOnMainThread { api.removeCallback(this, callbackArg = callback) {} }
-    }
-
-    override fun stopAd(adMediaInfo: AdMediaInfo) {
-      api.pigeonRegistrar.runOnMainThread { api.stopAd(this, adMediaInfo) {} }
-    }
-  }
-
-  /**
-   * Sets the internal `volume` variable that is returned in the [VideoAdPlayer.getVolume] callback.
-   */
-  override fun setVolume(pigeon_instance: VideoAdPlayer, value: Long) {
-    (pigeon_instance as VideoAdPlayerImpl).savedVolume = value.toInt()
-  }
-
-  /**
-   * Sets the internal `adProgress` variable that is returned in the [VideoAdPlayer.getAdProgress]
-   * callback.
-   */
-  override fun setAdProgress(pigeon_instance: VideoAdPlayer, progress: VideoProgressUpdate) {
-    (pigeon_instance as VideoAdPlayerImpl).savedAdProgress = progress
-  }
 }

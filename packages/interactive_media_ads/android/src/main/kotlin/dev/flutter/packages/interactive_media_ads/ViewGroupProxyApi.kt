@@ -13,9 +13,13 @@ import android.view.ViewGroup
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class ViewGroupProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiViewGroup(pigeonRegistrar) {
-  override fun addView(pigeon_instance: ViewGroup, view: View) {
-    pigeon_instance.addView(view)
-  }
+class ViewGroupProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiViewGroup(pigeonRegistrar) {
+    override fun addView(
+        pigeon_instance: ViewGroup,
+        view: View,
+    ) {
+        pigeon_instance.addView(view)
+    }
 }

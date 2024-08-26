@@ -12,25 +12,27 @@ import android.media.MediaPlayer
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class MediaPlayerProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiMediaPlayer(pigeonRegistrar) {
-  override fun getDuration(pigeon_instance: MediaPlayer): Long {
-    return pigeon_instance.duration.toLong()
-  }
+class MediaPlayerProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiMediaPlayer(pigeonRegistrar) {
+    override fun getDuration(pigeon_instance: MediaPlayer): Long = pigeon_instance.duration.toLong()
 
-  override fun seekTo(pigeon_instance: MediaPlayer, mSec: Long) {
-    pigeon_instance.seekTo(mSec.toInt())
-  }
+    override fun seekTo(
+        pigeon_instance: MediaPlayer,
+        mSec: Long,
+    ) {
+        pigeon_instance.seekTo(mSec.toInt())
+    }
 
-  override fun start(pigeon_instance: MediaPlayer) {
-    pigeon_instance.start()
-  }
+    override fun start(pigeon_instance: MediaPlayer) {
+        pigeon_instance.start()
+    }
 
-  override fun pause(pigeon_instance: MediaPlayer) {
-    pigeon_instance.pause()
-  }
+    override fun pause(pigeon_instance: MediaPlayer) {
+        pigeon_instance.pause()
+    }
 
-  override fun stop(pigeon_instance: MediaPlayer) {
-    pigeon_instance.stop()
-  }
+    override fun stop(pigeon_instance: MediaPlayer) {
+        pigeon_instance.stop()
+    }
 }

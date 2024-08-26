@@ -13,5 +13,6 @@ import org.junit.runner.RunWith
 @DartIntegrationTest
 @RunWith(FlutterTestRunner::class)
 class MainActivityTest {
-  @JvmField @Rule var rule = ActivityTestRule(MainActivity::class.java)
+    @JvmField @Rule
+    var rule = ActivityTestRule(MainActivity::class.java)
 }

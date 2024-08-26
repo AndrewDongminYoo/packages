@@ -12,16 +12,13 @@ import com.google.ads.interactivemedia.v3.api.player.VideoProgressUpdate
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class VideoProgressUpdateProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiVideoProgressUpdate(pigeonRegistrar) {
-  override fun pigeon_defaultConstructor(
-      currentTimeMs: Long,
-      durationMs: Long
-  ): VideoProgressUpdate {
-    return VideoProgressUpdate(currentTimeMs, durationMs)
-  }
+class VideoProgressUpdateProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiVideoProgressUpdate(pigeonRegistrar) {
+    override fun pigeon_defaultConstructor(
+        currentTimeMs: Long,
+        durationMs: Long,
+    ): VideoProgressUpdate = VideoProgressUpdate(currentTimeMs, durationMs)
 
-  override fun videoTimeNotReady(): VideoProgressUpdate {
-    return VideoProgressUpdate.VIDEO_TIME_NOT_READY
-  }
+    override fun videoTimeNotReady(): VideoProgressUpdate = VideoProgressUpdate.VIDEO_TIME_NOT_READY
 }

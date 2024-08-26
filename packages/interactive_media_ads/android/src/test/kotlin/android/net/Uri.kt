@@ -10,13 +10,13 @@ package android.net
  * Without this redeclaration, `Uri.parse` always returns null.
  */
 class Uri {
-  companion object {
-    @JvmStatic var lastValue: String? = null
+    companion object {
+        @JvmStatic var lastValue: String? = null
 
-    @JvmStatic
-    fun parse(value: String): Uri {
-      lastValue = value
-      return Uri()
+        @JvmStatic
+        fun parse(value: String): Uri {
+            lastValue = value
+            return Uri()
+        }
     }
-  }
 }

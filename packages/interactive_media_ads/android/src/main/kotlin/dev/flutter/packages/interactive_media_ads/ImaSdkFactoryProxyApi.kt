@@ -18,32 +18,23 @@ import com.google.ads.interactivemedia.v3.api.player.VideoAdPlayer
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class ImaSdkFactoryProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiImaSdkFactory(pigeonRegistrar) {
-  override fun instance(): ImaSdkFactory {
-    return ImaSdkFactory.getInstance()
-  }
+class ImaSdkFactoryProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiImaSdkFactory(pigeonRegistrar) {
+    override fun instance(): ImaSdkFactory = ImaSdkFactory.getInstance()
 
-  override fun createAdDisplayContainer(
-      container: ViewGroup,
-      player: VideoAdPlayer
-  ): AdDisplayContainer {
-    return ImaSdkFactory.createAdDisplayContainer(container, player)
-  }
+    override fun createAdDisplayContainer(
+        container: ViewGroup,
+        player: VideoAdPlayer,
+    ): AdDisplayContainer = ImaSdkFactory.createAdDisplayContainer(container, player)
 
-  override fun createImaSdkSettings(pigeon_instance: ImaSdkFactory): ImaSdkSettings {
-    return pigeon_instance.createImaSdkSettings()
-  }
+    override fun createImaSdkSettings(pigeon_instance: ImaSdkFactory): ImaSdkSettings = pigeon_instance.createImaSdkSettings()
 
-  override fun createAdsLoader(
-      pigeon_instance: ImaSdkFactory,
-      settings: ImaSdkSettings,
-      container: AdDisplayContainer
-  ): AdsLoader {
-    return pigeon_instance.createAdsLoader(pigeonRegistrar.context, settings, container)
-  }
+    override fun createAdsLoader(
+        pigeon_instance: ImaSdkFactory,
+        settings: ImaSdkSettings,
+        container: AdDisplayContainer,
+    ): AdsLoader = pigeon_instance.createAdsLoader(pigeonRegistrar.context, settings, container)
 
-  override fun createAdsRequest(pigeon_instance: ImaSdkFactory): AdsRequest {
-    return pigeon_instance.createAdsRequest()
-  }
+    override fun createAdsRequest(pigeon_instance: ImaSdkFactory): AdsRequest = pigeon_instance.createAdsRequest()
 }

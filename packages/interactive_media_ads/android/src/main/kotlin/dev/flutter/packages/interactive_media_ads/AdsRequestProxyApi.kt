@@ -13,29 +13,33 @@ import com.google.ads.interactivemedia.v3.api.player.ContentProgressProvider
  * <p>This class may handle instantiating native object instances that are attached to a Dart
  * instance or handle method calls on the associated native class or an instance of that class.
  */
-class AdsRequestProxyApi(override val pigeonRegistrar: ProxyApiRegistrar) :
-    PigeonApiAdsRequest(pigeonRegistrar) {
-  companion object {
-    /**
-     * The current version of the `interactive_media_ads` plugin.
-     *
-     * This must match the version in pubspec.yaml.
-     */
-    const val pluginVersion = "0.1.2+4"
-  }
+class AdsRequestProxyApi(
+    override val pigeonRegistrar: ProxyApiRegistrar,
+) : PigeonApiAdsRequest(pigeonRegistrar) {
+    companion object {
+        /**
+         * The current version of the `interactive_media_ads` plugin.
+         *
+         * This must match the version in pubspec.yaml.
+         */
+        const val pluginVersion = "0.1.2+4"
+    }
 
-  override fun setAdTagUrl(pigeon_instance: AdsRequest, adTagUrl: String) {
-    // Ensure adTag can append a custom parameter.
-    require(adTagUrl.contains("?"))
-    require(!adTagUrl.contains("#"))
+    override fun setAdTagUrl(
+        pigeon_instance: AdsRequest,
+        adTagUrl: String,
+    ) {
+        // Ensure adTag can append a custom parameter.
+        require(adTagUrl.contains("?"))
+        require(!adTagUrl.contains("#"))
 
-    pigeon_instance.adTagUrl = "$adTagUrl&request_agent=Flutter-IMA-$pluginVersion"
-  }
+        pigeon_instance.adTagUrl = "$adTagUrl&request_agent=Flutter-IMA-$pluginVersion"
+    }
 
-  override fun setContentProgressProvider(
-      pigeon_instance: AdsRequest,
-      provider: ContentProgressProvider
-  ) {
-    pigeon_instance.contentProgressProvider = provider
-  }
+    override fun setContentProgressProvider(
+        pigeon_instance: AdsRequest,
+        provider: ContentProgressProvider,
+    ) {
+        pigeon_instance.contentProgressProvider = provider
+    }
 }

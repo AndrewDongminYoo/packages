@@ -5,49 +5,49 @@
 package dev.flutter.packages.interactive_media_ads
 
 import com.google.ads.interactivemedia.v3.api.AdError
-import kotlin.test.Test
-import kotlin.test.assertEquals
 import org.mockito.Mockito
 import org.mockito.kotlin.whenever
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class AdErrorProxyApiTest {
-  @Test
-  fun errorCode() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdError()
+    @Test
+    fun errorCode() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdError()
 
-    val instance = Mockito.mock<AdError>()
-    whenever(instance.errorCode).thenReturn(AdError.AdErrorCode.VIDEO_PLAY_ERROR)
+        val instance = Mockito.mock<AdError>()
+        whenever(instance.errorCode).thenReturn(AdError.AdErrorCode.VIDEO_PLAY_ERROR)
 
-    assertEquals(AdErrorCode.VIDEO_PLAY_ERROR, api.errorCode(instance))
-  }
+        assertEquals(AdErrorCode.VIDEO_PLAY_ERROR, api.errorCode(instance))
+    }
 
-  @Test
-  fun errorCodeNumber() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdError()
+    @Test
+    fun errorCodeNumber() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdError()
 
-    val instance = Mockito.mock<AdError>()
-    whenever(instance.errorCodeNumber).thenReturn(0)
+        val instance = Mockito.mock<AdError>()
+        whenever(instance.errorCodeNumber).thenReturn(0)
 
-    assertEquals(0, api.errorCodeNumber(instance))
-  }
+        assertEquals(0, api.errorCodeNumber(instance))
+    }
 
-  @Test
-  fun errorType() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdError()
+    @Test
+    fun errorType() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdError()
 
-    val instance = Mockito.mock<AdError>()
-    whenever(instance.errorType).thenReturn(AdError.AdErrorType.LOAD)
+        val instance = Mockito.mock<AdError>()
+        whenever(instance.errorType).thenReturn(AdError.AdErrorType.LOAD)
 
-    assertEquals(AdErrorType.LOAD, api.errorType(instance))
-  }
+        assertEquals(AdErrorType.LOAD, api.errorType(instance))
+    }
 
-  @Test
-  fun message() {
-    val api = TestProxyApiRegistrar().getPigeonApiAdError()
+    @Test
+    fun message() {
+        val api = TestProxyApiRegistrar().getPigeonApiAdError()
 
-    val instance = Mockito.mock<AdError>()
-    whenever(instance.message).thenReturn("message")
+        val instance = Mockito.mock<AdError>()
+        whenever(instance.message).thenReturn("message")
 
-    assertEquals("message", api.message(instance))
-  }
+        assertEquals("message", api.message(instance))
+    }
 }
