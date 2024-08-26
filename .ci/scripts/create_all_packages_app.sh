@@ -8,12 +8,12 @@ set -e
 exclusions=("script/configs/exclude_all_packages_app.yaml")
 
 # Add a wasm-specific exclusion file if "--wasm" is specified.
-if [[ "$1" == "--wasm" ]]; then
-  exclusions+=",script/configs/exclude_all_packages_app_wasm.yaml"
+if [[ $1 == "--wasm" ]]; then
+	exclusions+=",script/configs/exclude_all_packages_app_wasm.yaml"
 fi
 
 # Delete ./all_packages if it exists already
 rm -rf ./all_packages
 
 dart ./script/tool/bin/flutter_plugin_tools.dart create-all-packages-app \
-    --output-dir=. --exclude "$exclusions"
+	--output-dir=. --exclude "$exclusions"

@@ -9,7 +9,7 @@ readonly LOCAL_DESKTOP_FILE_DIR=~/.local/share/applications
 mkdir -p "${LOCAL_DESKTOP_FILE_DIR}"
 readonly DESKTOP_FILE_NAME=cipd-chrome.desktop
 readonly CIPD_CHROME_DESKTOP_FILE="${LOCAL_DESKTOP_FILE_DIR}/${DESKTOP_FILE_NAME}"
-cat << EOF > "${CIPD_CHROME_DESKTOP_FILE}"
+cat <<EOF >"${CIPD_CHROME_DESKTOP_FILE}"
 [Desktop Entry]
 Version=1.0
 Name=Google Chrome

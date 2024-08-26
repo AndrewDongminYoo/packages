@@ -7,4 +7,9 @@ tasks:
   # those APIs are introduced.
   - name: analyze - downgraded
     script: .ci/scripts/tool_runner.sh
-    args: ["analyze", "--downgrade", "--custom-analysis=script/configs/custom_analysis.yaml"]
+    args:
+      [
+        "analyze",
+        "--downgrade",
+        "--custom-analysis=script/configs/custom_analysis.yaml",
+      ]

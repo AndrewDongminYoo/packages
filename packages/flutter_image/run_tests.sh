@@ -15,4 +15,4 @@ SERVER_PID=$!
 sleep 2
 
 flutter test
-kill $SERVER_PID
+kill "$SERVER_PID"

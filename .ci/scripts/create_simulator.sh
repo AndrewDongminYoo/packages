@@ -16,10 +16,10 @@ readonly OS=com.apple.CoreSimulator.SimRuntime.iOS-17-0
 echo -e "Deleting any existing devices names $DEVICE_NAME..."
 RESULT=0
 while [[ $RESULT == 0 ]]; do
-    xcrun simctl delete "$DEVICE_NAME" || RESULT=1
-    if [ $RESULT == 0 ]; then
-        echo -e "Deleted $DEVICE_NAME"
-    fi
+	xcrun simctl delete "$DEVICE_NAME" || RESULT=1
+	if [ $RESULT == 0 ]; then
+		echo -e "Deleted $DEVICE_NAME"
+	fi
 done
 echo -e ""
 

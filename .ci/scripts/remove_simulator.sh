@@ -8,6 +8,6 @@ set -e
 readonly DEVICE_NAME=Flutter-iPhone
 
 # Allow shutdown to fail; cases like "already shut down" exit with failure.
-xcrun simctl shutdown "$DEVICE_NAME" || :
-xcrun simctl delete "$DEVICE_NAME"
+xcrun simctl shutdown "${DEVICE_NAME}" || :
+xcrun simctl delete "${DEVICE_NAME}"
 xcrun simctl list

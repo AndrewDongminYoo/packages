@@ -21,4 +21,9 @@ tasks:
     args: ["native-test", "--macos"]
   - name: drive examples
     script: .ci/scripts/tool_runner.sh
-    args: ["drive-examples", "--macos", "--exclude=script/configs/exclude_integration_macos.yaml"]
+    args:
+      [
+        "drive-examples",
+        "--macos",
+        "--exclude=script/configs/exclude_integration_macos.yaml",
+      ]

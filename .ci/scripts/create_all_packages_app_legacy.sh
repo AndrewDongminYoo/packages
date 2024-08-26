@@ -9,5 +9,5 @@ output_dir="$1"
 # The output directory here must match the directory in
 # build_all_packages_app_legacy.sh
 dart ./script/tool/bin/flutter_plugin_tools.dart create-all-packages-app \
-    --legacy-source=.ci/legacy_project/all_packages --output-dir="$output_dir"/ \
-    --exclude script/configs/exclude_all_packages_app.yaml
+	--legacy-source=.ci/legacy_project/all_packages --output-dir="$output_dir"/ \
+	--exclude script/configs/exclude_all_packages_app.yaml

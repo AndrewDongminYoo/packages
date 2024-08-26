@@ -12,14 +12,14 @@ set -e
 # For local use, directly run `dart run <tool path>`.
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null && pwd)"
-readonly REPO_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
-readonly TOOL_PATH="$REPO_DIR/script/tool/bin/flutter_plugin_tools.dart"
+readonly REPO_DIR="$(dirname "$(dirname "${SCRIPT_DIR}")")"
+readonly TOOL_PATH="${REPO_DIR}/script/tool/bin/flutter_plugin_tools.dart"
 
 # Ensure that the tool dependencies have been fetched.
-(pushd "$REPO_DIR/script/tool" && dart pub get && popd) >/dev/null
+(pushd "${REPO_DIR}/script/tool" && dart pub get && popd) >/dev/null
 
 # The tool expects to be run from the repo root.
-cd "$REPO_DIR"
+cd "${REPO_DIR}"
 # Run from the in-tree source.
 # PACKAGE_SHARDING is (optionally) set in CI configuration. See .ci.yaml
-dart run "$TOOL_PATH" "$@" --packages-for-branch --log-timing $PACKAGE_SHARDING
+dart run "${TOOL_PATH}" "$@" --packages-for-branch --log-timing "$PACKAGE_SHARDING"

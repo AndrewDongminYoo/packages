@@ -8,4 +8,4 @@ platform="$1"
 build_mode="$2"
 shift 2
 cd all_packages
-flutter build "$platform" --"$build_mode" "$@"
+flutter build "${platform}" --"${build_mode}" "$@"

@@ -5,4 +5,4 @@
 set -e
 
 dart ./script/tool/bin/flutter_plugin_tools.dart custom-test \
-   --packages-for-branch --log-timing
+	--packages-for-branch --log-timing

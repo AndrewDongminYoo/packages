@@ -16,4 +16,9 @@ tasks:
     args: ["native-test", "--linux"]
   - name: drive examples
     script: .ci/scripts/xvfb_tool_runner.sh
-    args: ["drive-examples", "--linux", "--exclude=script/configs/exclude_integration_linux.yaml"]
+    args:
+      [
+        "drive-examples",
+        "--linux",
+        "--exclude=script/configs/exclude_integration_linux.yaml",
+      ]

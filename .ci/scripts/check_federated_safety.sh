@@ -5,7 +5,7 @@
 set -e
 
 if [[ $LUCI_PR == "" ]]; then
-  echo "This check is only run in presubmit"
+	echo "This check is only run in presubmit"
 else
-  .ci/scripts/tool_runner.sh federation-safety-check
+	.ci/scripts/tool_runner.sh federation-safety-check
 fi

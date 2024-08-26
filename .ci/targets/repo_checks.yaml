@@ -33,7 +33,12 @@ tasks:
     # run above.
   - name: README snippet configuration validation
     script: .ci/scripts/tool_runner.sh
-    args: ["readme-check", "--require-excerpts", "--exclude=script/configs/temp_exclude_excerpt.yaml"]
+    args:
+      [
+        "readme-check",
+        "--require-excerpts",
+        "--exclude=script/configs/temp_exclude_excerpt.yaml",
+      ]
     always: true
   - name: README snippet validation
     script: .ci/scripts/tool_runner.sh

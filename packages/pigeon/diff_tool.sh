@@ -22,22 +22,22 @@ generate_everything() {
   local inputPath=$1
   local outputDir=$2
   pub run pigeon \
-    --input "$inputPath" \
-    --dart_out "$outputDir/dart.dart" \
-    --java_out "$outputDir/java.dart" \
-    --objc_header_out "$outputDir/objc.h" \
-    --objc_source_out "$outputDir/objc.m"
+    --input "${inputPath}" \
+    --dart_out "${outputDir}/dart.dart" \
+    --java_out "${outputDir}/java.dart" \
+    --objc_header_out "${outputDir}/objc.h" \
+    --objc_source_out "${outputDir}/objc.m"
 }
 
 yHash=$(git rev-parse HEAD)
-xDir=$(mktemp -d -t $xHash)
-yDir=$(mktemp -d -t $yHash)
-inputPath=$yDir/input.dart
-cp "$pigeonPath" "$inputPath"
-$gitTool checkout $xHash 1> /dev/null
-generate_everything $inputPath $xDir
-$gitTool checkout $yHash 1> /dev/null
-generate_everything $inputPath $yDir
-$diffTool "$yDir" "$xDir"
-rm -rf "$yDir"
-rm -rf "$xDir"
+xDir=$(mktemp -d -t "$xHash")
+yDir=$(mktemp -d -t "$yHash")
+inputPath=${yDir}/input.dart
+cp "${pigeonPath}" "${inputPath}"
+${gitTool} checkout "$xHash" 1> /dev/null
+generate_everything "$inputPath" "$xDir"
+${gitTool} checkout "$yHash" 1> /dev/null
+generate_everything "$inputPath" "$yDir"
+${diffTool} "${yDir}" "${xDir}"
+rm -rf "${yDir}"
+rm -rf "${xDir}"

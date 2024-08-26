@@ -8,6 +8,8 @@
 # This script is also called from: ../../customer_testing.sh
 
 set -e
-pushd test_coverage; dart pub get; popd
+pushd test_coverage
+dart pub get
+popd
 set -x
 dart --enable-asserts test_coverage/bin/test_coverage.dart "$@"
