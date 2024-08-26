@@ -1,22 +1,14 @@
 // Copyright 2013 The Flutter Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
+
+// ignore_for_file: depend_on_referenced_packages
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:in_app_purchase_platform_interface/in_app_purchase_platform_interface.dart';
 import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 
-export 'package:in_app_purchase_platform_interface/in_app_purchase_platform_interface.dart'
-    show
-        IAPError,
-        InAppPurchaseException,
-        ProductDetails,
-        ProductDetailsResponse,
-        PurchaseDetails,
-        PurchaseParam,
-        PurchaseStatus,
-        PurchaseVerificationData;
+export 'package:in_app_purchase_platform_interface/in_app_purchase_platform_interface.dart';
 
 /// Basic API for making in app purchases across multiple platforms.
 class InAppPurchase implements InAppPurchasePlatformAdditionProvider {
@@ -24,10 +16,8 @@ class InAppPurchase implements InAppPurchasePlatformAdditionProvider {
 
   static InAppPurchase? _instance;
 
-  /// The instance of the [InAppPurchase] to use.
-  static InAppPurchase get instance => _getOrCreateInstance();
-
-  static InAppPurchase _getOrCreateInstance() {
+  /// [InAppPurchase] 인스턴스를 사용하십시오.
+  static InAppPurchase get instance {
     if (_instance != null) {
       return _instance!;
     }
@@ -48,114 +38,88 @@ class InAppPurchase implements InAppPurchasePlatformAdditionProvider {
     return InAppPurchasePlatformAddition.instance as T;
   }
 
-  /// Listen to this broadcast stream to get real time update for purchases.
+  /// 이 방송 스트림을 청취하여 구매에 대한 실시간 업데이트를 받으십시오.
   ///
-  /// This stream will never close as long as the app is active.
+  /// 이 스트림은 앱이 활성 상태인 한 절대 닫히지 않습니다.
   ///
-  /// Purchase updates can happen in several situations:
-  /// * When a purchase is triggered by user in the app.
-  /// * When a purchase is triggered by user from the platform-specific store front.
-  /// * When a purchase is restored on the device by the user in the app.
-  /// * If a purchase is not completed ([completePurchase] is not called on the
-  ///   purchase object) from the last app session. Purchase updates will happen
-  ///   when a new app session starts instead.
+  /// 구매 업데이트는 여러 상황에서 발생할 수 있습니다:
+  /// * 사용자가 앱 내에서 구매를 시작할 때.
+  /// * 사용자가 플랫폼별 스토어 프론트에서 구매를 시작할 때.
+  /// * 사용자가 앱에서 기기로 구매를 복원할 때.
+  /// * 이전 앱 세션에서 구매가 완료되지 않은 경우([completePurchase]가 구매 객체에서 호출되지 않음).
+  /// 구매 업데이트는 새 앱 세션이 시작될 때 대신 발생합니다.
   ///
-  /// IMPORTANT! You must subscribe to this stream as soon as your app launches,
-  /// preferably before returning your main App Widget in main(). Otherwise you
-  /// will miss purchase updated made before this stream is subscribed to.
+  /// 중요! 앱이 시작되자마자 이 스트림을 구독해야 하며, 가능하면 main()에서 메인 앱 위젯을 반환하기 전에 구독하는 것이 좋습니다.
+  /// 그렇지 않으면 이 스트림이 구독되기 전에 발생한 구매 업데이트를 놓칠 수 있습니다.
   ///
-  /// We also recommend listening to the stream with one subscription at a given
-  /// time. If you choose to have multiple subscription at the same time, you
-  /// should be careful at the fact that each subscription will receive all the
-  /// events after they start to listen.
+  /// 또한, 특정 시점에서 하나의 구독으로 스트림을 듣는 것을 권장합니다.
+  /// 동시에 여러 구독을 선택할 경우, 각 구독이 시작된 이후 모든 이벤트를 수신하게 되므로 주의해야 합니다.
   Stream<List<PurchaseDetails>> get purchaseStream =>
       InAppPurchasePlatform.instance.purchaseStream;
 
-  /// Returns `true` if the payment platform is ready and available.
+  /// 결제 플랫폼이 준비되어 있고 사용 가능한 경우 `true`를 반환합니다.
   Future<bool> isAvailable() => InAppPurchasePlatform.instance.isAvailable();
 
-  /// Query product details for the given set of IDs.
+  /// 주어진 ID 세트에 대한 제품 세부 정보를 쿼리합니다.
   ///
-  /// Identifiers in the underlying payment platform, for example, [App Store
-  /// Connect](https://appstoreconnect.apple.com/) for iOS and [Google Play
-  /// Console](https://play.google.com/) for Android.
+  /// 기본 결제 플랫폼의 식별자입니다. 예를 들어, iOS의 경우 [App Store Connect](https://appstoreconnect.apple.com/), Android의 경우 [Google Play Console](https://play.google.com/)이 있습니다.
   Future<ProductDetailsResponse> queryProductDetails(Set<String> identifiers) =>
       InAppPurchasePlatform.instance.queryProductDetails(identifiers);
 
-  /// Buy a non consumable product or subscription.
+  /// 비소모성 제품 또는 구독을 구매하십시오.
   ///
-  /// Non consumable items can only be bought once. For example, a purchase that
-  /// unlocks a special content in your app. Subscriptions are also non
-  /// consumable products.
+  /// 비소모성 아이템은 한 번만 구매할 수 있습니다.
+  /// 예를 들어, 앱에서 특별한 콘텐츠를 잠금 해제하는 구매가 이에 해당합니다.
+  /// 구독도 비소모성 제품입니다.
   ///
-  /// You always need to restore all the non consumable products for user when
-  /// they switch their phones.
+  /// 사용자가 휴대폰을 변경할 때 항상 모든 비소모성 제품을 복원해야 합니다.
   ///
-  /// This method does not return the result of the purchase. Instead, after
-  /// triggering this method, purchase updates will be sent to
-  /// [purchaseStream]. You should [Stream.listen] to [purchaseStream] to get
-  /// [PurchaseDetails] objects in different [PurchaseDetails.status] and update
-  ///  your UI accordingly. When the [PurchaseDetails.status] is
-  /// [PurchaseStatus.purchased], [PurchaseStatus.restored] or
-  /// [PurchaseStatus.error] you should deliver the content or handle the error,
-  /// then call [completePurchase] to finish the purchasing process.
+  /// 이 메서드는 구매 결과를 반환하지 않습니다.
+  /// 대신, 이 메서드를 트리거한 후 [purchaseStream]으로 구매 업데이트가 전송됩니다.
+  /// [purchaseStream]을 [Stream.listen]하여 [PurchaseDetails] 객체를 다양한 [PurchaseDetails.status]에서 수신하고 이에 따라 UI를 업데이트해야 합니다.
+  /// [PurchaseDetails.status]가 [PurchaseStatus.purchased], [PurchaseStatus.restored] 또는 [PurchaseStatus.error]일 때 콘텐츠를 제공하거나 오류를 처리한 후 [completePurchase]를 호출하여 구매 프로세스를 완료해야 합니다.
   ///
-  /// This method does return whether or not the purchase request was initially
-  /// sent successfully.
+  /// 이 메서드는 구매 요청이 초기적으로 성공적으로 전송되었는지 여부를 반환합니다.
   ///
-  /// Consumable items are defined differently by the different underlying
-  /// payment platforms, and there's no way to query for whether or not the
-  /// [ProductDetail] is a consumable at runtime.
+  /// 소모성 아이템은 각 기본 결제 플랫폼에 따라 다르게 정의되며, 런타임에 [ProductDetail]이 소모성인지 여부를 쿼리할 수 있는 방법이 없습니다.
   ///
-  /// See also:
+  /// 또한 참고할 사항:
   ///
-  ///  * [buyConsumable], for buying a consumable product.
-  ///  * [restorePurchases], for restoring non consumable products.
+  ///  * 소모성 제품 구매에 관한 [buyConsumable].
+  ///  * 비소모성 제품 복원에 관한 [restorePurchases].
   ///
-  /// Calling this method for consumable items will cause unwanted behaviors!
+  /// 이 메서드를 소모성 아이템에 호출하면 원치 않는 동작이 발생할 수 있습니다!
   Future<bool> buyNonConsumable({required PurchaseParam purchaseParam}) =>
       InAppPurchasePlatform.instance.buyNonConsumable(
         purchaseParam: purchaseParam,
       );
 
-  /// Buy a consumable product.
+  /// 소모성 제품을 구매하십시오.
   ///
-  /// Consumable items can be "consumed" to mark that they've been used and then
-  /// bought additional times. For example, a health potion.
+  /// 소모성 아이템은 사용되었다고 표시된 후 추가로 구매할 수 있습니다.
+  /// 예를 들어, 체력 포션이 이에 해당합니다.
   ///
-  /// To restore consumable purchases across devices, you should keep track of
-  /// those purchase on your own server and restore the purchase for your users.
-  /// Consumed products are no longer considered to be "owned" by payment
-  /// platforms and will not be delivered by calling [restorePurchases].
+  /// 기기 간 소모성 구매를 복원하려면, 사용자의 소모성 구매 정보를 자체 서버에 기록하고 이를 복원해야 합니다.
+  /// 소모된 제품은 더 이상 결제 플랫폼에서 "소유"로 간주되지 않으며 [restorePurchases]를 호출해도 제공되지 않습니다.
   ///
-  /// Consumable items are defined differently by the different underlying
-  /// payment platforms, and there's no way to query for whether or not the
-  /// [ProductDetail] is a consumable at runtime.
+  /// 소모성 아이템은 각 기본 결제 플랫폼에 따라 다르게 정의되며, 런타임에 [ProductDetail]이 소모성인지 여부를 쿼리할 수 있는 방법이 없습니다.
   ///
-  /// `autoConsume` is provided as a utility and will instruct the plugin to
-  /// automatically consume the product after a succesful purchase.
-  /// `autoConsume` is `true` by default.
+  /// `autoConsume`은 유틸리티로 제공되며, 성공적인 구매 후 제품을 자동으로 소비하도록 플러그인에 지시합니다.
+  /// `autoConsume`은 기본적으로 `true`로 설정되어 있습니다.
   ///
-  /// This method does not return the result of the purchase. Instead, after
-  /// triggering this method, purchase updates will be sent to
-  /// [purchaseStream]. You should [Stream.listen] to
-  /// [purchaseStream] to get [PurchaseDetails] objects in different
-  /// [PurchaseDetails.status] and update your UI accordingly. When the
-  /// [PurchaseDetails.status] is [PurchaseStatus.purchased] or
-  /// [PurchaseStatus.error], you should deliver the content or handle the
-  /// error, then call [completePurchase] to finish the purchasing process.
+  /// 이 메서드는 구매 결과를 반환하지 않습니다.
+  /// 대신, 이 메서드를 트리거한 후 [purchaseStream]으로 구매 업데이트가 전송됩니다.
+  /// [purchaseStream]을 [Stream.listen]하여 [PurchaseDetails] 객체를 다양한 [PurchaseDetails.status]에서 수신하고 이에 따라 UI를 업데이트해야 합니다.
+  /// [PurchaseDetails.status]가 [PurchaseStatus.purchased] 또는 [PurchaseStatus.error]일 때 콘텐츠를 제공하거나 오류를 처리한 후 [completePurchase]를 호출하여 구매 프로세스를 완료해야 합니다.
   ///
-  /// This method does return whether or not the purchase request was initially
-  /// sent succesfully.
+  /// 이 메서드는 구매 요청이 초기적으로 성공적으로 전송되었는지 여부를 반환합니다.
   ///
-  /// See also:
+  /// 또한 참고할 사항:
   ///
-  ///  * [buyNonConsumable], for buying a non consumable product or
-  ///    subscription.
-  ///  * [restorePurchases], for restoring non consumable products.
+  ///  * 비소모성 제품 또는 구독 구매에 관한 [buyNonConsumable].
+  ///  * 비소모성 제품 복원에 관한 [restorePurchases].
   ///
-  /// Calling this method for non consumable items will cause unwanted
-  /// behaviors!
+  /// 이 메서드를 비소모성 아이템에 호출하면 원치 않는 동작이 발생할 수 있습니다!
   Future<bool> buyConsumable({
     required PurchaseParam purchaseParam,
     bool autoConsume = true,
@@ -165,63 +129,52 @@ class InAppPurchase implements InAppPurchasePlatformAdditionProvider {
         autoConsume: autoConsume,
       );
 
-  /// Mark that purchased content has been delivered to the user.
+  /// 구매한 콘텐츠가 사용자에게 전달되었음을 표시합니다.
   ///
-  /// You are responsible for completing every [PurchaseDetails] whose
-  /// [PurchaseDetails.status] is [PurchaseStatus.purchased] or
-  /// [PurchaseStatus.restored].
-  /// Completing a [PurchaseStatus.pending] purchase will cause an exception.
-  /// For convenience, [PurchaseDetails.pendingCompletePurchase] indicates if a
-  /// purchase is pending for completion.
+  /// [PurchaseDetails.status]가 [PurchaseStatus.purchased] 또는 [PurchaseStatus.restored]인 모든 [PurchaseDetails]를 완료할 책임이 있습니다.
+  /// [PurchaseStatus.pending] 구매를 완료하면 예외가 발생합니다.
+  /// 편의를 위해 [PurchaseDetails.pendingCompletePurchase]는 구매가 완료 대기 중인지 여부를 나타냅니다.
   ///
-  /// The method will throw a [PurchaseException] when the purchase could not be
-  /// finished. Depending on the [PurchaseException.errorCode] the developer
-  /// should try to complete the purchase via this method again, or retry the
-  /// [completePurchase] method at a later time. If the
-  /// [PurchaseException.errorCode] indicates you should not retry there might
-  /// be some issue with the app's code or the configuration of the app in the
-  /// respective store. The developer is responsible to fix this issue. The
-  /// [PurchaseException.message] field might provide more information on what
-  /// went wrong.
+  /// 이 메서드는 구매가 완료될 수 없을 때 [PurchaseException]을 던집니다.
+  /// [PurchaseException.errorCode]에 따라 개발자는 이 메서드를 통해 구매를 다시 완료하거나, 나중에 [completePurchase] 메서드를 다시 시도해야 합니다.
+  /// [PurchaseException.errorCode]가 다시 시도하지 말아야 한다고 표시할 경우, 앱의 코드 또는 해당 스토어의 구성에 문제가 있을 수 있습니다.
+  /// 개발자는 이 문제를 해결할 책임이 있습니다.
+  /// [PurchaseException.message] 필드는 문제가 무엇인지에 대한 추가 정보를 제공할 수 있습니다.
   Future<void> completePurchase(PurchaseDetails purchase) =>
       InAppPurchasePlatform.instance.completePurchase(purchase);
 
-  /// Restore all previous purchases.
+  /// 이전의 모든 구매를 복원합니다.
   ///
-  /// The `applicationUserName` should match whatever was sent in the initial
-  /// `PurchaseParam`, if anything. If no `applicationUserName` was specified in the initial
-  /// `PurchaseParam`, use `null`.
+  /// `applicationUserName`은 초기 `PurchaseParam`에서 전송된 것과 일치해야 합니다.
   ///
-  /// Restored purchases are delivered through the [purchaseStream] with a
-  /// status of [PurchaseStatus.restored]. You should listen for these purchases,
-  /// validate their receipts, deliver the content and mark the purchase complete
-  /// by calling the [completePurchase] method for each purchase.
+  /// 만약 아무 것도 지정되지 않았다면 `null`을 사용하십시오.
   ///
-  /// This does not return consumed products. If you want to restore unused
-  /// consumable products, you need to persist consumable product information
-  /// for your user on your own server.
+  /// 복원된 구매는 [purchaseStream]을 통해 [PurchaseStatus.restored] 상태로 전달됩니다.
+  /// 이러한 구매를 수신하고, 영수증을 확인하며, 콘텐츠를 전달하고 각 구매에 대해 [completePurchase] 메서드를 호출하여 구매를 완료해야 합니다.
   ///
-  /// See also:
+  /// 이 메서드는 소모된 제품을 반환하지 않습니다.
+  /// 사용자의 소모되지 않은 소모성 제품을 복원하려면, 자체 서버에 소모성 제품 정보를 기록해 두어야 합니다.
   ///
-  ///  * [refreshPurchaseVerificationData], for reloading failed
-  ///    [PurchaseDetails.verificationData].
+  /// 또한 참고할 사항:
+  ///
+  ///  * 실패한 [PurchaseDetails.verificationData]를 다시 로드하기 위한 [InAppPurchasePlatform.instance.refreshPurchaseVerificationData].
   Future<void> restorePurchases({String? applicationUserName}) =>
       InAppPurchasePlatform.instance.restorePurchases(
         applicationUserName: applicationUserName,
       );
 
-  /// Returns the user's country.
+  /// 사용자의 국가를 반환합니다.
   ///
-  /// Android:
-  /// Returns Play billing country code based on ISO-3166-1 alpha2 format.
+  /// 안드로이드:
+  /// ISO-3166-1 alpha2 형식에 따라 Play 결제 국가 코드를 반환합니다.
   ///
-  /// See: https://developer.android.com/reference/com/android/billingclient/api/BillingConfig
-  /// See: https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html
+  /// 참고: https://developer.android.com/reference/com/android/billingclient/api/BillingConfig
+  /// 참고: https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html
   ///
   /// iOS:
-  /// Returns the country code from SKStoreFrontWrapper.
+  /// SKStoreFrontWrapper에서 국가 코드를 반환합니다.
   ///
-  /// See: https://developer.apple.com/documentation/storekit/skstorefront?language=objc
+  /// 참고: https://developer.apple.com/documentation/storekit/skstorefront?language=objc
   ///
   ///
   Future<String> countryCode() => InAppPurchasePlatform.instance.countryCode();

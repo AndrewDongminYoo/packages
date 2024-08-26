@@ -20,8 +20,8 @@ void main() {
   runApp(_MyApp());
 }
 
-// Auto-consume must be true on iOS.
-// To try without auto-consume on another platform, change `true` to `false` here.
+// Auto-consume은 iOS에서 반드시 true로 설정해야 합니다.
+// 다른 플랫폼에서 auto-consume 없이 시도하려면, 여기서 `true`를 `false`로 변경하세요.
 final bool _kAutoConsume = Platform.isIOS || true;
 
 const String _kConsumableId = 'consumable';
@@ -62,7 +62,7 @@ class _MyAppState extends State<_MyApp> {
     }, onDone: () {
       _subscription.cancel();
     }, onError: (Object error) {
-      // handle error here.
+      // 여기서 오류를 처리하세요.
     });
     initStoreInfo();
     super.initState();
@@ -211,7 +211,7 @@ class _MyAppState extends State<_MyApp> {
           title: Text('Not connected',
               style: TextStyle(color: ThemeData.light().colorScheme.error)),
           subtitle: const Text(
-              'Unable to connect to the payments processor. Has this app been configured correctly? See the example README for instructions.'),
+              '결제 처리기에 연결할 수 없습니다. 이 앱이 올바르게 구성되었나요? 지침은 예제 README를 참조하세요.'),
         ),
       ]);
     }
@@ -235,12 +235,12 @@ class _MyAppState extends State<_MyApp> {
           title: Text('[${_notFoundIds.join(", ")}] not found',
               style: TextStyle(color: ThemeData.light().colorScheme.error)),
           subtitle: const Text(
-              'This app needs special configuration to run. Please see example/README.md for instructions.')));
+              '이 앱을 실행하려면 특별한 구성이 필요합니다. 지침은 example/README.md를 참조하세요.')));
     }
 
-    // This loading previous purchases code is just a demo. Please do not use this as it is.
-    // In your app you should always verify the purchase data using the `verificationData` inside the [PurchaseDetails] object before trusting it.
-    // We recommend that you use your own server to verify the purchase data.
+    // 이전 구매 로드 코드는 단지 데모입니다. 이를 그대로 사용하지 마십시오.
+    // 앱에서는 [PurchaseDetails] 객체 안의 `verificationData`를 사용하여 구매 데이터를 신뢰하기 전에 항상 검증해야 합니다.
+    // 구매 데이터를 검증하기 위해 자체 서버를 사용하는 것을 권장합니다.
     final Map<String, PurchaseDetails> purchases =
         Map<String, PurchaseDetails>.fromEntries(
             _purchases.map((PurchaseDetails purchase) {
@@ -272,10 +272,8 @@ class _MyAppState extends State<_MyApp> {
                     late PurchaseParam purchaseParam;
 
                     if (Platform.isAndroid) {
-                      // NOTE: If you are making a subscription purchase/upgrade/downgrade, we recommend you to
-                      // verify the latest status of you your subscription by using server side receipt validation
-                      // and update the UI accordingly. The subscription purchase status shown
-                      // inside the app may not be accurate.
+                      // 참고: 구독 구매/업그레이드/다운그레이드를 진행 중이라면, 서버 측 영수증 검증을 통해 구독의 최신 상태를 확인하고 이에 따라 UI를 업데이트하는 것을 권장합니다.
+                      // 앱 내에서 표시되는 구독 구매 상태는 정확하지 않을 수 있습니다.
                       final GooglePlayPurchaseDetails? oldSubscription =
                           _getOldSubscription(productDetails, purchases);
 
@@ -390,7 +388,7 @@ class _MyAppState extends State<_MyApp> {
   }
 
   Future<void> deliverProduct(PurchaseDetails purchaseDetails) async {
-    // IMPORTANT!! Always verify purchase details before delivering the product.
+    // 중요!! 제품을 제공하기 전에 항상 구매 세부 정보를 확인하십시오.
     if (purchaseDetails.productID == _kConsumableId) {
       await ConsumableStore.save(purchaseDetails.purchaseID!);
       final List<String> consumables = await ConsumableStore.load();
@@ -413,13 +411,13 @@ class _MyAppState extends State<_MyApp> {
   }
 
   Future<bool> _verifyPurchase(PurchaseDetails purchaseDetails) {
-    // IMPORTANT!! Always verify a purchase before delivering the product.
-    // For the purpose of an example, we directly return true.
+    // 중요!! 제품을 제공하기 전에 항상 구매를 확인하십시오.
+    // 예제로서, 우리는 직접적으로 true를 반환합니다.
     return Future<bool>.value(true);
   }
 
   void _handleInvalidPurchase(PurchaseDetails purchaseDetails) {
-    // handle invalid purchase here if  _verifyPurchase` failed.
+    // `_verifyPurchase`가 실패하면 여기에서 유효하지 않은 구매를 처리하세요.
   }
 
   Future<void> _listenToPurchaseUpdated(
@@ -456,10 +454,8 @@ class _MyAppState extends State<_MyApp> {
   }
 
   Future<void> confirmPriceChange(BuildContext context) async {
-    // Price changes for Android are not handled by the application, but are
-    // instead handled by the Play Store. See
-    // https://developer.android.com/google/play/billing/price-changes for more
-    // information on price changes on Android.
+    // Android의 가격 변경은 애플리케이션에서 처리되지 않으며, Play Store에서 대신 처리됩니다.
+    // Android의 가격 변경에 대한 자세한 내용은 [여기](https://developer.android.com/google/play/billing/price-changes)를 참조하세요.
     if (Platform.isIOS) {
       final InAppPurchaseStoreKitPlatformAddition iapStoreKitPlatformAddition =
           _inAppPurchase
@@ -470,13 +466,11 @@ class _MyAppState extends State<_MyApp> {
 
   GooglePlayPurchaseDetails? _getOldSubscription(
       ProductDetails productDetails, Map<String, PurchaseDetails> purchases) {
-    // This is just to demonstrate a subscription upgrade or downgrade.
-    // This method assumes that you have only 2 subscriptions under a group, 'subscription_silver' & 'subscription_gold'.
-    // The 'subscription_silver' subscription can be upgraded to 'subscription_gold' and
-    // the 'subscription_gold' subscription can be downgraded to 'subscription_silver'.
-    // Please remember to replace the logic of finding the old subscription Id as per your app.
-    // The old subscription is only required on Android since Apple handles this internally
-    // by using the subscription group feature in iTunesConnect.
+    // 이것은 구독 업그레이드 또는 다운그레이드를 시연하기 위한 것입니다.
+    // 이 메서드는 'subscription_silver'와 'subscription_gold'이라는 두 개의 구독이 그룹에 속해 있다고 가정합니다.
+    // 'subscription_silver' 구독은 'subscription_gold'로 업그레이드할 수 있으며, 'subscription_gold' 구독은 'subscription_silver'로 다운그레이드할 수 있습니다.
+    // 앱에 맞게 이전 구독 Id를 찾는 로직을 교체해야 한다는 점을 기억하십시오.
+    // 이전 구독은 Android에서만 필요하며, Apple은 iTunesConnect에서 구독 그룹 기능을 사용하여 이를 내부적으로 처리합니다.
     GooglePlayPurchaseDetails? oldSubscription;
     if (productDetails.id == _kSilverSubscriptionId &&
         purchases[_kGoldSubscriptionId] != null) {
@@ -491,11 +485,9 @@ class _MyAppState extends State<_MyApp> {
   }
 }
 
-/// Example implementation of the
-/// [`SKPaymentQueueDelegate`](https://developer.apple.com/documentation/storekit/skpaymentqueuedelegate?language=objc).
+/// [`SKPaymentQueueDelegate`](https://developer.apple.com/documentation/storekit/skpaymentqueuedelegate?language=objc)의 예제 구현입니다.
 ///
-/// The payment queue delegate can be implementated to provide information
-/// needed to complete transactions.
+/// 결제 큐 대리자는 거래를 완료하는 데 필요한 정보를 제공하도록 구현될 수 있습니다.
 class ExamplePaymentQueueDelegate implements SKPaymentQueueDelegateWrapper {
   @override
   bool shouldContinueTransaction(
