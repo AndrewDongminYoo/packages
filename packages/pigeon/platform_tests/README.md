@@ -11,20 +11,21 @@ Alternately, if you are running them directly (e.g., from within a platform
 IDE), you can use [`generate.dart`](../tool/generate.dart) to generate the
 necessary Pigeon output.
 
-## test\_plugin
+## test_plugin
 
 The new unified test harness for all platforms. Tests in this plugin use the
 same structure as tests for the Flutter team-maintained plugins, as described
 [in the repository documentation](https://github.com/flutter/flutter/blob/master/docs/ecosystem/testing/Plugin-Tests.md#web-tests).
 
-## alternate\_language\_test\_plugin
+## alternate_language_test_plugin
 
 The test harness for alternate languages, on platforms that have multiple
 supported plugin languages. It covers:
+
 - Java for Android
 - Objective-C for iOS
 
-## flutter\_null\_safe\_unit\_tests
+## flutter_null_safe_unit_tests
 
 Dart unit tests for null-safe mode. This is a legacy structure from before
 NNBD was the only mode Pigeon supported; these should be folded back into

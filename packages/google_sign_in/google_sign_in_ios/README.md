@@ -1,4 +1,4 @@
-# google\_sign\_in\_ios
+# google_sign_in_ios
 
 The iOS and macOS implementation of [`google_sign_in`][1].
 
@@ -32,12 +32,12 @@ when trying to sign in.
 ### iOS integration
 
 1. [Create a Firebase project](https://firebase.google.com/docs/ios/setup#create-firebase-project)
-    and [register your application](https://firebase.google.com/docs/ios/setup#register-app).
+   and [register your application](https://firebase.google.com/docs/ios/setup#register-app).
 2. [Enable Google Sign-In for your Firebase project](https://firebase.google.com/docs/auth/ios/google-signin#enable_google_sign-in_for_your_firebase_project).
 3. Make sure to download a new copy of your project's
    `GoogleService-Info.plist` from step 2. Do not put this file in your project.
 4. Add the client ID from the `GoogleService-Info.plist` into your app's
-    `[my_project]/ios/Runner/Info.plist` file.
+   `[my_project]/ios/Runner/Info.plist` file.
    ```xml
    <key>GIDClientID</key>
    <!-- TODO Replace this value: -->
@@ -74,9 +74,10 @@ when trying to sign in.
 
 As an alternative to editing the `Info.plist` in your Xcode project,
 you can instead configure your app in Dart code. In this case, skip steps 4 to 5
- and pass `clientId` and `serverClientId` to the `GoogleSignIn` constructor:
+and pass `clientId` and `serverClientId` to the `GoogleSignIn` constructor:
 
 <?code-excerpt "../google_sign_in/test/google_sign_in_test.dart (GoogleSignIn)"?>
+
 ```dart
 final GoogleSignIn googleSignIn = GoogleSignIn(
   // The OAuth client id of your app. This is required.

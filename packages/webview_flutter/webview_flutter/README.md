@@ -10,7 +10,7 @@ On iOS the WebView widget is backed by a [WKWebView](https://developer.apple.com
 On Android the WebView widget is backed by a [WebView](https://developer.android.com/reference/android/webkit/WebView).
 
 |             | Android        | iOS   | macOS  |
-|-------------|----------------|-------|--------|
+| ----------- | -------------- | ----- | ------ |
 | **Support** | SDK 19+ or 20+ | 12.0+ | 10.14+ |
 
 ## Usage
@@ -20,6 +20,7 @@ You can now display a WebView by:
 1. Instantiating a [WebViewController](https://pub.dev/documentation/webview_flutter/latest/webview_flutter/WebViewController-class.html).
 
 <?code-excerpt "simple_example.dart (webview_controller)"?>
+
 ```dart
 controller = WebViewController()
   ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -46,6 +47,7 @@ controller = WebViewController()
 2. Passing the controller to a [WebViewWidget](https://pub.dev/documentation/webview_flutter/latest/webview_flutter/WebViewWidget-class.html).
 
 <?code-excerpt "simple_example.dart (webview_widget)"?>
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -84,12 +86,13 @@ features.
 To access platform-specific features, start by adding the platform implementation packages to your
 app or package:
 
-* **Android**: [webview_flutter_android](https://pub.dev/packages/webview_flutter_android/install)
-* **iOS/macOS**: [webview_flutter_wkwebview](https://pub.dev/packages/webview_flutter_wkwebview/install)
+- **Android**: [webview_flutter_android](https://pub.dev/packages/webview_flutter_android/install)
+- **iOS/macOS**: [webview_flutter_wkwebview](https://pub.dev/packages/webview_flutter_wkwebview/install)
 
 Next, add the imports of the implementation packages to your app or package:
 
 <?code-excerpt "main.dart (platform_imports)"?>
+
 ```dart
 // Import for Android features.
 import 'package:webview_flutter_android/webview_flutter_android.dart';
@@ -111,6 +114,7 @@ additional functionality provided by the platform and is followed by an example.
 Below is an example of setting additional iOS/macOS and Android parameters on the `WebViewController`.
 
 <?code-excerpt "main.dart (platform_features)"?>
+
 ```dart
 late final PlatformWebViewControllerCreationParams params;
 if (WebViewPlatform.instance is WebKitWebViewPlatform) {
@@ -183,46 +187,47 @@ to manually switch to Hybrid Composition on versions 23+.
 
 Below is a non-exhaustive list of changes to the API:
 
-* `WebViewController.clearCache` no longer clears local storage. Please use
+- `WebViewController.clearCache` no longer clears local storage. Please use
   `WebViewController.clearLocalStorage`.
-* `WebViewController.clearCache` no longer reloads the page.
-* `WebViewController.loadUrl` has been removed. Please use `WebViewController.loadRequest`.
-* `WebViewController.evaluateJavascript` has been removed. Please use
+- `WebViewController.clearCache` no longer reloads the page.
+- `WebViewController.loadUrl` has been removed. Please use `WebViewController.loadRequest`.
+- `WebViewController.evaluateJavascript` has been removed. Please use
   `WebViewController.runJavaScript` or `WebViewController.runJavaScriptReturningResult`.
-* `WebViewController.getScrollX` and `WebViewController.getScrollY` have been removed and have
+- `WebViewController.getScrollX` and `WebViewController.getScrollY` have been removed and have
   been replaced by `WebViewController.getScrollPosition`.
-* `WebViewController.runJavaScriptReturningResult` now returns an `Object` and not a `String`. This
+- `WebViewController.runJavaScriptReturningResult` now returns an `Object` and not a `String`. This
   will attempt to return a `bool` or `num` if the return value can be parsed.
-* `WebView.initialCookies` has been removed. Use `WebViewCookieManager.setCookie` before calling
+- `WebView.initialCookies` has been removed. Use `WebViewCookieManager.setCookie` before calling
   `WebViewController.loadRequest`.
-* `CookieManager` is replaced by `WebViewCookieManager`.
-* `NavigationDelegate.onWebResourceError` callback includes errors that are not from the main frame.
-   Use the `WebResourceError.isForMainFrame` field to filter errors.
-* The following fields from `WebView` have been moved to `NavigationDelegate`. They can be added to
+- `CookieManager` is replaced by `WebViewCookieManager`.
+- `NavigationDelegate.onWebResourceError` callback includes errors that are not from the main frame.
+  Use the `WebResourceError.isForMainFrame` field to filter errors.
+- The following fields from `WebView` have been moved to `NavigationDelegate`. They can be added to
   a WebView with `WebViewController.setNavigationDelegate`.
-  * `WebView.navigationDelegate` -> `NavigationDelegate.onNavigationRequest`
-  * `WebView.onPageStarted` -> `NavigationDelegate.onPageStarted`
-  * `WebView.onPageFinished` -> `NavigationDelegate.onPageFinished`
-  * `WebView.onProgress` -> `NavigationDelegate.onProgress`
-  * `WebView.onWebResourceError` -> `NavigationDelegate.onWebResourceError`
-* The following fields from `WebView` have been moved to `WebViewController`:
-  * `WebView.javascriptMode` -> `WebViewController.setJavaScriptMode`
-  * `WebView.javascriptChannels` ->
+  - `WebView.navigationDelegate` -> `NavigationDelegate.onNavigationRequest`
+  - `WebView.onPageStarted` -> `NavigationDelegate.onPageStarted`
+  - `WebView.onPageFinished` -> `NavigationDelegate.onPageFinished`
+  - `WebView.onProgress` -> `NavigationDelegate.onProgress`
+  - `WebView.onWebResourceError` -> `NavigationDelegate.onWebResourceError`
+- The following fields from `WebView` have been moved to `WebViewController`:
+  - `WebView.javascriptMode` -> `WebViewController.setJavaScriptMode`
+  - `WebView.javascriptChannels` ->
     `WebViewController.addJavaScriptChannel`/`WebViewController.removeJavaScriptChannel`
-  * `WebView.zoomEnabled` -> `WebViewController.enableZoom`
-  * `WebView.userAgent` -> `WebViewController.setUserAgent`
-  * `WebView.backgroundColor` -> `WebViewController.setBackgroundColor`
-* The following features have been moved to an Android implementation class. See section
+  - `WebView.zoomEnabled` -> `WebViewController.enableZoom`
+  - `WebView.userAgent` -> `WebViewController.setUserAgent`
+  - `WebView.backgroundColor` -> `WebViewController.setBackgroundColor`
+- The following features have been moved to an Android implementation class. See section
   `Platform-Specific Features` for details on accessing Android platform-specific features.
-  * `WebView.debuggingEnabled` -> `static AndroidWebViewController.enableDebugging`
-  * `WebView.initialMediaPlaybackPolicy` -> `AndroidWebViewController.setMediaPlaybackRequiresUserGesture`
-* The following features have been moved to an iOS implementation class. See section
+  - `WebView.debuggingEnabled` -> `static AndroidWebViewController.enableDebugging`
+  - `WebView.initialMediaPlaybackPolicy` -> `AndroidWebViewController.setMediaPlaybackRequiresUserGesture`
+- The following features have been moved to an iOS implementation class. See section
   `Platform-Specific Features` for details on accessing iOS platform-specific features.
-  * `WebView.gestureNavigationEnabled` -> `WebKitWebViewController.setAllowsBackForwardNavigationGestures`
-  * `WebView.initialMediaPlaybackPolicy` -> `WebKitWebViewControllerCreationParams.mediaTypesRequiringUserAction`
-  * `WebView.allowsInlineMediaPlayback` -> `WebKitWebViewControllerCreationParams.allowsInlineMediaPlayback`
+  - `WebView.gestureNavigationEnabled` -> `WebKitWebViewController.setAllowsBackForwardNavigationGestures`
+  - `WebView.initialMediaPlaybackPolicy` -> `WebKitWebViewControllerCreationParams.mediaTypesRequiringUserAction`
+  - `WebView.allowsInlineMediaPlayback` -> `WebKitWebViewControllerCreationParams.allowsInlineMediaPlayback`
 
 <!-- Links -->
+
 [WebViewController]: https://pub.dev/documentation/webview_flutter/latest/webview_flutter/WebViewController-class.html
 [WebViewWidget]: https://pub.dev/documentation/webview_flutter/latest/webview_flutter/WebViewWidget-class.html
 [NavigationDelegate]: https://pub.dev/documentation/webview_flutter/latest/webview_flutter/NavigationDelegate-class.html

@@ -1,6 +1,6 @@
 <?code-excerpt path-base="example/lib"?>
 
-# image\_picker\_android
+# image_picker_android
 
 The Android implementation of [`image_picker`][1].
 
@@ -22,6 +22,7 @@ On Android 12 and below this package has optional Android Photo Picker functiona
 To use this feature, add the following code to your app before calling any `image_picker` APIs:
 
 <?code-excerpt "main.dart (photo-picker-example)"?>
+
 ```dart
 import 'package:image_picker_android/image_picker_android.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';

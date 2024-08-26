@@ -1,4 +1,4 @@
-# shared\_preferences\_web
+# shared_preferences_web
 
 The web implementation of [`shared_preferences`][1].
 

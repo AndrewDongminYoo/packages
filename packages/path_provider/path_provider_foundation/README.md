@@ -1,4 +1,4 @@
-# path\_provider\_foundation
+# path_provider_foundation
 
 The iOS and macOS implementation of [`path_provider`][1].
 

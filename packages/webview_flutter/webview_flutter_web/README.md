@@ -1,4 +1,4 @@
-# webview\_flutter\_web
+# webview_flutter_web
 
 This is an implementation of the [`webview_flutter`](https://pub.dev/packages/webview_flutter) plugin for web.
 
@@ -15,7 +15,7 @@ Nothing else is currently supported.
 This package is not an endorsed implementation of the `webview_flutter` plugin
 yet, so it currently requires extra setup to use:
 
-* [Add this package](https://pub.dev/packages/webview_flutter_web/install)
+- [Add this package](https://pub.dev/packages/webview_flutter_web/install)
   as an explicit dependency of your project, in addition to depending on
   `webview_flutter`.
 

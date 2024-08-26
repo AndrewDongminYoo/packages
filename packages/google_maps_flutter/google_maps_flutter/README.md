@@ -7,24 +7,24 @@
 A Flutter plugin that provides a [Google Maps](https://developers.google.com/maps/) widget.
 
 |             | Android | iOS     | Web                              |
-|-------------|---------|---------|----------------------------------|
+| ----------- | ------- | ------- | -------------------------------- |
 | **Support** | SDK 20+ | iOS 14+ | Same as [Flutter's][web-support] |
 
 [web-support]: https://docs.flutter.dev/reference/supported-platforms
 
 ## Getting Started
 
-* Get an API key at <https://cloud.google.com/maps-platform/>.
+- Get an API key at <https://cloud.google.com/maps-platform/>.
 
-* Enable Google Map SDK for each platform.
-  * Go to [Google Developers Console](https://console.cloud.google.com/).
-  * Choose the project that you want to enable Google Maps on.
-  * Select the navigation menu and then select "Google Maps".
-  * Select "APIs" under the Google Maps menu.
-  * To enable Google Maps for Android, select "Maps SDK for Android" in the "Additional APIs" section, then select "ENABLE".
-  * To enable Google Maps for iOS, select "Maps SDK for iOS" in the "Additional APIs" section, then select "ENABLE".
-  * To enable Google Maps for Web, enable the "Maps JavaScript API".
-  * Make sure the APIs you enabled are under the "Enabled APIs" section.
+- Enable Google Map SDK for each platform.
+  - Go to [Google Developers Console](https://console.cloud.google.com/).
+  - Choose the project that you want to enable Google Maps on.
+  - Select the navigation menu and then select "Google Maps".
+  - Select "APIs" under the Google Maps menu.
+  - To enable Google Maps for Android, select "Maps SDK for Android" in the "Additional APIs" section, then select "ENABLE".
+  - To enable Google Maps for iOS, select "Maps SDK for iOS" in the "Additional APIs" section, then select "ENABLE".
+  - To enable Google Maps for Web, enable the "Maps JavaScript API".
+  - Make sure the APIs you enabled are under the "Enabled APIs" section.
 
 For more details, see [Getting started with Google Maps Platform](https://developers.google.com/maps/gmp-get-started).
 
@@ -124,6 +124,7 @@ in an unbounded widget will cause the application to throw a Flutter exception.
 ### Sample Usage
 
 <?code-excerpt "readme_sample.dart (MapSample)"?>
+
 ```dart
 class MapSample extends StatefulWidget {
   const MapSample({super.key});

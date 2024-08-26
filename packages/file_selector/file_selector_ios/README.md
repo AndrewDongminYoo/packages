@@ -1,4 +1,4 @@
-# file\_selector\_ios
+# file_selector_ios
 
 The iOS implementation of [`file_selector`][1].
 

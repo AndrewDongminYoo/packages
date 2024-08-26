@@ -17,6 +17,7 @@ GoRouter(
 ```
 
 # GoRoute
+
 To configure a GoRoute, a path template and builder must be provided. Specify a
 path template to handle by providing a `path` parameter, and a builder by
 providing either the `builder` or `pageBuilder` parameter:
@@ -35,6 +36,7 @@ To learn more about how navigation works, visit the
 topic.
 
 # Parameters
+
 To specify a path parameter, prefix a path segment with a `:` character,
 followed by a unique name, for example, `:userId`. You can access the value of
 the parameter by accessing it through the [GoRouterState][] object provided to
@@ -60,6 +62,7 @@ GoRoute(
 ```
 
 # Child routes
+
 A matched route can result in more than one screen being displayed on a
 Navigator. This is equivalent to calling `push()`, where a new screen is
 displayed above the previous screen with a transition animation, and with an
@@ -86,7 +89,8 @@ GoRoute(
 ```
 
 # Dynamic RoutingConfig
-The [RoutingConfig][] provides a way to update the GoRoute\[s\] after 
+
+The [RoutingConfig][] provides a way to update the GoRoute\[s\] after
 the [GoRouter][] has already created. This can be done by creating a GoRouter
 with special constructor [GoRouter.routingConfig][]
 
@@ -115,6 +119,7 @@ the current routes, i.e. RouteMatchList, stored in GoRouter. The RouteMatchList 
 reflect the latest change of the `RoutingConfig`.
 
 # Nested navigation
+
 Some apps display destinations in a subsection of the screen, for example, an
 app using a BottomNavigationBar that stays on-screen when navigating between
 destinations.
@@ -153,21 +158,23 @@ sample](https://github.com/flutter/packages/tree/main/packages/go_router/example
 in the example/ directory.
 
 # Stateful nested navigation
+
 In addition to using nested navigation with for instance a BottomNavigationBar,
-many apps also require that state is maintained when navigating between 
-destinations. To accomplish this, use [StatefulShellRoute][] instead of 
+many apps also require that state is maintained when navigating between
+destinations. To accomplish this, use [StatefulShellRoute][] instead of
 `ShellRoute`.
 
 StatefulShellRoute creates separate `Navigator`s for each of its nested [branches](https://pub.dev/documentation/go_router/latest/go_router/StatefulShellBranch-class.html)
-(i.e. parallel navigation trees), making it possible to build an app with 
+(i.e. parallel navigation trees), making it possible to build an app with
 stateful nested navigation. The constructor [StatefulShellRoute.indexedStack](https://pub.dev/documentation/go_router/latest/go_router/StatefulShellRoute/StatefulShellRoute.indexedStack.html)
-provides a default implementation for managing the branch navigators, using an 
-`IndexedStack`. 
+provides a default implementation for managing the branch navigators, using an
+`IndexedStack`.
 
-When using StatefulShellRoute, routes aren't configured on the shell route 
+When using StatefulShellRoute, routes aren't configured on the shell route
 itself. Instead, they are configured for each of the branches. Example:
 
 <?code-excerpt "../example/lib/stateful_shell_route.dart (configuration-branches)"?>
+
 ```dart
 branches: <StatefulShellBranch>[
   // The route branch for the first tab of the bottom navigation bar.
@@ -195,12 +202,13 @@ branches: <StatefulShellBranch>[
   ),
 ```
 
-Similar to ShellRoute, a builder must be provided to build the actual shell 
-Widget that encapsulates the branch navigation container. The latter is 
-implemented by the class [StatefulNavigationShell](https://pub.dev/documentation/go_router/latest/go_router/StatefulNavigationShell-class.html), 
+Similar to ShellRoute, a builder must be provided to build the actual shell
+Widget that encapsulates the branch navigation container. The latter is
+implemented by the class [StatefulNavigationShell](https://pub.dev/documentation/go_router/latest/go_router/StatefulNavigationShell-class.html),
 which is passed as the last argument to the builder function. Example:
 
 <?code-excerpt "../example/lib/stateful_shell_route.dart (configuration-builder)"?>
+
 ```dart
 StatefulShellRoute.indexedStack(
   builder: (BuildContext context, GoRouterState state,
@@ -213,12 +221,13 @@ StatefulShellRoute.indexedStack(
   },
 ```
 
-Within the custom shell widget, the StatefulNavigationShell is first and 
-foremost used as the child, or body, of the shell. Secondly, it is also used for   
-handling stateful switching between branches, as well as providing the currently 
+Within the custom shell widget, the StatefulNavigationShell is first and
+foremost used as the child, or body, of the shell. Secondly, it is also used for  
+handling stateful switching between branches, as well as providing the currently
 active branch index. Example:
 
 <?code-excerpt "../example/lib/stateful_shell_route.dart (configuration-custom-shell)"?>
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -245,9 +254,9 @@ Widget build(BuildContext context) {
 }
 ```
 
-For a complete example, see the [Stateful Nested 
+For a complete example, see the [Stateful Nested
 Navigation](https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart)
-in the example/ directory. 
+in the example/ directory.
 For further details, see the [StatefulShellRoute API
 documentation](https://pub.dev/documentation/go_router/latest/go_router/StatefulShellRoute-class.html).
 

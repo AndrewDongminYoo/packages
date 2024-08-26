@@ -1,4 +1,4 @@
-# image\_picker\_linux
+# image_picker_linux
 
 A Linux implementation of [`image_picker`][1].
 
@@ -7,9 +7,11 @@ A Linux implementation of [`image_picker`][1].
 `ImageSource.camera` is not supported unless a `cameraDelegate` is set.
 
 ### pickImage()
+
 The arguments `maxWidth`, `maxHeight`, and `imageQuality` are not currently supported.
 
 ### pickVideo()
+
 The argument `maxDuration` is not currently supported.
 
 ## Usage

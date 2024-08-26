@@ -8,6 +8,7 @@ network with a retry mechanism.
 Example:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (NetworkImageWithRetry)"?>
+
 ```dart
 const Image avatar = Image(
   image: NetworkImageWithRetry('http://example.com/avatars/123.jpg'),

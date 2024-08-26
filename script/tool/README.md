@@ -26,6 +26,7 @@ following shows a number of common commands being run for a specific package.
 
 Most commands take a `--packages` argument to control which package(s) the
 command is targetting. An package name can be any of:
+
 - The name of a package (e.g., `path_provider_android`).
 - The name of a federated plugin (e.g., `path_provider`), in which case all
   packages that make up that plugin will be targetted.

@@ -6,16 +6,16 @@
 
 A Flutter plugin for iOS, Android and Web allowing access to the device cameras.
 
-|                | Android | iOS       | Web                    |
-|----------------|---------|-----------|------------------------|
-| **Support**    | SDK 21+ | iOS 12.0+ | [See `camera_web `][1] |
+|             | Android | iOS       | Web                    |
+| ----------- | ------- | --------- | ---------------------- |
+| **Support** | SDK 21+ | iOS 12.0+ | [See `camera_web `][1] |
 
 ## Features
 
-* Display live camera preview in a widget.
-* Snapshots can be captured and saved to a file.
-* Record video.
-* Add access to the image stream from Dart.
+- Display live camera preview in a widget.
+- Snapshots can be captured and saved to a file.
+- Record video.
+- Add access to the image stream from Dart.
 
 ## Setup
 
@@ -23,8 +23,8 @@ A Flutter plugin for iOS, Android and Web allowing access to the device cameras.
 
 Add two rows to the `ios/Runner/Info.plist`:
 
-* one with the key `Privacy - Camera Usage Description` and a usage description.
-* and one with the key `Privacy - Microphone Usage Description` and a usage description.
+- one with the key `Privacy - Camera Usage Description` and a usage description.
+- and one with the key `Privacy - Microphone Usage Description` and a usage description.
 
 If editing `Info.plist` as text, add:
 
@@ -61,6 +61,7 @@ For web integration details, see the
 As of version [0.5.0](https://github.com/flutter/packages/blob/main/packages/camera/CHANGELOG.md#050) of the camera plugin, lifecycle changes are no longer handled by the plugin. This means developers are now responsible to control camera resources when the lifecycle state is updated. Failure to do so might lead to unexpected behavior (for example as described in issue [#39109](https://github.com/flutter/flutter/issues/39109)). Handling lifecycle changes can be done by overriding the `didChangeAppLifecycleState` method like so:
 
 <?code-excerpt "main.dart (AppLifecycle)"?>
+
 ```dart
 @override
 void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -102,6 +103,7 @@ Here is a list of all permission error codes that can be thrown:
 Here is a small example flutter app displaying a full screen camera preview.
 
 <?code-excerpt "readme_full_example.dart (FullAppExample)"?>
+
 ```dart
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';

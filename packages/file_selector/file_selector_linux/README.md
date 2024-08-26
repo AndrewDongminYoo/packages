@@ -1,4 +1,4 @@
-# file\_selector\_linux
+# file_selector_linux
 
 The Linux implementation of [`file_selector`][1].
 

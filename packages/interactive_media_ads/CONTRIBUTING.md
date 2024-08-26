@@ -29,9 +29,9 @@ that is used to forward handling to the platform implementation:
 // App-facing class used by apps
 class AdsLoader {
   AdsLoader.fromPlatform(this.platform);
-  
+
   final PlatformAdsLoader platform;
-  
+
   Future<void> requestAds(AdsRequest request) {
     return platform.requestAds(request);
   }
@@ -62,9 +62,10 @@ This declares an interface that each platform must implement to be supported by 
 interface.
 
 The design of the platform interface should prioritize:
-* Minimizing the chances of needing a breaking change when adding a new feature.
-* Allowing platform implementations to easily add platform specific features.
-* Being straight-forward to write unit tests.
+
+- Minimizing the chances of needing a breaking change when adding a new feature.
+- Allowing platform implementations to easily add platform specific features.
+- Being straight-forward to write unit tests.
 
 Each platform creates a subclass of the central [InteractiveMediaAdsPlatform](lib/src/platform_interface/interactive_media_ads_platform.dart)
 class. A platform implementation is set by setting `InteractiveMediaAdsPlatform.instance` to an
@@ -82,7 +83,7 @@ implementation. These classes are typically prefixed with `Platform`.
 If the corresponding app-facing class can be instantiated by the app (e.g. [AdsLoader]),
 the `InteractiveMediaAdsPlatform.instance` field should be used in a factory to instantiate the
 correct platform implementation. See [PlatformAdsLoader] as an example. This class should should
-also take a creation params class as the only constructor parameter. 
+also take a creation params class as the only constructor parameter.
 
 If the corresponding app-facing class can't be instantiated by the app (e.g. `AdsManager`), the
 class should only have a single protected constructor. See [PlatformAdsManager].
@@ -103,10 +104,11 @@ These classes contain only fields and no methods. Each data class should be made
 ### Platform Implementations
 
 Code location:
-* Android: `lib/src/android/`
-* iOS: `lib/src/ios/`
 
-The platform implementations create a subclass of `InteractiveMediaAdsPlatform` and implement the 
+- Android: `lib/src/android/`
+- iOS: `lib/src/ios/`
+
+The platform implementations create a subclass of `InteractiveMediaAdsPlatform` and implement the
 platform classes that are returned by this.
 
 #### SDK Wrappers
@@ -117,23 +119,24 @@ process of review, so this plugin must use a git dependency in the pubspec.
 
 The wrappers for the SDK of each platform can be updated and modified by changing the pigeon files:
 
-* Android: `pigeons/interactive_media_ads_android.dart`
-* iOS: `pigeons/interactive_media_ads_ios.dart`
+- Android: `pigeons/interactive_media_ads_android.dart`
+- iOS: `pigeons/interactive_media_ads_ios.dart`
 
 The generated files are located:
-* Android:
-  * `lib/src/android/interactive_media_ads.g.dart`
-  * `android/src/main/kotlin/dev/flutter/packages/interactive_media_ads/InteractiveMediaAdsLibrary.g.kt`
-* iOS
-  * `lib/src/ios/interactive_media_ads.g.dart`
-  *  `ios/interactive_media_ads/Sources/interactive_media_ads/InteractiveMediaAdsLibrary.g.swift`
+
+- Android:
+  - `lib/src/android/interactive_media_ads.g.dart`
+  - `android/src/main/kotlin/dev/flutter/packages/interactive_media_ads/InteractiveMediaAdsLibrary.g.kt`
+- iOS
+  - `lib/src/ios/interactive_media_ads.g.dart`
+  - `ios/interactive_media_ads/Sources/interactive_media_ads/InteractiveMediaAdsLibrary.g.swift`
 
 To update a wrapper for a platform, follow the steps:
 
 ##### 1. Ensure the project has been built at least once
 
-* Android: Run `flutter build apk --debug` in `example/`.
-* iOS: Run `flutter build ios --simulator` in `example/`
+- Android: Run `flutter build apk --debug` in `example/`.
+- iOS: Run `flutter build ios --simulator` in `example/`
 
 ##### 2. Add the correct `pigeon` package to `dev_dependencies` in the `pubspec.yaml` and run `pub upgrade`
 
@@ -141,36 +144,36 @@ Android:
 
 ```yaml
 pigeon:
-    git:
-      url: git@github.com:bparrishMines/packages.git
-      ref: pigeon_kotlin_split
-      path: packages/pigeon
+  git:
+    url: git@github.com:bparrishMines/packages.git
+    ref: pigeon_kotlin_split
+    path: packages/pigeon
 ```
 
 iOS:
 
 ```yaml
 pigeon:
-    git:
-      url: git@github.com:bparrishMines/packages.git
-      ref: pigeon_wrapper_swift
-      path: packages/pigeon
+  git:
+    url: git@github.com:bparrishMines/packages.git
+    ref: pigeon_wrapper_swift
+    path: packages/pigeon
 ```
 
 ##### 3. Uncomment the multiline comments in the pigeon file
 
-* Android: `pigeons/interactive_media_ads_android.dart`
-* iOS: `pigeons/interactive_media_ads_ios.dart`
+- Android: `pigeons/interactive_media_ads_android.dart`
+- iOS: `pigeons/interactive_media_ads_ios.dart`
 
 ##### 4. Make changes that match the native SDK
 
-* [Android SDK]
-* [iOS SDK]
+- [Android SDK]
+- [iOS SDK]
 
 ##### 5. Run the code generator from the terminal
 
-* Android: `dart run pigeon --input pigeons/interactive_media_ads_android.dart`
-* iOS: `dart run pigeon --input pigeons/interactive_media_ads_ios.dart`
+- Android: `dart run pigeon --input pigeons/interactive_media_ads_android.dart`
+- iOS: `dart run pigeon --input pigeons/interactive_media_ads_ios.dart`
 
 ##### 6. Update the generated APIs in native code
 
@@ -178,16 +181,16 @@ Running the `flutter build` step from step 1 again should provide build errors a
 needs to be done. Alternatively, it can be easier to update native code with the platform's specific
 IDE:
 
-* Android: Open `example/android/` in a separate Android Studio project.
-* iOS: Open `example/ios/` in Xcode.
+- Android: Open `example/android/` in a separate Android Studio project.
+- iOS: Open `example/ios/` in Xcode.
 
 ##### 7. Write API tests
 
 Assuming a non-static method or constructor was added to the native wrapper, a native test will need
 to be added.
 
-* Android native tests location: `android/src/test/kotlin/dev/flutter/packages/interactive_media_ads/`
-* iOS native tests location `example/ios/RunnerTests/`
+- Android native tests location: `android/src/test/kotlin/dev/flutter/packages/interactive_media_ads/`
+- iOS native tests location `example/ios/RunnerTests/`
 
 #### Dart Unit Testing
 
@@ -203,8 +206,8 @@ The app-facing interface shares the same structure as the platform interface and
 to forward handling to the platform implementation. Note a few differences from the platform
 interface:
 
-* Constructors and methods can contain more than one parameter.
-* Platform classes can be instantiated with a platform implementation or creation params of
+- Constructors and methods can contain more than one parameter.
+- Platform classes can be instantiated with a platform implementation or creation params of
   the corresponding platform interface class. See `AdsLoader.fromPlatform` and
   `AdsLoader.fromPlatformCreationParams`.
 
@@ -216,14 +219,14 @@ See https://github.com/flutter/flutter/issues/new?assignees=&labels=&projects=&t
 
 ### 2. In that issue add the specific native classes/methods that this feature requires for each platform:
 
-* [Android SDK]
-* [iOS SDK]
+- [Android SDK]
+- [iOS SDK]
 
-Add a note if this feature only exist for a single platform. 
+Add a note if this feature only exist for a single platform.
 
 ### 3. Add a design where the feature can be added to the platform interface and app-facing interface.
 
-If this is only supported on a single platform, add where it can be added in the platform 
+If this is only supported on a single platform, add where it can be added in the platform
 implementation.
 
 ### 4. Work can be started on the feature request or you can wait for feedback from a Flutter contributor.

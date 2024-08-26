@@ -1,4 +1,4 @@
-# shared\_preferences\_foundation
+# shared_preferences_foundation
 
 The iOS and macOS implementation of [`shared_preferences`][1].
 

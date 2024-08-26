@@ -1,4 +1,4 @@
-# pointer\_interceptor\_web
+# pointer_interceptor_web
 
 The web implementation of [`pointer interceptor`][1].
 

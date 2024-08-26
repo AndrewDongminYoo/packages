@@ -1,4 +1,4 @@
-# webview\_flutter\_wkwebview
+# webview_flutter_wkwebview
 
 The Apple WKWebView implementation of [`webview_flutter`][1].
 
@@ -38,6 +38,7 @@ file. After editing the communication interface regenerate the communication lay
 
 Besides [pigeon][3] this package also uses [mockito][4] to generate mock objects for testing
 purposes. To generate the mock objects run the following command:
+
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```

@@ -1,4 +1,4 @@
-# url\_launcher\_linux
+# url_launcher_linux
 
 The Linux implementation of [`url_launcher`][1].
 

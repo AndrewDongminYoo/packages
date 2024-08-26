@@ -1,4 +1,4 @@
-# image\_picker\_for\_web
+# image_picker_for_web
 
 A web implementation of [`image_picker`][1].
 
@@ -46,8 +46,8 @@ re-encoded.
 
 On the web:
 
-* `maxWidth`, `maxHeight` and `imageQuality` are not supported for `gif` images.
-* `imageQuality` only affects `jpg` and `webp` images.
+- `maxWidth`, `maxHeight` and `imageQuality` are not supported for `gif` images.
+- `imageQuality` only affects `jpg` and `webp` images.
 
 ### `getVideo()`
 
@@ -77,6 +77,7 @@ The instance will also let you retrieve the bytes of the selected file across al
 If you want to use the path directly, your code would need look like this:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (ImageFromPath)"?>
+
 ```dart
 if (kIsWeb) {
   image = Image.network(pickedFile.path);
@@ -88,6 +89,7 @@ if (kIsWeb) {
 Or, using bytes:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (ImageFromBytes)"?>
+
 ```dart
 image = Image.memory(await pickedFile.readAsBytes());
 ```

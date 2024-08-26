@@ -20,10 +20,11 @@ After running web benchmarks, you may want to analyze the results or compare
 with the results from other benchmark runs. The `web_benchmarks` package
 supports the following analysis operations:
 
-* compute the delta between two benchmark results
-* compute the average of a set of benchmark results
+- compute the delta between two benchmark results
+- compute the average of a set of benchmark results
 
 <?code-excerpt "example/analyze_example.dart (analyze)"?>
+
 ```dart
 import 'dart:convert';
 import 'dart:io';

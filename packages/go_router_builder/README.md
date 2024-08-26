@@ -24,6 +24,7 @@ include a `part` directive that references the generated Dart file. The
 generated file will always have the name `[source_file].g.dart`.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (import)"?>
+
 ```dart
 import 'package:go_router/go_router.dart';
 
@@ -52,6 +53,7 @@ often the page builder must first parse the parameters into types that aren't
 `String`s, e.g.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (GoRoute)"?>
+
 ```dart
 GoRoute(
   path: ':familyId',
@@ -68,6 +70,7 @@ In this example, the `familyId` parameter is a) required and b) must be an
 it easy to write code that is not type-safe, e.g.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (GoWrong)"?>
+
 ```dart
 void tap() =>
     context.go('/familyId/a42'); // This is an error: `a42` is not an `int`.
@@ -85,6 +88,7 @@ Define each route as a class extending `GoRouteData` and overriding the `build`
 method.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (HomeRoute)"?>
+
 ```dart
 class HomeRoute extends GoRouteData {
   const HomeRoute();
@@ -99,6 +103,7 @@ class HomeRoute extends GoRouteData {
 The tree of routes is defined as an attribute on each of the top-level routes:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (TypedGoRouteHomeRoute)"?>
+
 ```dart
 @TypedGoRoute<HomeRoute>(
   path: '/',
@@ -141,6 +146,7 @@ The code generator aggregates all top-level routes into a single list called
 `$appRoutes` for use in initializing the `GoRouter` instance:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (GoRouter)"?>
+
 ```dart
 final GoRouter router = GoRouter(routes: $appRoutes);
 ```
@@ -150,6 +156,7 @@ final GoRouter router = GoRouter(routes: $appRoutes);
 One can use typed routes to provide an error builder as well:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (ErrorRoute)"?>
+
 ```dart
 class ErrorRoute extends GoRouteData {
   ErrorRoute({required this.error});
@@ -165,6 +172,7 @@ class ErrorRoute extends GoRouteData {
 With this in place, you can provide the `errorBuilder` parameter like so:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (routerWithErrorBuilder)"?>
+
 ```dart
 final GoRouter routerWithErrorBuilder = GoRouter(
   routes: $appRoutes,
@@ -179,6 +187,7 @@ final GoRouter routerWithErrorBuilder = GoRouter(
 Navigate using the `go` or `push` methods provided by the code generator:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (go)"?>
+
 ```dart
 void onTap() => const FamilyRoute(fid: 'f2').go(context);
 ```
@@ -186,6 +195,7 @@ void onTap() => const FamilyRoute(fid: 'f2').go(context);
 If you get this wrong, the compiler will complain:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (goError)"?>
+
 ```dart
 // This is an error: missing required parameter 'fid'.
 void errorTap() => const FamilyRoute().go(context);
@@ -199,6 +209,7 @@ Starting from `go_router` 6.5.0, pushing a route and subsequently popping it, ca
 a return value. The generated routes also follow this functionality.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (awaitPush)"?>
+
 ```dart
 final bool? result =
     await const FamilyRoute(fid: 'John').push<bool>(context);
@@ -209,6 +220,7 @@ final bool? result =
 Parameters (named or positional) not listed in the path of `TypedGoRoute` indicate query parameters:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (login)"?>
+
 ```dart
 @TypedGoRoute<LoginRoute>(path: '/login')
 class LoginRoute extends GoRouteData {
@@ -227,6 +239,7 @@ class LoginRoute extends GoRouteData {
 For query parameters with a **non-nullable** type, you can define a default value:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (MyRoute)"?>
+
 ```dart
 @TypedGoRoute<MyRoute>(path: '/my-route')
 class MyRoute extends GoRouteData {
@@ -242,13 +255,13 @@ class MyRoute extends GoRouteData {
 
 A query parameter that equals to its default value is not included in the location.
 
-
 ## Extra parameter
 
 A route can consume an extra parameter by taking it as a typed constructor
 parameter with the special name `$extra`:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (PersonRouteWithExtra)"?>
+
 ```dart
 class PersonRouteWithExtra extends GoRouteData {
   PersonRouteWithExtra(this.$extra);
@@ -264,6 +277,7 @@ class PersonRouteWithExtra extends GoRouteData {
 Pass the extra param as a typed object:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (tapWithExtra)"?>
+
 ```dart
 void tapWithExtra() {
   PersonRouteWithExtra(Person(id: 1, name: 'Marvin', age: 42)).go(context);
@@ -279,6 +293,7 @@ recommended when targeting Flutter web.
 You can, of course, combine the use of path, query and $extra parameters:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (HotdogRouteWithEverything)"?>
+
 ```dart
 @TypedGoRoute<HotdogRouteWithEverything>(path: '/:ketchup')
 class HotdogRouteWithEverything extends GoRouteData {
@@ -302,6 +317,7 @@ Redirect using the `location` property on a route provided by the code
 generator:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (redirect)"?>
+
 ```dart
 redirect: (BuildContext context, GoRouterState state) {
   final bool loggedIn = loginInfo.loggedIn;
@@ -321,6 +337,7 @@ redirect: (BuildContext context, GoRouterState state) {
 Handle route-level redirects by implementing the `redirect` method on the route:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (RedirectRoute)"?>
+
 ```dart
 class RedirectRoute extends GoRouteData {
   // There is no need to implement [build] when this [redirect] is unconditional.
@@ -337,6 +354,7 @@ The code generator can convert simple types like `int` and `enum` to/from the
 `String` type of the underlying pathParameters:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (BookKind)"?>
+
 ```dart
 enum BookKind { all, popular, recent }
 
@@ -368,6 +386,7 @@ access the `GoRouteState` object, you can override the `buildPage`
 method of the base class instead of the `build` method:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (MyMaterialRouteWithKey)"?>
+
 ```dart
 class MyMaterialRouteWithKey extends GoRouteData {
   static const LocalKey _key = ValueKey<String>('my-route-with-key');
@@ -386,6 +405,7 @@ class MyMaterialRouteWithKey extends GoRouteData {
 Overriding the `buildPage` method is also useful for custom transitions:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (FancyRoute)"?>
+
 ```dart
 class FancyRoute extends GoRouteData {
   @override
@@ -416,6 +436,7 @@ different navigator. This kind of scenarios can be achieved by declaring a
 Example:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (MyShellRouteData)"?>
+
 ```dart
 final GlobalKey<NavigatorState> shellNavigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();

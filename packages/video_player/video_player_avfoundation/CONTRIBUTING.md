@@ -16,9 +16,8 @@ temporarily update the pubspec.yaml by adding the following to the
 `flutter/packages` repo in a sibling directory to the `plugins` repo:
 
 ```yaml
-  pigeon:
-    path:
-      ../../../../packages/packages/pigeon/
+pigeon:
+  path: ../../../../packages/packages/pigeon/
 ```
 
 Then, run the commands above. When you run `pub get` it should warn

@@ -1,4 +1,4 @@
-# interactive\_media\_ads
+# interactive_media_ads
 
 Flutter plugin for the [Interactive Media Ads SDKs][1].
 
@@ -10,13 +10,14 @@ SDKs, you maintain control of content video playback, while the SDK handles ad p
 a separate video player positioned on top of the app's content video player.
 
 |             | Android | iOS   |
-|-------------|---------|-------|
+| ----------- | ------- | ----- |
 | **Support** | SDK 21+ | 12.0+ |
 
 **NOTE:**
-* The initial release for this package supports linear pre-roll video ads on iOS and Android
+
+- The initial release for this package supports linear pre-roll video ads on iOS and Android
   platforms.
-* Companion ads, Background Audio ads and Google Dynamic Ad Insertion methods are currently not
+- Companion ads, Background Audio ads and Google Dynamic Ad Insertion methods are currently not
   supported.
 
 ## IMA client-side overview
@@ -24,15 +25,15 @@ a separate video player positioned on top of the app's content video player.
 Implementing IMA client-side involves five main SDK components, which are demonstrated in this
 guide:
 
-* [AdDisplayContainer][3]: A container object where ads are rendered.
-* [AdsLoader][4]: Requests ads and handles events from ads request responses. You should only
-instantiate one ads loader, which can be reused throughout the life of the application.
-* [AdsRequest][5]: An object that defines an ads request. Ads requests specify the URL for the VAST
-ad tag, as well as additional parameters, such as ad dimensions.
-* [AdsManager][6]: Contains the response to the ads request, controls ad playback,
-and listens for ad events fired by the SDK.
-* [AdsManagerDelegate][8]: Handles ad events and errors that occur during ad or stream
-initialization and playback.
+- [AdDisplayContainer][3]: A container object where ads are rendered.
+- [AdsLoader][4]: Requests ads and handles events from ads request responses. You should only
+  instantiate one ads loader, which can be reused throughout the life of the application.
+- [AdsRequest][5]: An object that defines an ads request. Ads requests specify the URL for the VAST
+  ad tag, as well as additional parameters, such as ad dimensions.
+- [AdsManager][6]: Contains the response to the ads request, controls ad playback,
+  and listens for ad events fired by the SDK.
+- [AdsManagerDelegate][8]: Handles ad events and errors that occur during ad or stream
+  initialization and playback.
 
 ## Usage
 
@@ -45,6 +46,7 @@ If building on Android, add the user permissions required by the IMA SDK for req
 `android/app/src/main/AndroidManifest.xml`.
 
 <?code-excerpt "example/android/app/src/main/AndroidManifest.xml (android_manifest)"?>
+
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Required permissions for the IMA SDK -->
@@ -58,6 +60,7 @@ Add the import statements for the `interactive_media_ads` and [video_player][7].
 already be added to your `pubspec.yaml`.
 
 <?code-excerpt "example/lib/main.dart (imports)"?>
+
 ```dart
 import 'package:interactive_media_ads/interactive_media_ads.dart';
 import 'package:video_player/video_player.dart';
@@ -69,6 +72,7 @@ Create a new [StatefulWidget](https://api.flutter.dev/flutter/widgets/StatefulWi
 that handles displaying Ads and playing content.
 
 <?code-excerpt "example/lib/main.dart (example_widget)"?>
+
 ```dart
 /// Example widget displaying an Ad before a video.
 class AdExampleWidget extends StatefulWidget {
@@ -112,6 +116,7 @@ Instantiate the [AdDisplayContainer][3] for playing Ads and the
 for playing content.
 
 <?code-excerpt "example/lib/main.dart (ad_and_content_players)"?>
+
 ```dart
 late final AdDisplayContainer _adDisplayContainer = AdDisplayContainer(
   onContainerAdded: (AdDisplayContainer container) {
@@ -147,6 +152,7 @@ void initState() {
 Return a `Widget` that contains the ad player and the content player.
 
 <?code-excerpt "example/lib/main.dart (widget_build)"?>
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -197,6 +203,7 @@ Widget build(BuildContext context) {
 Handle requesting ads and add event listeners to handle when content should be displayed or hidden.
 
 <?code-excerpt "example/lib/main.dart (request_ads)"?>
+
 ```dart
 Future<void> _requestAds(AdDisplayContainer container) {
   _adsLoader = AdsLoader(
@@ -260,6 +267,7 @@ Future<void> _pauseContent() {
 Dispose the content player and the destroy the [AdsManager][6].
 
 <?code-excerpt "example/lib/main.dart (dispose)"?>
+
 ```dart
 @override
 void dispose() {

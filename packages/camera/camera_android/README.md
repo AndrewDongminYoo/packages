@@ -1,4 +1,4 @@
-# camera\_android
+# camera_android
 
 An Android implementation of [`camera`][1] built with the [Camera2 library][4].
 
@@ -12,6 +12,7 @@ $ flutter pub add camera_android
 ```
 
 ## Limitation of testing video recording on emulators
+
 `MediaRecorder` does not work properly on emulators, as stated in [the documentation][5]. Specifically,
 when recording a video with sound enabled and trying to play it back, the duration won't be correct and
 you will only see the first frame.

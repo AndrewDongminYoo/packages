@@ -1,4 +1,4 @@
-# shared\_preferences\_windows
+# shared_preferences_windows
 
 The Windows implementation of [`shared_preferences`][1].
 

@@ -138,6 +138,7 @@ A Flutter application can render remote widgets using the
 `RemoteWidget` widget, as in the following snippet:
 
 <?code-excerpt "example/hello/lib/main.dart (Example)"?>
+
 ```dart
 class Example extends StatefulWidget {
   const Example({super.key});
@@ -268,6 +269,7 @@ into the `reassemble` method to update the local widgets. That way,
 changes can be seen in real time when hot reloading.
 
 <?code-excerpt "example/local/lib/main.dart (Example)"?>
+
 ```dart
 class Example extends StatefulWidget {
   const Example({super.key});
@@ -365,6 +367,7 @@ the remote widget library.
 For example, consider the example above, where the remote widget library is:
 
 <?code-excerpt "test/readme_test.dart (root)"?>
+
 ```rfwtxt
 import local;
 widget root = GreenBox(
@@ -389,6 +392,7 @@ or event handlers.
 Here is an example of a more elaborate widget argument:
 
 <?code-excerpt "test/readme_test.dart (fruit)"?>
+
 ```rfwtxt
 widget fruit = Foo(
   bar: { quux: [ 'apple', 'banana', 'cherry' ] },
@@ -403,6 +407,7 @@ that denote the path to scalar in question. For instance, to obtain
 2, as in:
 
 <?code-excerpt "test/readme_test.dart (v)"?>
+
 ```dart
 'Foo': (BuildContext context, DataSource source) {
   return Text(source.v<String>(<Object>['bar', 'quux', 2])!);
@@ -432,6 +437,7 @@ For example, in this case the `bar` argument can be treated either as
 a map with a `name` subkey, or a scalar String:
 
 <?code-excerpt "test/readme_test.dart (isMap)"?>
+
 ```dart
 'Foo': (BuildContext context, DataSource source) {
   if (source.isMap(<Object>['bar'])) {
@@ -444,6 +450,7 @@ a map with a `name` subkey, or a scalar String:
 Thus either of the following would have the same result:
 
 <?code-excerpt "test/readme_test.dart (example1)"?>
+
 ```rfwtxt
 widget example1 = GreenBox(
   child: Foo(
@@ -453,6 +460,7 @@ widget example1 = GreenBox(
 ```
 
 <?code-excerpt "test/readme_test.dart (example2)"?>
+
 ```rfwtxt
 widget example2 = GreenBox(
   child: Foo(
@@ -466,6 +474,7 @@ The
 method is similar but reports on whether the specified key identifies a list:
 
 <?code-excerpt "test/readme_test.dart (isList)"?>
+
 ```dart
 'Foo': (BuildContext context, DataSource source) {
   if (source.isList(<Object>['bar', 'quux'])) {
@@ -482,6 +491,7 @@ method, which returns the length of the list (or zero if the key does
 not identify a list):
 
 <?code-excerpt "test/readme_test.dart (length)"?>
+
 ```dart
 'Foo': (BuildContext context, DataSource source) {
   final int length = source.length(<Object>['text']);
@@ -499,6 +509,7 @@ not identify a list):
 This could be used like this:
 
 <?code-excerpt "test/readme_test.dart (example3)"?>
+
 ```rfwtxt
 widget example3 = GreenBox(
   child: Foo(
@@ -520,6 +531,7 @@ The `GreenBox` definition uses
 to obtain the widget, in a manner similar to the `v` method:
 
 <?code-excerpt "test/readme_test.dart (child)"?>
+
 ```rfwtxt
 'GreenBox': (BuildContext context, DataSource source) {
   return ColoredBox(color: const Color(0xFF002211), child: source.child(<Object>['child']));
@@ -532,6 +544,7 @@ argument that isn't a widget, the `child` method returns an
 [`optionalChild`](https://pub.dev/documentation/rfw/latest/rfw/DataSource/optionalChild.html) method can be used:
 
 <?code-excerpt "test/readme_test.dart (optionalChild)"?>
+
 ```rfwtxt
 'GreenBox': (BuildContext context, DataSource source) {
   return ColoredBox(color: const Color(0xFF002211), child: source.optionalChild(<Object>['child']));
@@ -546,6 +559,7 @@ method can be used. For example, this is how `Row` is defined in
 `createCoreWidgets` (see in particular the `children` line):
 
 <?code-excerpt "lib/src/flutter/core_widgets.dart (Row)"?>
+
 ```rfwtxt
 'Row': (BuildContext context, DataSource source) {
   return Row(
@@ -587,6 +601,7 @@ events. For example, here is how the "7" button from the
 is represented:
 
 <?code-excerpt "example/wasm/logic/calculator.rfwtxt (button7)"?>
+
 ```rfwtxt
 CalculatorButton(label: "7", onPressed: event "digit" { arguments: [7] }),
 ```
@@ -601,6 +616,7 @@ defined in terms of a `Button`, and the `onPressed` argument
 is passed to the `onPressed` of the `Button`, like this:
 
 <?code-excerpt "example/wasm/logic/calculator.rfwtxt (CalculatorButton)"?>
+
 ```rfwtxt
 widget CalculatorButton = Padding(
   padding: [8.0],
@@ -641,6 +657,7 @@ simplified `GestureDetector` local widget that just implements `onTap`
 technique):
 
 <?code-excerpt "test/readme_test.dart (onTap)"?>
+
 ```dart
 return <WidgetLibrary>[
   LocalWidgetLibrary(<String, LocalWidgetBuilder>{
@@ -671,6 +688,7 @@ the event) into the kind of callback closure the `Widget` expects.
 This is usually written something like the following:
 
 <?code-excerpt "test/readme_test.dart (onTapDown)"?>
+
 ```dart
 return GestureDetector(
   onTapDown: source.handler(<Object>['onTapDown'], (HandlerTrigger trigger) => (TapDownDetails details) => trigger()),
@@ -681,6 +699,7 @@ return GestureDetector(
 To break this down more clearly:
 
 <?code-excerpt "test/readme_test.dart (onTapDown-long)"?>
+
 ```dart
 return GestureDetector(
   // onTapDown expects a function that takes a TapDownDetails
@@ -702,6 +721,7 @@ In some cases, the arguments sent to the callback (the
 passing some values to the `trigger` method, as in:
 
 <?code-excerpt "test/readme_test.dart (onTapDown-position)"?>
+
 ```dart
 return GestureDetector(
   onTapDown: source.handler(<Object>['onTapDown'], (HandlerTrigger trigger) {
@@ -744,7 +764,6 @@ The settings default to 200ms and the
 [`Curves.fastOutSlowIn`](https://api.flutter.dev/flutter/animation/Curves/fastOutSlowIn-constant.html)
 curve.
 
-
 ### Developing remote widget libraries
 
 Remote widget libraries are usually defined using a Remote Flutter
@@ -779,6 +798,7 @@ local "down" state, manipulates it in reaction to
 the button based on its state:
 
 <?code-excerpt "example/wasm/logic/calculator.rfwtxt (Button)"?>
+
 ```rfwtxt
 widget Button { down: false } = GestureDetector(
   onTap: args.onPressed,
@@ -832,6 +852,7 @@ Let us consider a remote widget library that is used to render data in
 this form:
 
 <?code-excerpt "test/readme_test.dart (game-data)"?>
+
 ```json
 { "games": [
 {"rating": 8.219, "users-rated": 16860, "name": "Twilight Struggle", "rank": 1, "link": "/boardgame/12333/twilight-struggle", "id": 12333},
@@ -872,6 +893,7 @@ First, let's render a plain Flutter `ListView` with the name of each
 product. The `Shop` widget below achieves this:
 
 <?code-excerpt "test/readme_test.dart (Shop)"?>
+
 ```rfwtxt
 import core;
 
@@ -897,6 +919,7 @@ least in principle; the logic in the app would need to know how to
 handle the "shop.productSelect" event):
 
 <?code-excerpt "test/readme_test.dart (MaterialShop)"?>
+
 ```rfwtxt
 import core;
 import material;

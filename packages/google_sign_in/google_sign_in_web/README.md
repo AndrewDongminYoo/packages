@@ -1,4 +1,4 @@
-# google\_sign\_in\_web
+# google_sign_in_web
 
 The web implementation of [google_sign_in](https://pub.dev/packages/google_sign_in)
 
@@ -20,29 +20,29 @@ The **Google Sign-In JavaScript for Web JS SDK** is set to be deprecated after
 March 31, 2023. **Google Identity Services (GIS) SDK** is the new solution to
 quickly and easily sign users into your app using their Google accounts.
 
-* In the GIS SDK, Authentication and Authorization are now two separate concerns.
-  * Authentication (information about the current user) flows will not
+- In the GIS SDK, Authentication and Authorization are now two separate concerns.
+  - Authentication (information about the current user) flows will not
     authorize `scopes` anymore.
-  * Authorization (permissions for the app to access certain user information)
+  - Authorization (permissions for the app to access certain user information)
     flows will not return authentication information.
-* The GIS SDK no longer has direct access to previously-seen users upon initialization.
-  * `signInSilently` now displays the One Tap UX for web.
-* **Since 0.12** The plugin provides an `idToken` (JWT-encoded info) when the
+- The GIS SDK no longer has direct access to previously-seen users upon initialization.
+  - `signInSilently` now displays the One Tap UX for web.
+- **Since 0.12** The plugin provides an `idToken` (JWT-encoded info) when the
   user successfully completes an authentication flow:
-  * In the plugin: `signInSilently` and through the web-only `renderButton` widget.
-* The plugin `signIn` method uses the OAuth "Implicit Flow" to Authorize the requested `scopes`.
-  * This method only provides an `accessToken`, and not an `idToken`, so if your
+  - In the plugin: `signInSilently` and through the web-only `renderButton` widget.
+- The plugin `signIn` method uses the OAuth "Implicit Flow" to Authorize the requested `scopes`.
+  - This method only provides an `accessToken`, and not an `idToken`, so if your
     app needs an `idToken`, this method **should be avoided on the web**.
-* The GIS SDK no longer handles sign-in state and user sessions, it only provides
+- The GIS SDK no longer handles sign-in state and user sessions, it only provides
   Authentication credentials for the moment the user did authenticate.
-* The GIS SDK no longer is able to renew Authorization sessions on the web.
+- The GIS SDK no longer is able to renew Authorization sessions on the web.
   Once the token expires, API requests will begin to fail with unauthorized,
   and user Authorization is required again.
 
 See more differences in the following migration guides:
 
-* Authentication > [Migrating from Google Sign-In](https://developers.google.com/identity/gsi/web/guides/migration)
-* Authorization > [Migrate to Google Identity Services](https://developers.google.com/identity/oauth2/web/guides/migration-to-gis)
+- Authentication > [Migrating from Google Sign-In](https://developers.google.com/identity/gsi/web/guides/migration)
+- Authorization > [Migrate to Google Identity Services](https://developers.google.com/identity/oauth2/web/guides/migration-to-gis)
 
 ### New use cases to take into account in your app
 
@@ -68,7 +68,7 @@ guide" in the official GIS SDK documentation for more information about this.
 _(See also the [package:google_sign_in example app](https://pub.dev/packages/google_sign_in/example)
 for a simple implementation of this (look at the `isAuthorized` variable).)_
 
-#### Is this separation *always required*?
+#### Is this separation _always required_?
 
 Only if the scopes required by an app are different from the
 [OpenID Connect scopes](https://developers.google.com/identity/protocols/oauth2/scopes#openid-connect).
@@ -83,7 +83,7 @@ their own Sign-In buttons, or an API to start the sign in flow, the current
 implementation of `signIn` (that does authorization and authentication) is no
 longer feasible on the web.
 
-The web plugin attempts to simulate the old `signIn` behavior by using the 
+The web plugin attempts to simulate the old `signIn` behavior by using the
 [OAuth Implicit pop-up flow](https://developers.google.com/identity/oauth2/web/guides/use-token-model),
 which authenticates and authorizes users.
 
@@ -133,8 +133,8 @@ the responsibility of your app to do so.
 Apps now need to monitor the status code of their REST API requests for response
 codes different to `200`. For example:
 
-* `401`: Missing or invalid access token.
-* `403`: Expired access token.
+- `401`: Missing or invalid access token.
+- `403`: Expired access token.
 
 In either case, your app needs to prompt the end user to `requestScopes`, to
 **interactively** renew the token.
@@ -164,7 +164,10 @@ On your `web/index.html` file, add the following `meta` tag, somewhere in the
 `head` of the document:
 
 ```html
-<meta name="google-signin-client_id" content="YOUR_GOOGLE_SIGN_IN_OAUTH_CLIENT_ID.apps.googleusercontent.com">
+<meta
+  name="google-signin-client_id"
+  content="YOUR_GOOGLE_SIGN_IN_OAUTH_CLIENT_ID.apps.googleusercontent.com"
+/>
 ```
 
 For this client to work correctly, the last step is to configure the **Authorized JavaScript origins**, which _identify the domains from which your application can send API requests._ When in local development, this is normally `localhost` and some port.
@@ -177,8 +180,8 @@ You can do this by:
 
 For local development, you must add two `localhost` entries:
 
-* `http://localhost` and
-* `http://localhost:7357` (or any port that is free in your machine)
+- `http://localhost` and
+- `http://localhost:7357` (or any port that is free in your machine)
 
 #### Starting flutter in http://localhost:7357
 

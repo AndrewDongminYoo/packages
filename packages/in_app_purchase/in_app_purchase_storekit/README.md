@@ -1,4 +1,4 @@
-# in\_app\_purchase\_storekit
+# in_app_purchase_storekit
 
 The iOS and macOS implementation of [`in_app_purchase`][1].
 
@@ -24,7 +24,6 @@ watch the filesystem for changes.
 
 If you would like to contribute to the plugin, check out our
 [contribution guide](https://github.com/flutter/packages/blob/main/CONTRIBUTING.md).
-
 
 [1]: ../in_app_purchase
 [2]: https://flutter.dev/to/endorsed-federated-plugin

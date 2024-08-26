@@ -1,4 +1,4 @@
-# flutter\_template\_images
+# flutter_template_images
 
 Images used by the `flutter_tools` templates.
 

@@ -34,6 +34,7 @@ animation should use `AdaptiveLayout`.
 ### Example Usage
 
 <?code-excerpt "adaptive_scaffold_demo.dart (Example)"?>
+
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -152,6 +153,7 @@ displayed and the entrance animation and exit animation.
 ### Example Usage
 
 <?code-excerpt "adaptive_layout_demo.dart (Example)"?>
+
 ```dart
 // AdaptiveLayout has a number of slots that take SlotLayouts and these
 // SlotLayouts' configs take maps of Breakpoints to SlotLayoutConfigs.

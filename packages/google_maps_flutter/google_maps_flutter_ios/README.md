@@ -1,4 +1,4 @@
-# google\_maps\_flutter\_ios
+# google_maps_flutter_ios
 
 The iOS implementation of [`google_maps_flutter`][1].
 

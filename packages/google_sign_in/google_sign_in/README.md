@@ -3,7 +3,7 @@
 A Flutter plugin for [Google Sign In](https://developers.google.com/identity/).
 
 |             | Android | iOS   | macOS  | Web |
-|-------------|---------|-------|--------|-----|
+| ----------- | ------- | ----- | ------ | --- |
 | **Support** | SDK 16+ | 12.0+ | 10.15+ | Any |
 
 ## Platform integration
@@ -71,6 +71,7 @@ To use this plugin, follow the
 Initialize `GoogleSignIn` with the scopes you want:
 
 <?code-excerpt "example/lib/main.dart (Initialize)"?>
+
 ```dart
 const List<String> scopes = <String>[
   'email',
@@ -89,6 +90,7 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 You can now use the `GoogleSignIn` class to authenticate in your Dart code, e.g.
 
 <?code-excerpt "example/lib/main.dart (SignIn)"?>
+
 ```dart
 Future<void> _handleSignIn() async {
   try {
@@ -111,18 +113,19 @@ If your app supports both mobile and web, read this section!
 
 ### Checking if scopes have been granted
 
-Users may (or may *not*) grant all the scopes that an application requests at
+Users may (or may _not_) grant all the scopes that an application requests at
 Sign In. In fact, in the web, no scopes are granted by `signIn`, `silentSignIn`
 or the `renderButton` widget anymore.
 
 Applications must be able to:
 
-* Detect if the authenticated user has authorized the scopes they need.
-* Determine if the scopes that were granted a few minutes ago are still valid.
+- Detect if the authenticated user has authorized the scopes they need.
+- Determine if the scopes that were granted a few minutes ago are still valid.
 
 There's a new method that enables the checks above, `canAccessScopes`:
 
 <?code-excerpt "example/lib/main.dart (CanAccessScopes)"?>
+
 ```dart
 // In mobile, being authenticated means being authorized...
 bool isAuthorized = account != null;
@@ -141,6 +144,7 @@ should initiate an Authorization request. (Remember that in the web platform,
 this request **must be initiated from an user interaction**, like a button press).
 
 <?code-excerpt "example/lib/main.dart (RequestScopes)" plaster="none"?>
+
 ```dart
 Future<void> _handleAuthorizeScopes() async {
   final bool isAuthorized = await _googleSignIn.requestScopes(scopes);

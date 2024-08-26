@@ -1,4 +1,4 @@
-# file\_selector\_windows
+# file_selector_windows
 
 The Windows implementation of [`file_selector`][1].
 

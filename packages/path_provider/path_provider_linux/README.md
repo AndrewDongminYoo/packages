@@ -1,4 +1,4 @@
-# path\_provider\_linux
+# path_provider_linux
 
 The linux implementation of [`path_provider`][1].
 

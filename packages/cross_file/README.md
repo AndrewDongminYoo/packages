@@ -11,6 +11,7 @@ access the file and its metadata.
 Example:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (Instantiate)"?>
+
 ```dart
 final XFile file = XFile('assets/hello.txt');
 
@@ -55,7 +56,7 @@ native and web platforms.
 ### Native tests
 
 Tests for native platforms are located in the `x_file_io_test.dart`. Tests can
-be run  with `dart test`.
+be run with `dart test`.
 
 ### Web tests
 

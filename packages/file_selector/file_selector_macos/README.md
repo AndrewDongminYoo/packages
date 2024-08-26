@@ -1,4 +1,4 @@
-# file\_selector\_macos
+# file_selector_macos
 
 The macOS implementation of [`file_selector`][1].
 
@@ -14,15 +14,19 @@ should add it to your `pubspec.yaml` as usual.
 ### Entitlements
 
 You will need to [add an entitlement][3] for either read-only access:
+
 ```xml
 	<key>com.apple.security.files.user-selected.read-only</key>
 	<true/>
 ```
+
 or read/write access:
+
 ```xml
 	<key>com.apple.security.files.user-selected.read-write</key>
 	<true/>
 ```
+
 depending on your use case.
 
 [1]: https://pub.dev/packages/file_selector

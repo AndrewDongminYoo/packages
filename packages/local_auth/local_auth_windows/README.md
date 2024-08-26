@@ -1,4 +1,4 @@
-# local\_auth\_windows
+# local_auth_windows
 
 The Windows implementation of [`local_auth`][1].
 

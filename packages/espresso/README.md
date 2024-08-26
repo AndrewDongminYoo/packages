@@ -3,14 +3,14 @@
 Provides bindings for Espresso tests of Flutter Android apps.
 
 |             | Android |
-|-------------|---------|
+| ----------- | ------- |
 | **Support** | SDK 16+ |
 
 ## Installation
 
 Add the `espresso` package as a `dev_dependency` in your app's pubspec.yaml. If you're testing the example app of a package, add it as a dev_dependency of the main package as well.
 
-Add ```android:usesCleartextTraffic="true"``` in the ```<application>``` in the AndroidManifest.xml
+Add `android:usesCleartextTraffic="true"` in the `<application>` in the AndroidManifest.xml
 of the Android app used for testing. It's best to put this in a debug or androidTest
 AndroidManifest.xml so that you don't ship it to end users. (See the example app of this package.)
 
@@ -66,7 +66,7 @@ public class MainActivityTest {
         onFlutterWidget(withTooltip("Increment")).perform(click());
         onFlutterWidget(withValueKey("CountText")).check(matches(withText("Button tapped 1 time.")));
     }
- ```
+```
 
 You'll need to create a test app that enables the Flutter driver extension.
 You can put this in your test_driver/ folder, e.g. test_driver/example.dart.

@@ -1,4 +1,4 @@
-# Contributing to camera\_android\_camerax
+# Contributing to camera_android_camerax
 
 ## Plugin structure
 
@@ -68,7 +68,6 @@ run these tests, please see the instructions in the [running plugin tests guide]
 Besides [`pigeon`][1], this plugin also uses [`mockito`][4] to generate mock objects for
 testing purposes. To generate the mock objects, run
 `dart run build_runner build --delete-conflicting-outputs`.
-
 
 [1]: https://pub.dev/packages/pigeon
 [2]: https://docs.google.com/document/d/1wXB1zNzYhd2SxCu1_BK3qmNWRhonTB6qdv4erdtBQqo/edit?usp=sharing&resourcekey=0-WOBqqOKiO9SARnziBg28pg

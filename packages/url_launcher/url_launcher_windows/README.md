@@ -1,4 +1,4 @@
-# url\_launcher\_windows
+# url_launcher_windows
 
 The Windows implementation of [`url_launcher`][1].
 

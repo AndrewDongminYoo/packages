@@ -1,8 +1,8 @@
-# camera\_android\_camerax
+# camera_android_camerax
 
 The Android implementation of [`camera`][1] built with the [CameraX library][2].
 
-*Note*: If any of [the limitations](#limitations) prevent you from using
+_Note_: If any of [the limitations](#limitations) prevent you from using
 using `camera_android_camerax` or if you run into any problems, please report
 report these issues under [`flutter/flutter`][5] with `[camerax]` in the title.
 You may also opt back into the [`camera_android`][9] implementation if you need.
@@ -24,17 +24,18 @@ The CameraX plugin only supports the concurrent camera use cases supported by Ca
 [their documentation][6] for more information. To avoid the usage of unsupported concurrent
 use cases, the plugin behaves according to the following:
 
-* If the preview is paused (via `pausePreview`), concurrent video recording and image capture
+- If the preview is paused (via `pausePreview`), concurrent video recording and image capture
   and/or image streaming (via `startVideoCapturing(cameraId, VideoCaptureOptions(streamCallback:...))`)
   is supported.
-* If the preview is not paused
-  * **and** the camera device is at least supported hardware [`LIMITED`][8], then concurrent
+- If the preview is not paused
+  - **and** the camera device is at least supported hardware [`LIMITED`][8], then concurrent
     image capture and video recording is supported.
-  * **and** the camera device is at least supported hardware [`LEVEL_3`][7], then concurrent
+  - **and** the camera device is at least supported hardware [`LEVEL_3`][7], then concurrent
     video recording and image streaming is supported, but concurrent video recording, image
     streaming, and image capture is not supported.
 
 ### `setDescriptionWhileRecording` is unimplemented [Issue #148013][148013]
+
 `setDescriptionWhileRecording`, used to switch cameras while recording video, is currently unimplemented
 due to this not currently being supported by CameraX.
 

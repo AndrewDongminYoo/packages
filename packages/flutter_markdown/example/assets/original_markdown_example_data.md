@@ -1,4 +1,5 @@
 # Markdown Example
+
 Markdown allows you to easily include formatted text, images, and even formatted Dart code in your app.
 
 ## Titles
@@ -44,26 +45,28 @@ Select the valid headers:
 
 ## Tables
 
-|Syntax                                 |Result                               |
-|---------------------------------------|-------------------------------------|
-|`*italic 1*`                           |*italic 1*                           |
-|`_italic 2_`                           | _italic 2_                          |
-|`**bold 1**`                           |**bold 1**                           |
-|`__bold 2__`                           |__bold 2__                           |
-|`This is a ~~strikethrough~~`          |This is a ~~strikethrough~~          |
-|`***italic bold 1***`                  |***italic bold 1***                  |
-|`___italic bold 2___`                  |___italic bold 2___                  |
-|`***~~italic bold strikethrough 1~~***`|***~~italic bold strikethrough 1~~***|
-|`~~***italic bold strikethrough 2***~~`|~~***italic bold strikethrough 2***~~|
+| Syntax                                  | Result                                |
+| --------------------------------------- | ------------------------------------- |
+| `*italic 1*`                            | _italic 1_                            |
+| `_italic 2_`                            | _italic 2_                            |
+| `**bold 1**`                            | **bold 1**                            |
+| `__bold 2__`                            | **bold 2**                            |
+| `This is a ~~strikethrough~~`           | This is a ~~strikethrough~~           |
+| `***italic bold 1***`                   | **_italic bold 1_**                   |
+| `___italic bold 2___`                   | **_italic bold 2_**                   |
+| `***~~italic bold strikethrough 1~~***` | **_~~italic bold strikethrough 1~~_** |
+| `~~***italic bold strikethrough 2***~~` | ~~**_italic bold strikethrough 2_**~~ |
 
 ## Styling
-Style text as _italic_, __bold__, ~~strikethrough~~, or `inline code`.
+
+Style text as _italic_, **bold**, ~~strikethrough~~, or `inline code`.
 
 - Use bulleted lists
 - To better clarify
 - Your points
 
 ## Code blocks
+
 Formatted Dart code looks really pretty too:
 
 ```
@@ -80,7 +83,7 @@ void main() {
 
 ###### ※ ※ ※
 
-_* How to implement it see main.dart#L129 in example._
+_\* How to implement it see main.dart#L129 in example._
 
 ## Custom Syntax
 
@@ -103,10 +106,7 @@ Enjoy!
 This is an example of how to create line breaks (tab or two whitespaces):
 
 line 1
-  
-   
+
 line 2
-  
-  
-  
+
 line 3

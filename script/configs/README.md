@@ -8,6 +8,7 @@ so the comment should either include an issue link to the issue tracking
 removing it or (much more rarely) explaining why it is a permanent exclusion.
 
 Expected format:
+
 ```
 # Reason for exclusion
 - name_of_package

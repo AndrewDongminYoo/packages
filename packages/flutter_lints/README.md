@@ -19,7 +19,7 @@ package. Entities created before that version can use these lints by following
 these instructions:
 
 1. Depend on this package as a **dev_dependency** by running
-  `flutter pub add dev:flutter_lints`.
+   `flutter pub add dev:flutter_lints`.
 2. Create an `analysis_options.yaml` file at the root of the package (alongside
    the `pubspec.yaml` file) and `include: package:flutter_lints/flutter.yaml`
    from it.
@@ -52,7 +52,6 @@ linter:
   rules:
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
 # Additional information about this file can be found at
 # https://dart.dev/tools/analysis
 ```

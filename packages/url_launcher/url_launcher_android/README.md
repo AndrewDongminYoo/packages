@@ -1,4 +1,4 @@
-# url\_launcher\_android
+# url_launcher_android
 
 The Android implementation of [`url_launcher`][1].
 

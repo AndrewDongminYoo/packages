@@ -1,24 +1,24 @@
 ## NEXT
 
-* Updates minimum supported SDK version to Flutter 3.19/Dart 3.3.
+- Updates minimum supported SDK version to Flutter 3.19/Dart 3.3.
 
 ## 0.0.1+4
 
-* Adds pub topics to package metadata.
-* Updates minimum supported SDK version to Flutter 3.7/Dart 2.19.
+- Adds pub topics to package metadata.
+- Updates minimum supported SDK version to Flutter 3.7/Dart 2.19.
 
 ## 0.0.1+3
 
-* Minor README updates.
+- Minor README updates.
 
 ## 0.0.1+2
 
-* Fixes lint warnings.
+- Fixes lint warnings.
 
 ## 0.0.1+1
 
-* Fixes minimum version of `test` dependency.
+- Fixes minimum version of `test` dependency.
 
 ## 0.0.1
 
-* Initial release of standard message codec extracted from the Flutter SDK.
+- Initial release of standard message codec extracted from the Flutter SDK.

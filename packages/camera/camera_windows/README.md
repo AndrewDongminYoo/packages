@@ -2,7 +2,7 @@
 
 The Windows implementation of [`camera`][camera].
 
-*Note*: This plugin is under development.
+_Note_: This plugin is under development.
 See [missing implementations and limitations](#missing-features-on-the-windows-platform).
 
 ## Usage

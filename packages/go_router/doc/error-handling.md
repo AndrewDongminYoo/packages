@@ -1,13 +1,13 @@
 There are several kinds of errors or exceptions in go_router.
 
-* GoError and AssertionError 
+- GoError and AssertionError
 
 This kind of errors are thrown when go_router is used incorrectly, for example, if the root
 [GoRoute.path](https://pub.dev/documentation/go_router/latest/go_router/GoRoute/path.html) does
 not start with `/` or a builder in GoRoute is not provided. These errors should not be caught and
 must be fixed in code in order to use go_router.
 
-* GoException
+- GoException
 
 This kind of exception are thrown when the configuration of go_router cannot handle incoming requests
 from users or other part of the code. For example, an GoException is thrown when user enter url that
@@ -20,6 +20,7 @@ See [Exception Handling](https://github.com/flutter/packages/blob/main/packages/
 on a runnable example.
 
 The `GoRouter.errorBuilder` and `GoRouter.errorPageBuilder` can also be used to handle exceptions.
+
 ```dart
 GoRouter(
   /* ... */

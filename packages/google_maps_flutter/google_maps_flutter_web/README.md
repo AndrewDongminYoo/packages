@@ -22,7 +22,6 @@ Modify the `<head>` tag of your `web/index.html` to load the Google Maps JavaScr
 
 ```html
 <head>
-
   <!-- // Other stuff -->
 
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
@@ -35,17 +34,13 @@ If your app needs the `drawing` library (to draw polygons, rectangles, polylines
 circles or markers on a map), include it like this:
 
 ```html
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing"></script>
 ```
 
 To request multiple libraries, separate them with commas:
 
 ```html
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing,visualization,places">
-</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing,visualization,places"></script>
 ```
 
 Now you should be able to use the Google Maps plugin normally.
@@ -56,7 +51,6 @@ If you need marker clustering support, modify the <head> tag to load the [js-mar
 
 ```html
 <head>
-
   <!-- // Other stuff -->
 
   <script src="https://cdn.jsdelivr.net/npm/@googlemaps/markerclusterer@2.5.3/dist/index.umd.min.js"></script>
@@ -64,22 +58,23 @@ If you need marker clustering support, modify the <head> tag to load the [js-mar
 ```
 
 ## Heatmaps
+
 To use heatmaps, add `&libraries=visualization` to the end of the URL. See [the documentation](https://developers.google.com/maps/documentation/javascript/libraries) for more information.
 
 ## Limitations of the web version
 
 The following map options are not available in web, because the map doesn't rotate there:
 
-* `compassEnabled`
-* `rotateGesturesEnabled`
-* `tiltGesturesEnabled`
+- `compassEnabled`
+- `rotateGesturesEnabled`
+- `tiltGesturesEnabled`
 
 There's no "Map Toolbar" in web, so the `mapToolbarEnabled` option is unused.
 
 There's no "My Location" widget in web ([tracking issue](https://github.com/flutter/flutter/issues/64073)), so the following options are ignored, for now:
 
-* `myLocationButtonEnabled`
-* `myLocationEnabled`
+- `myLocationButtonEnabled`
+- `myLocationEnabled`
 
 There's no `defaultMarkerWithHue` in web. If you need colored pins/markers, you may need to use your own asset images.
 

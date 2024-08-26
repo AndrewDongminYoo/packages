@@ -4,6 +4,7 @@ For an introduction to contributing to Flutter, see [our contributor
 guide](https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md).
 
 Additional resources specific to the packages repository:
+
 - [Setting up the Packages development
   environment](https://github.com/flutter/flutter/blob/master/docs/ecosystem/contributing/Setting-up-the-Packages-development-environment.md),
   which covers the setup process for this repository.
@@ -31,6 +32,7 @@ as a code reviewer.
 
 Flutter packages and plugins follow Google style—or Flutter style for Dart—for the languages they
 use, and use auto-formatters:
+
 - [Dart](https://github.com/flutter/flutter/blob/master/docs/contributing/Style-guide-for-Flutter-repo.md) formatted
   with `dart format`
 - [C++](https://google.github.io/styleguide/cppguide.html) formatted with `clang-format`

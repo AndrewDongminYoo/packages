@@ -7,12 +7,13 @@
 A Flutter plugin for launching a URL.
 
 |             | Android | iOS   | Linux | macOS  | Web | Windows     |
-|-------------|---------|-------|-------|--------|-----|-------------|
+| ----------- | ------- | ----- | ----- | ------ | --- | ----------- |
 | **Support** | SDK 16+ | 12.0+ | Any   | 10.14+ | Any | Windows 10+ |
 
 ## Example
 
 <?code-excerpt "lib/basic.dart (basic-example)"?>
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,10 +45,12 @@ See the example app for more complex examples.
 ## Configuration
 
 ### iOS
+
 Add any URL schemes passed to `canLaunchUrl` as `LSApplicationQueriesSchemes`
 entries in your Info.plist file, otherwise it will return false.
 
 Example:
+
 ```xml
 <key>LSApplicationQueriesSchemes</key>
 <array>
@@ -70,6 +73,7 @@ element must be added to your manifest as a child of the root element.
 Example:
 
 <?code-excerpt "android/app/src/main/AndroidManifest.xml (android-queries)" plaster="none"?>
+
 ```xml
 <!-- Provide required visibility configuration for API level 30 and above -->
 <queries>
@@ -108,13 +112,13 @@ supported URL schemes therefore depend on the platform and installed apps.
 
 Commonly used schemes include:
 
-| Scheme | Example | Action |
-|:---|:---|:---|
-| `https:<URL>` | `https://flutter.dev` | Open `<URL>` in the default browser |
-| `mailto:<email address>?subject=<subject>&body=<body>` | `mailto:smith@example.org?subject=News&body=New%20plugin` | Create email to `<email address>` in the default email app |
-| `tel:<phone number>` | `tel:+1-555-010-999` | Make a phone call to `<phone number>` using the default phone app |
-| `sms:<phone number>` | `sms:5550101234` | Send an SMS message to `<phone number>` using the default messaging app |
-| `file:<path>` | `file:/home` | Open file or folder using default app association, supported on desktop platforms |
+| Scheme                                                 | Example                                                   | Action                                                                            |
+| :----------------------------------------------------- | :-------------------------------------------------------- | :-------------------------------------------------------------------------------- |
+| `https:<URL>`                                          | `https://flutter.dev`                                     | Open `<URL>` in the default browser                                               |
+| `mailto:<email address>?subject=<subject>&body=<body>` | `mailto:smith@example.org?subject=News&body=New%20plugin` | Create email to `<email address>` in the default email app                        |
+| `tel:<phone number>`                                   | `tel:+1-555-010-999`                                      | Make a phone call to `<phone number>` using the default phone app                 |
+| `sms:<phone number>`                                   | `sms:5550101234`                                          | Send an SMS message to `<phone number>` using the default messaging app           |
+| `file:<path>`                                          | `file:/home`                                              | Open file or folder using default app association, supported on desktop platforms |
 
 More details can be found here for [iOS](https://developer.apple.com/library/content/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html)
 and [Android](https://developer.android.com/guide/components/intents-common.html)
@@ -151,6 +155,7 @@ encodes query parameters. Using `queryParameters` will result in spaces being
 converted to `+` in many cases.
 
 <?code-excerpt "lib/encoding.dart (encode-query-parameters)"?>
+
 ```dart
 String? encodeQueryParameters(Map<String, String> params) {
   return params.entries
@@ -173,6 +178,7 @@ String? encodeQueryParameters(Map<String, String> params) {
 Encoding for `sms` is slightly different:
 
 <?code-excerpt "lib/encoding.dart (sms)"?>
+
 ```dart
 final Uri smsLaunchUri = Uri(
   scheme: 'sms',
@@ -202,6 +208,7 @@ We recommend checking first whether the directory or file exists before calling 
 Example:
 
 <?code-excerpt "lib/files.dart (file)"?>
+
 ```dart
 final String filePath = testFile.absolute.path;
 final Uri uri = Uri.file(filePath);

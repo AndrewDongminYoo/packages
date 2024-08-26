@@ -14,21 +14,22 @@ For usage examples, see the [Example README](./example/README.md).
 ### Supported Platforms
 
 Currently pigeon supports generating:
-* Kotlin and Java code for Android
-* Swift and Objective-C code for iOS and macOS
-* C++ code for Windows
-* GObject code for Linux
+
+- Kotlin and Java code for Android
+- Swift and Objective-C code for iOS and macOS
+- C++ code for Windows
+- GObject code for Linux
 
 ### Supported Datatypes
 
-Pigeon uses the `StandardMessageCodec` so it supports 
+Pigeon uses the `StandardMessageCodec` so it supports
 [any datatype platform channels support](https://flutter.dev/to/platform-channels-codec).
 
-Custom classes, nested datatypes, and enums are also supported. 
+Custom classes, nested datatypes, and enums are also supported.
 
 Nullable enums in Objective-C generated code will be wrapped in a class to allow for nullability.
 
-By default, custom classes in Swift are defined as structs. 
+By default, custom classes in Swift are defined as structs.
 Structs don't support some features - recursive data, or Objective-C interop.
 Use the @SwiftClass annotation when defining the class to generate the data
 as a Swift class instead.
@@ -39,7 +40,7 @@ While all calls across platform channel APIs (such as pigeon methods) are asynch
 pigeon methods can be written on the native side as synchronous methods,
 to make it simpler to always reply exactly once.
 
-If asynchronous methods are needed, the `@async` annotation can be used. This will require 
+If asynchronous methods are needed, the `@async` annotation can be used. This will require
 results or errors to be returned via a provided callback. [Example](./example/README.md#HostApi_Example).
 
 ### Error Handling
@@ -47,11 +48,12 @@ results or errors to be returned via a provided callback. [Example](./example/RE
 #### Kotlin, Java and Swift
 
 All Host API exceptions are translated into Flutter `PlatformException`.
-* For synchronous methods, thrown exceptions will be caught and translated.
-* For asynchronous methods, there is no default exception handling; errors
-should be returned via the provided callback.
 
-To pass custom details into `PlatformException` for error handling, 
+- For synchronous methods, thrown exceptions will be caught and translated.
+- For asynchronous methods, there is no default exception handling; errors
+  should be returned via the provided callback.
+
+To pass custom details into `PlatformException` for error handling,
 use `FlutterError` in your Host API. [Example](./example/README.md#HostApi_Example).
 
 For swift, use `PigeonError` instead of `FlutterError` when throwing an error. See [Example#Swift](./example/README.md#Swift) for more details.
@@ -61,12 +63,13 @@ For swift, use `PigeonError` instead of `FlutterError` when throwing an error. S
 Host API errors can be sent using the provided `FlutterError` class (translated into `PlatformException`).
 
 For synchronous methods:
-* Objective-C - Set the `error` argument to a `FlutterError` reference.
-* C++ - Return a `FlutterError`.
+
+- Objective-C - Set the `error` argument to a `FlutterError` reference.
+- C++ - Return a `FlutterError`.
 
 For async methods:
-* Return a `FlutterError` through the provided callback.
 
+- Return a `FlutterError` through the provided callback.
 
 ### Task Queue
 
@@ -77,81 +80,82 @@ the threading model for handling HostApi methods can be selected with the
 
 ### Multi-Instance Support
 
-Host and Flutter APIs now support the ability to provide a unique message channel suffix string 
-to the api to allow for multiple instances to be created and operate in parallel. 
+Host and Flutter APIs now support the ability to provide a unique message channel suffix string
+to the api to allow for multiple instances to be created and operate in parallel.
 
 ## Usage
 
-1) Add pigeon as a `dev_dependency`.
-1) Make a ".dart" file outside of your "lib" directory for defining the
+1. Add pigeon as a `dev_dependency`.
+1. Make a ".dart" file outside of your "lib" directory for defining the
    communication interface.
-1) Run pigeon on your ".dart" file to generate the required Dart and
+1. Run pigeon on your ".dart" file to generate the required Dart and
    host-language code: `flutter pub get` then `flutter pub run pigeon`
    with suitable arguments. [Example](./example/README.md#Invocation).
-1) Add the generated Dart code to `./lib` for compilation.
-1) Implement the host-language code and add it to your build (see below).
-1) Call the generated Dart methods.
+1. Add the generated Dart code to `./lib` for compilation.
+1. Implement the host-language code and add it to your build (see below).
+1. Call the generated Dart methods.
 
-### Rules for defining your communication interface 
+### Rules for defining your communication interface
+
 [Example](./example/README.md#HostApi_Example)
 
-1) The file should contain no method or function definitions, only declarations.
-1) Custom classes used by APIs are defined as classes with fields of the
+1. The file should contain no method or function definitions, only declarations.
+1. Custom classes used by APIs are defined as classes with fields of the
    supported datatypes (see the supported Datatypes section).
-1) APIs should be defined as an `abstract class` with either `@HostApi()` or
-   `@FlutterApi()` as metadata.  `@HostApi()` being for procedures that are defined
+1. APIs should be defined as an `abstract class` with either `@HostApi()` or
+   `@FlutterApi()` as metadata. `@HostApi()` being for procedures that are defined
    on the host platform and the `@FlutterApi()` for procedures that are defined in Dart.
-1) Method declarations on the API classes should have arguments and a return
+1. Method declarations on the API classes should have arguments and a return
    value whose types are defined in the file, are supported datatypes, or are
    `void`.
-1) Generics are supported, but can currently only be used with nullable types
+1. Generics are supported, but can currently only be used with nullable types
    (example: `List<int?>`).
-1) Objc and Swift have special naming conventions that can be utilized with the
-   `@ObjCSelector` and `@SwiftFunction` respectively. 
+1. Objc and Swift have special naming conventions that can be utilized with the
+   `@ObjCSelector` and `@SwiftFunction` respectively.
 
 ### Flutter calling into iOS steps
 
-1) Add the generated Objective-C or Swift code to your Xcode project for compilation
+1. Add the generated Objective-C or Swift code to your Xcode project for compilation
    (e.g. `ios/Runner.xcworkspace` or `.podspec`).
-1) Implement the generated protocol for handling the calls on iOS, set it up
+1. Implement the generated protocol for handling the calls on iOS, set it up
    as the handler for the messages.
 
 ### Flutter calling into Android Steps
 
-1) Add the generated Java or Kotlin code to your `./android/app/src/main/java` directory
+1. Add the generated Java or Kotlin code to your `./android/app/src/main/java` directory
    for compilation.
-1) Implement the generated Java or Kotlin interface for handling the calls on Android, set
+1. Implement the generated Java or Kotlin interface for handling the calls on Android, set
    it up as the handler for the messages.
 
 ### Flutter calling into Windows Steps
 
-1) Add the generated C++ code to your `./windows` directory for compilation, and
+1. Add the generated C++ code to your `./windows` directory for compilation, and
    to your `windows/CMakeLists.txt` file.
-1) Implement the generated C++ abstract class for handling the calls on Windows,
+1. Implement the generated C++ abstract class for handling the calls on Windows,
    set it up as the handler for the messages.
 
 ### Flutter calling into macOS steps
 
-1) Add the generated Objective-C or Swift code to your Xcode project for compilation
+1. Add the generated Objective-C or Swift code to your Xcode project for compilation
    (e.g. `macos/Runner.xcworkspace` or `.podspec`).
-1) Implement the generated protocol for handling the calls on macOS, set it up
+1. Implement the generated protocol for handling the calls on macOS, set it up
    as the handler for the messages.
 
 ### Flutter calling into Linux steps
 
-1) Add the generated GObject code to your `./linux` directory for compilation, and
+1. Add the generated GObject code to your `./linux` directory for compilation, and
    to your `linux/CMakeLists.txt` file.
-1) Implement the generated protocol for handling the calls on Linux, set it up
+1. Implement the generated protocol for handling the calls on Linux, set it up
    as the vtable for the API object.
 
 ### Calling into Flutter from the host platform
 
 Pigeon also supports calling in the opposite direction. The steps are similar
-but reversed.  For more information look at the annotation `@FlutterApi()` which
-denotes APIs that live in Flutter but are invoked from the host platform. 
+but reversed. For more information look at the annotation `@FlutterApi()` which
+denotes APIs that live in Flutter but are invoked from the host platform.
 [Example](./example/README.md#FlutterApi_Example).
 
 ## Feedback
 
-File an issue in [flutter/flutter](https://github.com/flutter/flutter) with 
+File an issue in [flutter/flutter](https://github.com/flutter/flutter) with
 "[pigeon]" at the start of the title.

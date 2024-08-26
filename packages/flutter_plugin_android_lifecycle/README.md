@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/flutter_plugin_android_lifecycle.svg)](https://pub.dev/packages/flutter_plugin_android_lifecycle)
 
-A Flutter plugin for Android to allow other Flutter plugins to access  Android `Lifecycle` objects
+A Flutter plugin for Android to allow other Flutter plugins to access Android `Lifecycle` objects
 in the plugin's binding.
 
 The purpose of having this plugin instead of exposing an Android `Lifecycle` object in the engine's
@@ -10,7 +10,7 @@ Android embedding plugins API is to force plugins to have a pub constraint that 
 major version of the Android `Lifecycle` API they expect.
 
 |             | Android |
-|-------------|---------|
+| ----------- | ------- |
 | **Support** | SDK 16+ |
 
 ## Example

@@ -1,4 +1,4 @@
-# pointer\_interceptor\_ios
+# pointer_interceptor_ios
 
 The iOS implementation of [`pointer interceptor`][1].
 

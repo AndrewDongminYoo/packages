@@ -1,4 +1,4 @@
-# image\_picker\_ios
+# image_picker_ios
 
 The iOS implementation of [`image_picker`][1].
 

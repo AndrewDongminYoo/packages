@@ -9,7 +9,7 @@ On supported devices, this includes authentication with biometrics such as
 fingerprint or facial recognition.
 
 |             | Android   | iOS   | macOS  | Windows     |
-|-------------|-----------|-------|--------|-------------|
+| ----------- | --------- | ----- | ------ | ----------- |
 | **Support** | SDK 16+\* | 12.0+ | 10.14+ | Windows 10+ |
 
 ## Usage
@@ -21,6 +21,7 @@ call `canCheckBiometrics` (if you need biometrics support) and/or
 `isDeviceSupported()` (if you just need some device-level authentication):
 
 <?code-excerpt "readme_excerpts.dart (CanCheck)"?>
+
 ```dart
 import 'package:local_auth/local_auth.dart';
 // ···
@@ -49,6 +50,7 @@ added in the future, so when possible you should not rely on specific biometric
 types and only check that some biometric is enrolled:
 
 <?code-excerpt "readme_excerpts.dart (Enrolled)"?>
+
 ```dart
 final List<BiometricType> availableBiometrics =
     await auth.getAvailableBiometrics();
@@ -70,6 +72,7 @@ The `authenticate()` method uses biometric authentication when possible, but
 also allows fallback to pin, pattern, or passcode.
 
 <?code-excerpt "readme_excerpts.dart (AuthAny)"?>
+
 ```dart
 try {
   final bool didAuthenticate = await auth.authenticate(
@@ -84,13 +87,14 @@ To require biometric authentication, pass `AuthenticationOptions` with
 `biometricOnly` set to `true`.
 
 <?code-excerpt "readme_excerpts.dart (AuthBioOnly)"?>
+
 ```dart
 final bool didAuthenticate = await auth.authenticate(
     localizedReason: 'Please authenticate to show account balance',
     options: const AuthenticationOptions(biometricOnly: true));
 ```
 
-*Note*: `biometricOnly` is not supported on Windows since the Windows implementation's underlying API (Windows Hello) doesn't support selecting the authentication method.
+_Note_: `biometricOnly` is not supported on Windows since the Windows implementation's underlying API (Windows Hello) doesn't support selecting the authentication method.
 
 #### Dialogs
 
@@ -109,6 +113,7 @@ If you don't want to use the default dialogs, set the `useErrorDialogs` option
 to `false` to have `authenticate` immediately return an error in those cases.
 
 <?code-excerpt "readme_excerpts.dart (NoErrorDialogs)"?>
+
 ```dart
 import 'package:local_auth/error_codes.dart' as auth_error;
 // ···
@@ -134,6 +139,7 @@ you will need to import the platform-specific implementation packages. For
 instance, to customize Android and iOS:
 
 <?code-excerpt "readme_excerpts.dart (CustomMessages)"?>
+
 ```dart
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_darwin/local_auth_darwin.dart';
@@ -161,6 +167,7 @@ each platform.
 handling for. For example:
 
 <?code-excerpt "readme_excerpts.dart (ErrorHandling)"?>
+
 ```dart
 import 'package:flutter/services.dart';
 import 'package:local_auth/error_codes.dart' as auth_error;
@@ -208,29 +215,29 @@ always return false before SDK 23 (Android 6.0).
 Note that `local_auth` requires the use of a `FragmentActivity` instead of an
 `Activity`. To update your application:
 
-* If you are using `FlutterActivity` directly, change it to
-`FlutterFragmentActivity` in your `AndroidManifest.xml`.
-* If you are using a custom activity, update your `MainActivity.java`:
+- If you are using `FlutterActivity` directly, change it to
+  `FlutterFragmentActivity` in your `AndroidManifest.xml`.
+- If you are using a custom activity, update your `MainActivity.java`:
 
-    ```java
-    import io.flutter.embedding.android.FlutterFragmentActivity;
+  ```java
+  import io.flutter.embedding.android.FlutterFragmentActivity;
 
-    public class MainActivity extends FlutterFragmentActivity {
-        // ...
-    }
-    ```
+  public class MainActivity extends FlutterFragmentActivity {
+      // ...
+  }
+  ```
 
-    or MainActivity.kt:
+  or MainActivity.kt:
 
-    ```kotlin
-    import io.flutter.embedding.android.FlutterFragmentActivity
+  ```kotlin
+  import io.flutter.embedding.android.FlutterFragmentActivity
 
-    class MainActivity: FlutterFragmentActivity() {
-        // ...
-    }
-    ```
+  class MainActivity: FlutterFragmentActivity() {
+      // ...
+  }
+  ```
 
-    to inherit from `FlutterFragmentActivity`.
+  to inherit from `FlutterFragmentActivity`.
 
 ### Permissions
 

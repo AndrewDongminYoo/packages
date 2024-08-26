@@ -20,9 +20,10 @@ examples, each with a different minimum target iOS version.
 
 In order to avoid wasting CI resources, tests are mostly not duplicated.
 The test structure is:
-* The oldest version has all of the usual tests (Dart integration,
+
+- The oldest version has all of the usual tests (Dart integration,
   XCTest, XCUITest).
-* The newest version has only XCTests (the cheapest tests), which
+- The newest version has only XCTests (the cheapest tests), which
   can be used to unit tests any code paths that are specific to
   new SDKs (e.g., behind target OS `#if` checks).
 
@@ -33,12 +34,12 @@ New test types can be added to any example if needs change.
 
 ## Updating Examples
 
-* When a new major of the SDK comes out that raises the minimum
+- When a new major of the SDK comes out that raises the minimum
   iOS deployment version, a new example with that minimum target
   should be added to ensure that the plugin compiles with that
   version of the SDK, and the range in the plugin's `podspec` file
   should be bumped to the next major version.
-* When the minimum supported version of Flutter (on `stable`)
+- When the minimum supported version of Flutter (on `stable`)
   reaches the point where the oldest example is for an SDK
   that can no longer be resolved to, that example should be
   removed, and all of its testing (Dart integration tests,

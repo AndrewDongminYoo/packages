@@ -1,10 +1,12 @@
 # go_router
+
 A declarative routing package for Flutter that uses the Router API to provide a
 convenient, url-based API for navigating between different screens. You can
 define URL patterns, navigate using a URL, handle deep links, and a number of
 other navigation-related scenarios.
 
 ## Features
+
 GoRouter has a number of features to make navigation straightforward:
 
 - Parsing path and query parameters using a template syntax (for example, "user/:id')
@@ -22,6 +24,7 @@ GoRouter has a number of features to make navigation straightforward:
 - Backwards-compatibility with Navigator API
 
 ## Documentation
+
 See the API documentation for details on the following topics:
 
 - [Getting started](https://pub.dev/documentation/go_router/latest/topics/Get%20started-topic.html)
@@ -37,6 +40,7 @@ See the API documentation for details on the following topics:
 - [Error handling](https://pub.dev/documentation/go_router/latest/topics/Error%20handling-topic.html)
 
 ## Migration Guides
+
 - [Migrating to 14.0.0](https://flutter.dev/go/go-router-v14-breaking-changes).
 - [Migrating to 13.0.0](https://flutter.dev/go/go-router-v13-breaking-changes).
 - [Migrating to 12.0.0](https://flutter.dev/go/go-router-v12-breaking-changes).
@@ -54,11 +58,13 @@ See the API documentation for details on the following topics:
 - [Migrating to 2.0](https://flutter.dev/go/go-router-v2-breaking-changes)
 
 ## Changelog
+
 See the
 [Changelog](https://github.com/flutter/packages/blob/main/packages/go_router/CHANGELOG.md)
 for a list of new features and breaking changes.
 
 ## Triage
+
 See the [GitHub issues](https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-asc+label%3Ateam-go_router+)
 for all Go Router issues.
 

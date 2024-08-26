@@ -10,5 +10,5 @@ Use `flutter run` to run the sample.
 
 Per-platform tests live in their respective implementation packages:
 
-* **Web**: See [`package:pointer_interceptor_web`](https://github.com/flutter/packages/tree/main/packages/pointer_interceptor/pointer_interceptor_web)
-* **iOS**: See [`package:pointer_interceptor_ios`](https://github.com/flutter/packages/tree/main/packages/pointer_interceptor/pointer_interceptor_ios)
+- **Web**: See [`package:pointer_interceptor_web`](https://github.com/flutter/packages/tree/main/packages/pointer_interceptor/pointer_interceptor_web)
+- **iOS**: See [`package:pointer_interceptor_ios`](https://github.com/flutter/packages/tree/main/packages/pointer_interceptor/pointer_interceptor_ios)

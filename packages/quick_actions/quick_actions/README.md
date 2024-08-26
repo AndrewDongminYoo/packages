@@ -10,7 +10,7 @@ Shortcuts](https://developer.android.com/guide/topics/ui/shortcuts.html) APIs on
 Android.
 
 |             | Android   | iOS  |
-|-------------|-----------|------|
+| ----------- | --------- | ---- |
 | **Support** | SDK 16+\* | 9.0+ |
 
 ## Usage

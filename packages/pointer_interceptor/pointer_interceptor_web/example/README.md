@@ -24,9 +24,9 @@ for the latest documentation.
 
 Use the following options to build and drive the integration examples on the web:
 
-* `--web` as platform
-* `--packages pointer_interceptor_web` as package
-* `--run-chromedriver` to start a `chromedriver` session from `drive-examples`.
+- `--web` as platform
+- `--packages pointer_interceptor_web` as package
+- `--run-chromedriver` to start a `chromedriver` session from `drive-examples`.
 
 ### Chromedriver
 

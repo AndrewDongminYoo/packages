@@ -1,4 +1,4 @@
-# google\_sign\_in\_android
+# google_sign_in_android
 
 The Android implementation of [`google_sign_in`][1].
 

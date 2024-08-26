@@ -32,12 +32,12 @@ and cause runtime errors in JS.
 
 See also:
 
-* [Autoplay policy in Chrome](https://developer.chrome.com/blog/autoplay/)
-* MDN > [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide)
-* Delivering Video Content for Safari > [Enable Video Autoplay](https://developer.apple.com/documentation/webkit/delivering_video_content_for_safari#3030251)
-* More info about "user activation", in general:
-  * [Making user activation consistent across APIs](https://developer.chrome.com/blog/user-activation)
-  * HTML Spec: [Tracking user activation](https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation)
+- [Autoplay policy in Chrome](https://developer.chrome.com/blog/autoplay/)
+- MDN > [Autoplay guide for media and Web Audio APIs](https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide)
+- Delivering Video Content for Safari > [Enable Video Autoplay](https://developer.apple.com/documentation/webkit/delivering_video_content_for_safari#3030251)
+- More info about "user activation", in general:
+  - [Making user activation consistent across APIs](https://developer.chrome.com/blog/user-activation)
+  - HTML Spec: [Tracking user activation](https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation)
 
 ### Some videos restart when using the seek bar/progress bar/scrubber
 

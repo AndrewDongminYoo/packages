@@ -1,4 +1,4 @@
-# shared\_preferences\_linux
+# shared_preferences_linux
 
 The Linux implementation of [`shared_preferences`][1].
 

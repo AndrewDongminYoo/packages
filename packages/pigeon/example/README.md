@@ -1,8 +1,9 @@
 <?code-excerpt path-base="app"?>
+
 # Pigeon Examples
 
 The examples here will cover basic usage. For a more thorough set of examples,
-check the [core_tests pigeon file](../pigeons/core_tests.dart) and 
+check the [core_tests pigeon file](../pigeons/core_tests.dart) and
 [platform test folder](../platform_tests/) ([shared_test_plugin_code](../platform_tests/shared_test_plugin_code/) and [alternate_language_test_plugin](../platform_tests/alternate_language_test_plugin/) especially).
 
 ## Invocation
@@ -12,6 +13,7 @@ In actual use, you would include only the languages
 needed for your project.
 
 <?code-excerpt "pigeons/messages.dart (config)"?>
+
 ```dart
 @ConfigurePigeon(PigeonOptions(
   dartOut: 'lib/src/messages.g.dart',
@@ -37,6 +39,7 @@ needed for your project.
   dartPackageName: 'pigeon_example_package',
 ))
 ```
+
 Then make a simple call to run pigeon on the Dart file containing your definitions.
 
 ```sh
@@ -54,6 +57,7 @@ This is the Pigeon file that describes the interface that will be used to call
 from Flutter to the host-platform.
 
 <?code-excerpt "pigeons/messages.dart (host-definitions)"?>
+
 ```dart
 enum Code { one, two }
 
@@ -81,10 +85,11 @@ abstract class ExampleHostApi {
 
 ### Dart
 
-This is the code that will use the generated Dart code to make calls from Flutter to 
+This is the code that will use the generated Dart code to make calls from Flutter to
 the host platform.
 
 <?code-excerpt "lib/main.dart (main-dart)"?>
+
 ```dart
 final ExampleHostApi _api = ExampleHostApi();
 
@@ -119,7 +124,9 @@ Future<bool> sendMessage(String messageText) {
 
 This is the code that will use the generated Swift code to receive calls from Flutter.
 Unlike other languages, when throwing an error, use `PigeonError` instead of `FlutterError`, as `FlutterError` does not conform to `Swift.Error`.
+
 <?code-excerpt "ios/Runner/AppDelegate.swift (swift-class)"?>
+
 ```swift
 private class PigeonApiImplementation: ExampleHostApi {
   func getHostLanguage() throws -> String {
@@ -144,7 +151,9 @@ private class PigeonApiImplementation: ExampleHostApi {
 ```
 
 ### Kotlin
+
 <?code-excerpt "android/app/src/main/kotlin/dev/flutter/pigeon_example_app/MainActivity.kt (kotlin-class)"?>
+
 ```kotlin
 private class PigeonApiImplementation : ExampleHostApi {
   override fun getHostLanguage(): String {
@@ -169,7 +178,9 @@ private class PigeonApiImplementation : ExampleHostApi {
 ```
 
 ### C++
+
 <?code-excerpt "windows/runner/flutter_window.cpp (cpp-class)"?>
+
 ```c++
 class PigeonApiImplementation : public ExampleHostApi {
  public:
@@ -195,7 +206,9 @@ class PigeonApiImplementation : public ExampleHostApi {
 ```
 
 ### GObject
+
 <?code-excerpt "linux/my_application.cc (vtable)"?>
+
 ```c++
 static PigeonExamplePackageExampleHostApiGetHostLanguageResponse*
 handle_get_host_language(gpointer user_data) {
@@ -245,6 +258,7 @@ app from the host platform.
 ### Dart input
 
 <?code-excerpt "pigeons/messages.dart (flutter-definitions)"?>
+
 ```dart
 @FlutterApi()
 abstract class MessageFlutterApi {
@@ -254,10 +268,11 @@ abstract class MessageFlutterApi {
 
 ### Dart
 
-This is the code that will use the generated Dart code to handle calls made to 
+This is the code that will use the generated Dart code to handle calls made to
 Flutter from the host platform.
 
 <?code-excerpt "lib/main.dart (main-dart-flutter)"?>
+
 ```dart
 class _ExampleFlutterApi implements MessageFlutterApi {
   @override
@@ -272,6 +287,7 @@ class _ExampleFlutterApi implements MessageFlutterApi {
 ### Swift
 
 <?code-excerpt "ios/Runner/AppDelegate.swift (swift-class-flutter)"?>
+
 ```swift
 private class PigeonFlutterApi {
   var flutterAPI: MessageFlutterApi
@@ -293,6 +309,7 @@ private class PigeonFlutterApi {
 ### Kotlin
 
 <?code-excerpt "android/app/src/main/kotlin/dev/flutter/pigeon_example_app/MainActivity.kt (kotlin-class-flutter)"?>
+
 ```kotlin
 private class PigeonFlutterApi {
 
@@ -311,6 +328,7 @@ private class PigeonFlutterApi {
 ### C++
 
 <?code-excerpt "windows/runner/flutter_window.cpp (cpp-method-flutter)"?>
+
 ```c++
 void TestPlugin::CallFlutterMethod(
     String aString, std::function<void(ErrorOr<int64_t> reply)> result) {
@@ -323,6 +341,7 @@ void TestPlugin::CallFlutterMethod(
 ### GObject
 
 <?code-excerpt "linux/my_application.cc (flutter-method-callback)"?>
+
 ```c++
 static void flutter_method_cb(GObject* object, GAsyncResult* result,
                               gpointer user_data) {
@@ -344,6 +363,7 @@ static void flutter_method_cb(GObject* object, GAsyncResult* result,
 ```
 
 <?code-excerpt "linux/my_application.cc (flutter-method)"?>
+
 ```c++
 self->flutter_api =
     pigeon_example_package_message_flutter_api_new(messenger, nullptr);

@@ -1,4 +1,5 @@
 # Shared preferences plugin
+
 <?code-excerpt path-base="example/lib"?>
 
 [![pub package](https://img.shields.io/pub/v/shared_preferences.svg)](https://pub.dev/packages/shared_preferences)
@@ -11,9 +12,9 @@ returning, so this plugin must not be used for storing critical data.
 
 Supported data types are `int`, `double`, `bool`, `String` and `List<String>`.
 
-|             | Android | iOS   | Linux | macOS  | Web | Windows     |
-|-------------|---------|-------|-------|--------|-----|-------------|
-| **Support** | SDK 16+ | 12.0+ | Any   | 10.14+ | Any | Any         |
+|             | Android | iOS   | Linux | macOS  | Web | Windows |
+| ----------- | ------- | ----- | ----- | ------ | --- | ------- |
+| **Support** | SDK 16+ | 12.0+ | Any   | 10.14+ | Any | Any     |
 
 ## Usage
 
@@ -21,11 +22,11 @@ Supported data types are `int`, `double`, `bool`, `String` and `List<String>`.
 
 Starting with version 2.3.0 there are three available APIs that can be used in this package.
 [SharedPreferences] is a legacy API that will be deprecated in the future. We highly encourage
-any new users of the plugin to use the newer [SharedPreferencesAsync] or [SharedPreferencesWithCache] 
+any new users of the plugin to use the newer [SharedPreferencesAsync] or [SharedPreferencesWithCache]
 APIs instead.
 
-Consider migrating existing code to one of the new APIs. See [below](#migrating-from-sharedpreferences-to-sharedpreferencesasyncwithcache) 
-for more information. 
+Consider migrating existing code to one of the new APIs. See [below](#migrating-from-sharedpreferences-to-sharedpreferencesasyncwithcache)
+for more information.
 
 ### Cache and async or sync getters
 
@@ -41,7 +42,7 @@ However, The cache can present issues as well:
 - If you are modifying the underlying system preference store through something
   other than the `shared_preferences` plugin, such as native code.
 
-This can be remedied by calling the `reload` method before using a getter as needed. 
+This can be remedied by calling the `reload` method before using a getter as needed.
 If most get calls need a reload, consider using [SharedPreferencesAsync] instead.
 
 [SharedPreferencesAsync] does not utilize a local cache which causes all calls to be asynchronous
@@ -55,12 +56,15 @@ The [SharedPreferences] API uses the native [Android Shared Preferences](https:/
 The [SharedPreferencesAsync] and [SharedPreferencesWithCache] APIs use [DataStore Preferences](https://developer.android.com/topic/libraries/architecture/datastore) to store data.
 
 ## Examples
+
 Here are small examples that show you how to use the API.
 
 ### SharedPreferences
 
 #### Write data
+
 <?code-excerpt "readme_excerpts.dart (Write)"?>
+
 ```dart
 // Obtain shared preferences.
 final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -78,7 +82,9 @@ await prefs.setStringList('items', <String>['Earth', 'Moon', 'Sun']);
 ```
 
 #### Read data
+
 <?code-excerpt "readme_excerpts.dart (Read)"?>
+
 ```dart
 // Try reading data from the 'counter' key. If it doesn't exist, returns null.
 final int? counter = prefs.getInt('counter');
@@ -93,14 +99,18 @@ final List<String>? items = prefs.getStringList('items');
 ```
 
 #### Remove an entry
+
 <?code-excerpt "readme_excerpts.dart (Clear)"?>
+
 ```dart
 // Remove data for the 'counter' key.
 await prefs.remove('counter');
 ```
 
 ### SharedPreferencesAsync
+
 <?code-excerpt "readme_excerpts.dart (Async)"?>
+
 ```dart
 final SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
 
@@ -118,7 +128,9 @@ await asyncPrefs.clear(allowList: <String>{'action', 'repeat'});
 ```
 
 ### SharedPreferencesWithCache
+
 <?code-excerpt "readme_excerpts.dart (WithCache)"?>
+
 ```dart
 final SharedPreferencesWithCache prefsWithCache =
     await SharedPreferencesWithCache.create(
@@ -140,16 +152,15 @@ await prefsWithCache.remove('repeat');
 await prefsWithCache.clear();
 ```
 
-
 ### Migration and Prefixes
 
 #### Migrating from SharedPreferences to SharedPreferencesAsync/WithCache
 
-Currently, migration from the older [SharedPreferences] API to the newer 
+Currently, migration from the older [SharedPreferences] API to the newer
 [SharedPreferencesAsync] or [SharedPreferencesWithCache] will need to be done manually.
 
-A simple form of this could be fetching all preferences with [SharedPreferences] and adding 
-them back using [SharedPreferencesAsync], then storing a preference indicating that the 
+A simple form of this could be fetching all preferences with [SharedPreferences] and adding
+them back using [SharedPreferencesAsync], then storing a preference indicating that the
 migration has been done so that future runs don't repeat the migration.
 
 If a migration is not performed before moving to [SharedPreferencesAsync] or [SharedPreferencesWithCache],
@@ -164,32 +175,32 @@ By default, the `SharedPreferences` plugin will only read (and write) preference
 that begin with the prefix `flutter.`. This is all handled internally by the plugin
 and does not require manually adding this prefix.
 
-Alternatively, `SharedPreferences` can be configured to use any prefix by adding 
+Alternatively, `SharedPreferences` can be configured to use any prefix by adding
 a call to `setPrefix` before any instances of `SharedPreferences` are instantiated.
-Calling `setPrefix` after an instance of `SharedPreferences` is  created will fail.
+Calling `setPrefix` after an instance of `SharedPreferences` is created will fail.
 Setting the prefix to an empty string `''` will allow access to all preferences created
 by any non-flutter versions of the app (for migrating from a native app to flutter).
 
-If the prefix is set to a value such as `''` that causes it to read values that were 
-not originally stored by the `SharedPreferences`, initializing `SharedPreferences` 
+If the prefix is set to a value such as `''` that causes it to read values that were
+not originally stored by the `SharedPreferences`, initializing `SharedPreferences`
 may fail if any of the values are of types that are not supported by `SharedPreferences`.
 In this case, you can set an `allowList` that contains only preferences of supported types.
 
 If you decide to remove the prefix entirely, you can still access previously created
-preferences by manually adding the previous prefix `flutter.` to the beginning of 
+preferences by manually adding the previous prefix `flutter.` to the beginning of
 the preference key.
 
 If you have been using `SharedPreferences` with the default prefix but wish to change
-to a new prefix, you will need to transform your current preferences manually to add 
+to a new prefix, you will need to transform your current preferences manually to add
 the new prefix otherwise the old preferences will be inaccessible.
 
 ### Storage location by platform
 
-| Platform | SharedPreferences | SharedPreferencesAsync/WithCache |
-| :--- | :--- | :--- |
-| Android | SharedPreferences | DataStore Preferences |
-| iOS | NSUserDefaults | NSUserDefaults |
-| Linux | In the XDG_DATA_HOME directory | In the XDG_DATA_HOME directory |
-| macOS | NSUserDefaults | NSUserDefaults |
-| Web | LocalStorage | LocalStorage |
-| Windows | In the roaming AppData directory | In the roaming AppData directory |
+| Platform | SharedPreferences                | SharedPreferencesAsync/WithCache |
+| :------- | :------------------------------- | :------------------------------- |
+| Android  | SharedPreferences                | DataStore Preferences            |
+| iOS      | NSUserDefaults                   | NSUserDefaults                   |
+| Linux    | In the XDG_DATA_HOME directory   | In the XDG_DATA_HOME directory   |
+| macOS    | NSUserDefaults                   | NSUserDefaults                   |
+| Web      | LocalStorage                     | LocalStorage                     |
+| Windows  | In the roaming AppData directory | In the roaming AppData directory |

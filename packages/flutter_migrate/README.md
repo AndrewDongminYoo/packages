@@ -26,25 +26,25 @@ any migrations that are broken.
 
 To run the tool enter the root directory of your flutter project and run:
 
-  `dart run <path_to_flutter_migrate_package>/bin/flutter_migrate.dart <subcommand> [parameters]`
+`dart run <path_to_flutter_migrate_package>/bin/flutter_migrate.dart <subcommand> [parameters]`
 
 The core subcommand sequence to use is `start`, `apply`.
 
-* `start` will generate a migration that will be staged in the `migration_staging_directory`
+- `start` will generate a migration that will be staged in the `migration_staging_directory`
   in your project home. This command may take some time to complete depending on network speed.
   The generated migration may have conflicts that should be manually resolved or resolved with
   the `resolve-conflicts` subcommand.
 
-* `apply` will apply staged changes to the actual project. Any merge conflicts should be resolved
+- `apply` will apply staged changes to the actual project. Any merge conflicts should be resolved
   in the staging directory before applying
 
 These additional commands help you manage and navigate the migration:
 
-* `status` Prints the diffs of the staged changes as well as a list of the files with changes.
+- `status` Prints the diffs of the staged changes as well as a list of the files with changes.
   Any files with conflicts will also be highlighted.
 
-* `abandon` Abandons the existing migration by deleting the staging directory.
+- `abandon` Abandons the existing migration by deleting the staging directory.
 
-* `resolve-conflicts` Wizard that assists in resolving routine conflicts. The wizard will
+- `resolve-conflicts` Wizard that assists in resolving routine conflicts. The wizard will
   routinely show each conflict where the option to keep the old code, new code, or skip and
   resolve manually are presented.

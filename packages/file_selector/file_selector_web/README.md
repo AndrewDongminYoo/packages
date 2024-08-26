@@ -1,4 +1,4 @@
-# file\_selector\_web
+# file_selector_web
 
 The web implementation of [`file_selector`][1].
 
@@ -24,4 +24,4 @@ recent browsers.
 
 See:
 
-* https://caniuse.com/mdn-api_htmlinputelement_cancel_event
+- https://caniuse.com/mdn-api_htmlinputelement_cancel_event

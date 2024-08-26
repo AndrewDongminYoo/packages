@@ -1,4 +1,4 @@
-# video\_player\_android
+# video_player_android
 
 The Android implementation of [`video_player`][1].
 

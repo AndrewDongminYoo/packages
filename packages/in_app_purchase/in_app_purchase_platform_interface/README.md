@@ -14,9 +14,9 @@ platform-specific behavior, and when you register your plugin, set the default
 `InAppPurchasePlatform` by calling
 `InAppPurchasePlatform.setInstance(MyPlatformInAppPurchase())`.
 
-To implement functionality that is specific to the platform and is not covered 
-by the [`InAppPurchasePlatform`][2] idiomatic API, extend 
-[`InAppPurchasePlatformAddition`][3] with the platform-specific functionality, 
+To implement functionality that is specific to the platform and is not covered
+by the [`InAppPurchasePlatform`][2] idiomatic API, extend
+[`InAppPurchasePlatformAddition`][3] with the platform-specific functionality,
 and when the plugin is registered, set the addition instance by calling
 `InAppPurchasePlatformAddition.instance = MyPlatformInAppPurchaseAddition()`.
 

@@ -1,4 +1,4 @@
-# webview\_flutter\_android
+# webview_flutter_android
 
 The Android implementation of [`webview_flutter`][1].
 
@@ -23,14 +23,16 @@ This is the current default mode for versions >=23. This is a new display mode u
 plugins starting with Flutter 3.0. This is more performant than Hybrid Composition, but has some
 limitations from using an Android [SurfaceTexture](https://developer.android.com/reference/android/graphics/SurfaceTexture).
 See:
-* https://github.com/flutter/flutter/issues/104889
-* https://github.com/flutter/flutter/issues/116954
+
+- https://github.com/flutter/flutter/issues/104889
+- https://github.com/flutter/flutter/issues/116954
 
 ### Hybrid Composition
 
 This is the current default mode for versions <23. It ensures that the WebView will display and work
 as expected, at the cost of some performance. See:
-* https://docs.flutter.dev/platform-integration/android/platform-views#performance
+
+- https://docs.flutter.dev/platform-integration/android/platform-views#performance
 
 This can be configured for versions >=23 with
 `AndroidWebViewWidgetCreationParams.displayWithHybridComposition`. See https://pub.dev/packages/webview_flutter#platform-specific-features
@@ -59,6 +61,7 @@ has entered fullscreen mode. This can be done by calling
 `AndroidWebViewController.setCustomWidgetCallbacks`. Below is an example implementation.
 
 <?code-excerpt "example/lib/main.dart (fullscreen_example)"?>
+
 ```dart
 androidController.setCustomWidgetCallbacks(
   onShowCustomWidget: (Widget widget, OnHideCustomWidgetCallback callback) {
@@ -82,6 +85,7 @@ file. After editing the communication interface regenerate the communication lay
 
 Besides [pigeon][3] this package also uses [mockito][4] to generate mock objects for testing
 purposes. To generate the mock objects run the following command:
+
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```

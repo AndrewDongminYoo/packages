@@ -1,4 +1,4 @@
-# image\_picker\_macos
+# image_picker_macos
 
 A macOS implementation of [`image_picker`][1].
 
@@ -7,9 +7,11 @@ A macOS implementation of [`image_picker`][1].
 `ImageSource.camera` is not supported unless a `cameraDelegate` is set.
 
 ### pickImage()
+
 The arguments `maxWidth`, `maxHeight`, and `imageQuality` are not currently supported.
 
 ### pickVideo()
+
 The argument `maxDuration` is not currently supported.
 
 ## Usage
@@ -27,6 +29,7 @@ should add it to your `pubspec.yaml` as usual.
 
 This package is currently implemented using [`file_selector`][3], so you will
 need to add a read-only file acces [entitlement][4]:
+
 ```xml
     <key>com.apple.security.files.user-selected.read-only</key>
     <true/>

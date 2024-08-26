@@ -1,4 +1,4 @@
-# google\_maps\_flutter\_android
+# google_maps_flutter_android
 
 <?code-excerpt path-base="example/lib"?>
 
@@ -21,6 +21,7 @@ breaking change, so if you want to ensure a specific mode you can set it
 explicitly:
 
 <?code-excerpt "readme_excerpts.dart (DisplayMode)"?>
+
 ```dart
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
@@ -46,7 +47,7 @@ This mode is more performant than Hybrid Composition and we recommend that you u
 
 This mode is available for backwards compatability and corresponds to `useAndroidViewSurface = true`.
 We do not recommend its use as it is less performant than Texture Layer Hybrid Composition and
-certain flutter rendering effects are not supported. 
+certain flutter rendering effects are not supported.
 
 If you require this mode for correctness, please file a bug so we can investigate and fix
 the issue in the TLHC mode.
@@ -58,6 +59,7 @@ This plugin supports the option to request a specific [map renderer][5].
 The renderer must be requested before creating GoogleMap instances, as the renderer can be initialized only once per application context.
 
 <?code-excerpt "readme_excerpts.dart (MapRenderer)"?>
+
 ```dart
 AndroidMapRenderer mapRenderer = AndroidMapRenderer.platformDefault;
 // ···

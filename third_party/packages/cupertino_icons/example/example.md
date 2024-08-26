@@ -3,6 +3,7 @@
 This package is used via [`CupertinoIcons`](https://api.flutter.dev/flutter/cupertino/CupertinoIcons-class.html):
 
 <?code-excerpt "cupertino_icons_test.dart (CupertinoIcon)"?>
+
 ```dart
 const Icon icon = Icon(
   CupertinoIcons.heart_fill,

@@ -13,6 +13,7 @@ and not implemented.
 ## Sample usage:
 
 <?code-excerpt "test/plugin_platform_interface_test.dart (Example)"?>
+
 ```dart
 abstract class SamplePluginPlatform extends PlatformInterface {
   SamplePluginPlatform() : super(token: _token);
@@ -47,7 +48,6 @@ UrlLauncherPlatform (it can only be set to an object that `extends` UrlLauncherP
 
 ## Mocking or faking platform interfaces
 
-
 Test implementations of platform interfaces, such as those using `mockito`'s
 `Mock` or `test`'s `Fake`, will fail the verification done by `verify`.
 This package provides a `MockPlatformInterfaceMixin` which can be used in test
@@ -56,6 +56,7 @@ code only to disable the `extends` enforcement.
 For example, a Mockito mock of a platform interface can be created with:
 
 <?code-excerpt "test/plugin_platform_interface_test.dart (Mock)"?>
+
 ```dart
 class SamplePluginPlatformMock extends Mock
     with MockPlatformInterfaceMixin

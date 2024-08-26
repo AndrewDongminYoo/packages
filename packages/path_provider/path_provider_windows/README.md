@@ -1,4 +1,4 @@
-# path\_provider\_windows
+# path_provider_windows
 
 The Windows implementation of [`path_provider`][1].
 

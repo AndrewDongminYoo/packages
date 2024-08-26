@@ -1,4 +1,4 @@
-# in\_app\_purchase\_android
+# in_app_purchase_android
 
 The Android implementation of [`in_app_purchase`][1].
 
@@ -20,6 +20,7 @@ Using the Alternative billing only feature requires Google Play app configuratio
 [Google Play documentation for Alternative billing](https://developer.android.com/google/play/billing/alternative)
 
 ## Migrating to 0.3.0
+
 To migrate to version 0.3.0 from 0.2.x, have a look at the [migration guide](migration_guide.md).
 
 ## Contributing
@@ -34,7 +35,6 @@ watch the filesystem for changes.
 
 If you would like to contribute to the plugin, check out our
 [contribution guide](https://github.com/flutter/packages/blob/main/CONTRIBUTING.md).
-
 
 [1]: https://pub.dev/packages/in_app_purchase
 [2]: https://flutter.dev/to/endorsed-federated-plugin

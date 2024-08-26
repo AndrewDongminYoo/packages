@@ -1,6 +1,6 @@
 # Flutter Markdown
-[![pub package](https://img.shields.io/pub/v/flutter_markdown.svg)](https://pub.dartlang.org/packages/flutter_markdown)
 
+[![pub package](https://img.shields.io/pub/v/flutter_markdown.svg)](https://pub.dartlang.org/packages/flutter_markdown)
 
 A markdown renderer for Flutter. It supports the
 [original format](https://daringfireball.net/projects/markdown/), but no inline
@@ -25,10 +25,10 @@ Markdown was developed by John Gruber in 2004 to allow users to turn readable,
 plain text content into rich text HTML. This close association with HTML allows
 for the injection of HTML into the Markdown source data. Markdown parsers
 generally ignore hand-tuned HTML and pass it through to be included in the
-generated HTML. This *trick* has allowed users to perform some customization
+generated HTML. This _trick_ has allowed users to perform some customization
 or tweaking of the HTML output. A common HTML tweak is to insert HTML line-break
 elements **\<br />** in Markdown source to force additional line breaks not
-supported by the Markdown syntax. This HTML *trick* doesn't apply to Flutter. The
+supported by the Markdown syntax. This HTML _trick_ doesn't apply to Flutter. The
 `flutter_markdown` package doesn't support inline HTML.
 
 ## Markdown Specifications and `flutter_markdown` Compliance
@@ -55,6 +55,7 @@ Using the Markdown widget is simple, just pass in the source markdown as a
 string:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (CreateMarkdown)"?>
+
 ```dart
 const Markdown(data: markdownSource);
 ```
@@ -63,6 +64,7 @@ If you do not want the padding or scrolling behavior, use the MarkdownBody
 instead:
 
 <?code-excerpt "example/lib/readme_excerpts.dart (CreateMarkdownBody)"?>
+
 ```dart
 const MarkdownBody(data: markdownSource);
 ```
@@ -77,9 +79,9 @@ design, use the MarkdownRaw class.
 By default, Markdown is not selectable. A caller may use the following ways to
 customize the selection behavior of Markdown:
 
-* Set `selectable` to true, and use `onTapText` and `onSelectionChanged` to
+- Set `selectable` to true, and use `onTapText` and `onSelectionChanged` to
   handle tapping and selecting events.
-* Set `selectable` to false, and wrap Markdown with [`SelectionArea`](https://api.flutter.dev/flutter/material/SelectionArea-class.html) or [`SelectionRegion`](https://api.flutter.dev/flutter/widgets/SelectableRegion-class.html).
+- Set `selectable` to false, and wrap Markdown with [`SelectionArea`](https://api.flutter.dev/flutter/material/SelectionArea-class.html) or [`SelectionRegion`](https://api.flutter.dev/flutter/widgets/SelectableRegion-class.html).
 
 ## Emoji Support
 
@@ -95,6 +97,7 @@ widget constructor, a text string with a smiley face emoji is passed in as the
 source Markdown data.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (CreateMarkdownWithEmoji)"?>
+
 ```dart
 Markdown(
   controller: controller,
@@ -117,6 +120,7 @@ while maintaining the default GitHub flavored Markdown behavior, define
 an extension set that combines EmojiSyntax with ExtensionSet.gitHubFlavored.
 
 <?code-excerpt "example/lib/readme_excerpts.dart (CreateMarkdownWithEmojiExtension)"?>
+
 ```dart
 import 'package:markdown/markdown.dart' as md;
 // ···
@@ -138,14 +142,14 @@ import 'package:markdown/markdown.dart' as md;
 
 The `Img` tag only supports the following image locations:
 
-* From the network: Use a URL prefixed by either `http://` or `https://`.
+- From the network: Use a URL prefixed by either `http://` or `https://`.
 
-* From local files on the device: Use an absolute path to the file, for example by
+- From local files on the device: Use an absolute path to the file, for example by
   concatenating the file name with the path returned by a known storage location,
   such as those provided by the [`path_provider`](https://pub.dartlang.org/packages/path_provider)
   plugin.
 
-* From image locations referring to bundled assets: Use an asset name prefixed by `resource:`.
+- From image locations referring to bundled assets: Use an asset name prefixed by `resource:`.
   like `resource:assets/image.png`.
 
 ## Verifying Markdown Behavior

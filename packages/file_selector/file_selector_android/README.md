@@ -1,4 +1,4 @@
-# file\_selector\_android
+# file_selector_android
 
 The Android implementation of [`file_selector`][1].
 

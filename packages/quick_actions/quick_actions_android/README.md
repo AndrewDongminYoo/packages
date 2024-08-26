@@ -1,4 +1,4 @@
-# quick\_actions\_android
+# quick_actions_android
 
 The Android implementation of [`quick_actions`][1].
 

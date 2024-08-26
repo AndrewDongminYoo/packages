@@ -1,4 +1,4 @@
-# url\_launcher\_ios
+# url_launcher_ios
 
 The iOS implementation of [`url_launcher`][1].
 

@@ -1,4 +1,5 @@
 # Image Picker plugin for Flutter
+
 <?code-excerpt path-base="example/lib"?>
 
 [![pub package](https://img.shields.io/pub/v/image_picker.svg)](https://pub.dev/packages/image_picker)
@@ -6,8 +7,8 @@
 A Flutter plugin for iOS and Android for picking images from the image library,
 and taking new pictures with the camera.
 
-|             | Android | iOS     | Linux | macOS  | Web                             | Windows     |
-|-------------|---------|---------|-------|--------|---------------------------------|-------------|
+|             | Android | iOS     | Linux | macOS  | Web                                                                                                         | Windows     |
+| ----------- | ------- | ------- | ----- | ------ | ----------------------------------------------------------------------------------------------------------- | ----------- |
 | **Support** | SDK 21+ | iOS 12+ | Any   | 10.14+ | [See `image_picker_for_web`](https://pub.dev/packages/image_picker_for_web#limitations-on-the-web-platform) | Windows 10+ |
 
 ## Setup
@@ -24,17 +25,17 @@ real device, or test with non-HEIC images until Apple solves this issue.
 Add the following keys to your _Info.plist_ file, located in
 `<project root>/ios/Runner/Info.plist`:
 
-* `NSPhotoLibraryUsageDescription` - describe why your app needs permission for
-the photo library. This is called _Privacy - Photo Library Usage Description_ in
-the visual editor.
-  * This permission will not be requested if you always pass `false` for
-  `requestFullMetadata`, but App Store policy requires including the plist
-  entry.
-* `NSCameraUsageDescription` - describe why your app needs access to the camera.
-This is called _Privacy - Camera Usage Description_ in the visual editor.
-* `NSMicrophoneUsageDescription` - describe why your app needs access to the
-microphone, if you intend to record videos. This is called
-_Privacy - Microphone Usage Description_ in the visual editor.
+- `NSPhotoLibraryUsageDescription` - describe why your app needs permission for
+  the photo library. This is called _Privacy - Photo Library Usage Description_ in
+  the visual editor.
+  - This permission will not be requested if you always pass `false` for
+    `requestFullMetadata`, but App Store policy requires including the plist
+    entry.
+- `NSCameraUsageDescription` - describe why your app needs access to the camera.
+  This is called _Privacy - Camera Usage Description_ in the visual editor.
+- `NSMicrophoneUsageDescription` - describe why your app needs access to the
+  microphone, if you intend to record videos. This is called
+  _Privacy - Microphone Usage Description_ in the visual editor.
 
 ### Android
 
@@ -62,6 +63,7 @@ application. Since the data is never returned to the original call use the
 `ImagePicker.retrieveLostData()` method to retrieve the lost data. For example:
 
 <?code-excerpt "readme_excerpts.dart (LostData)"?>
+
 ```dart
 Future<void> getLostData() async {
   final ImagePicker picker = ImagePicker();
@@ -94,7 +96,7 @@ responsibility to move it to a more permanent location.
 
 On Android 13 and above this package uses the
 [Android Photo Picker](https://developer.android.com/training/data-storage/shared/photopicker)
-. On Android 12 and below use of Android Photo Picker is optional. 
+. On Android 12 and below use of Android Photo Picker is optional.
 [Learn how to use it](https://pub.dev/packages/image_picker_android).
 
 #### Using `launchMode: singleInstance`
@@ -119,6 +121,7 @@ implementations allow delegating to a camera handler by setting a
 `cameraDelegate` before using `image_picker`, such as in `main()`:
 
 <?code-excerpt "readme_excerpts.dart (CameraDelegate)"?>
+
 ```dart
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 // ···
@@ -165,6 +168,7 @@ add a filesystem access
 ### Example
 
 <?code-excerpt "readme_excerpts.dart (Pick)"?>
+
 ```dart
 final ImagePicker picker = ImagePicker();
 // Pick an image.
@@ -194,9 +198,9 @@ plugin's own `PickedFile` instances. The previous methods were supported through
 
 #### Call the new methods
 
-| Old API | New API |
-|---------|---------|
-| `PickedFile image = await _picker.getImage(...)` | `XFile image = await _picker.pickImage(...)` |
-| `List<PickedFile> images = await _picker.getMultiImage(...)` | `List<XFile> images = await _picker.pickMultiImage(...)` |
-| `PickedFile video = await _picker.getVideo(...)` | `XFile video = await _picker.pickVideo(...)` |
-| `LostData response = await _picker.getLostData()` | `LostDataResponse response = await _picker.retrieveLostData()` |
+| Old API                                                      | New API                                                        |
+| ------------------------------------------------------------ | -------------------------------------------------------------- |
+| `PickedFile image = await _picker.getImage(...)`             | `XFile image = await _picker.pickImage(...)`                   |
+| `List<PickedFile> images = await _picker.getMultiImage(...)` | `List<XFile> images = await _picker.pickMultiImage(...)`       |
+| `PickedFile video = await _picker.getVideo(...)`             | `XFile video = await _picker.pickVideo(...)`                   |
+| `LostData response = await _picker.getLostData()`            | `LostDataResponse response = await _picker.retrieveLostData()` |

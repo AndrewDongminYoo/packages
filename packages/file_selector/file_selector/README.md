@@ -7,7 +7,7 @@
 A Flutter plugin that manages files and interactions with file dialogs.
 
 |             | Android | iOS     | Linux | macOS  | Web | Windows     |
-|-------------|---------|---------|-------|--------|-----|-------------|
+| ----------- | ------- | ------- | ----- | ------ | --- | ----------- |
 | **Support** | SDK 19+ | iOS 12+ | Any   | 10.14+ | Any | Windows 10+ |
 
 ## Setup
@@ -15,15 +15,19 @@ A Flutter plugin that manages files and interactions with file dialogs.
 ### macOS
 
 You will need to [add an entitlement][entitlement] for either read-only access:
+
 ```xml
   <key>com.apple.security.files.user-selected.read-only</key>
   <true/>
 ```
+
 or read/write access:
+
 ```xml
   <key>com.apple.security.files.user-selected.read-write</key>
   <true/>
 ```
+
 depending on your use case.
 
 ### Examples
@@ -34,6 +38,7 @@ Please also take a look at our [example][example] app.
 #### Open a single file
 
 <?code-excerpt "open_image_page.dart (SingleOpen)"?>
+
 ```dart
 const XTypeGroup typeGroup = XTypeGroup(
   label: 'images',
@@ -46,6 +51,7 @@ final XFile? file =
 #### Open multiple files at once
 
 <?code-excerpt "open_multiple_images_page.dart (MultiOpen)"?>
+
 ```dart
 const XTypeGroup jpgsTypeGroup = XTypeGroup(
   label: 'JPEGs',
@@ -64,6 +70,7 @@ final List<XFile> files = await openFiles(acceptedTypeGroups: <XTypeGroup>[
 #### Save a file
 
 <?code-excerpt "readme_standalone_excerpts.dart (Save)"?>
+
 ```dart
 const String fileName = 'suggested_name.txt';
 final FileSaveLocation? result =
@@ -83,6 +90,7 @@ await textFile.saveTo(result.path);
 #### Get a directory path
 
 <?code-excerpt "readme_standalone_excerpts.dart (GetDirectory)"?>
+
 ```dart
 final String? directoryPath = await getDirectoryPath();
 if (directoryPath == null) {
@@ -98,25 +106,25 @@ Different platforms support different type group filter options. To avoid
 filters that cover all platforms you are targeting, or that you conditionally
 pass different `XTypeGroup`s based on `Platform`.
 
-|                          | Andoid | iOS | Linux | macOS  | Web | Windows     |
-|--------------------------|--------|-----|-------|--------|-----|-------------|
-| `extensions`             | ✔️      |     | ✔️     | ✔️      | ✔️   | ✔️           |
-| `mimeTypes`              | ✔️      |     | ✔️     | ✔️†     | ✔️   |             |
-| `uniformTypeIdentifiers` |        | ✔️   |       | ✔️      |     |             |
-| `webWildCards`           |        |     |       |        | ✔️   |             |
+|                          | Andoid | iOS | Linux | macOS | Web | Windows |
+| ------------------------ | ------ | --- | ----- | ----- | --- | ------- |
+| `extensions`             | ✔️     |     | ✔️    | ✔️    | ✔️  | ✔️      |
+| `mimeTypes`              | ✔️     |     | ✔️    | ✔️†   | ✔️  |         |
+| `uniformTypeIdentifiers` |        | ✔️  |       | ✔️    |     |         |
+| `webWildCards`           |        |     |       |       | ✔️  |         |
 
 † `mimeTypes` are not supported on version of macOS earlier than 11 (Big Sur).
 
 ### Features supported by platform
 
-| Feature                | Description                        | Android | iOS      | Linux      | macOS    | Windows      | Web         |
-| ---------------------- |----------------------------------- |---------|--------- | ---------- | -------- | ------------ | ----------- |
-| Choose a single file   | Pick a file/image                  | ✔️       | ✔️       | ✔️        | ✔️       | ✔️          | ✔️          |
-| Choose multiple files  | Pick multiple files/images         | ✔️       | ✔️       | ✔️        | ✔️       | ✔️          | ✔️          |
-| Choose a save location | Pick a directory to save a file in | ❌       | ❌       | ✔️        | ✔️       | ✔️          | ❌          |
-| Choose a directory     | Pick a directory and get its path  | ✔️†       | ❌       | ✔️        | ✔️       | ✔️          | ❌          |
+| Feature                | Description                        | Android | iOS | Linux | macOS | Windows | Web |
+| ---------------------- | ---------------------------------- | ------- | --- | ----- | ----- | ------- | --- |
+| Choose a single file   | Pick a file/image                  | ✔️      | ✔️  | ✔️    | ✔️    | ✔️      | ✔️  |
+| Choose multiple files  | Pick multiple files/images         | ✔️      | ✔️  | ✔️    | ✔️    | ✔️      | ✔️  |
+| Choose a save location | Pick a directory to save a file in | ❌      | ❌  | ✔️    | ✔️    | ✔️      | ❌  |
+| Choose a directory     | Pick a directory and get its path  | ✔️†     | ❌  | ✔️    | ✔️    | ✔️      | ❌  |
 
 † Choosing a directory is no supported on versions of Android before SDK 21 (Lollipop).
 
-[example]:./example
+[example]: ./example
 [entitlement]: https://docs.flutter.dev/desktop#entitlements-and-the-app-sandbox

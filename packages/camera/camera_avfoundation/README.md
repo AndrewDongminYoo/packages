@@ -1,4 +1,4 @@
-# camera\_avfoundation
+# camera_avfoundation
 
 The iOS implementation of [`camera`][1].
 

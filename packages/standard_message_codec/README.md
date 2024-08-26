@@ -11,7 +11,7 @@ like JSON. Consider the following snippet of JSON:
 
 ```json
 {
-    "data": [1, 2, 3, 4],
+  "data": [1, 2, 3, 4]
 }
 ```
 
@@ -43,6 +43,7 @@ standard_message_codec can be used to encode and decode messages in either Flutt
 or pure Dart applications.
 
 <?code-excerpt "readme_excerpts.dart (Encoding)"?>
+
 ```dart
 void main() {
   final ByteData? data =

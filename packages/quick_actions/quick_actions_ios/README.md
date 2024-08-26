@@ -1,4 +1,4 @@
-# quick\_actions\_ios
+# quick_actions_ios
 
 The iOS implementation of [`quick_actions`][1].
 

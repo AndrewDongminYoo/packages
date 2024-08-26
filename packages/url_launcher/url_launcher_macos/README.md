@@ -1,4 +1,4 @@
-# url\_launcher\_macos
+# url_launcher_macos
 
 The macos implementation of [`url_launcher`][1].
 

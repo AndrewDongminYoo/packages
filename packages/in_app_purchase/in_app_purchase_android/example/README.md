@@ -19,7 +19,7 @@ configure an app with in-app items for purchase to call their in-app-purchase
 APIs. The Google Play Store has extensive documentation on how to do this, and
 we've also included a high level guide below.
 
-* [Google Play Billing Overview](https://developer.android.com/google/play/billing/billing_overview)
+- [Google Play Billing Overview](https://developer.android.com/google/play/billing/billing_overview)
 
 ### Android
 

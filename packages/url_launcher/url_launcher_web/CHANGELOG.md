@@ -1,95 +1,95 @@
 ## 2.3.3
 
-* Changes `launchUrl` so it always returns `true`, except for disallowed URL schemes.
+- Changes `launchUrl` so it always returns `true`, except for disallowed URL schemes.
 
 ## 2.3.2
 
-* Adds support for `web: ^1.0.0`.
+- Adds support for `web: ^1.0.0`.
 
 ## 2.3.1
 
-* Implements correct handling of keyboard events with Link.
+- Implements correct handling of keyboard events with Link.
 
 ## 2.3.0
 
-* Updates web code to package `web: ^0.5.0`.
-* Updates SDK version to Dart `^3.3.0`. Flutter `^3.19.0`.
+- Updates web code to package `web: ^0.5.0`.
+- Updates SDK version to Dart `^3.3.0`. Flutter `^3.19.0`.
 
 ## 2.2.3
 
-* Fixes new lint warnings.
+- Fixes new lint warnings.
 
 ## 2.2.2
 
-* Adds documentation that a launch in a new window/tab needs to be triggered by
+- Adds documentation that a launch in a new window/tab needs to be triggered by
   a user action.
 
 ## 2.2.1
 
-* Supports Flutter Web + Wasm
-* Updates minimum supported SDK version to Flutter 3.16.0/Dart 3.2.0.
+- Supports Flutter Web + Wasm
+- Updates minimum supported SDK version to Flutter 3.16.0/Dart 3.2.0.
 
 ## 2.2.0
 
-* Implements `supportsMode` and `supportsCloseForMode`.
+- Implements `supportsMode` and `supportsCloseForMode`.
 
 ## 2.1.0
 
-* Adds `launchUrl` implementation.
-* Prevents _Tabnabbing_ and disallows `javascript:` URLs on `launch` and `launchUrl`.
+- Adds `launchUrl` implementation.
+- Prevents _Tabnabbing_ and disallows `javascript:` URLs on `launch` and `launchUrl`.
 
 ## 2.0.20
 
-* Migrates to `dart:ui_web` APIs.
-* Updates minimum supported SDK version to Flutter 3.13.0/Dart 3.1.0.
+- Migrates to `dart:ui_web` APIs.
+- Updates minimum supported SDK version to Flutter 3.13.0/Dart 3.1.0.
 
 ## 2.0.19
 
-* Adds pub topics to package metadata.
-* Updates minimum supported SDK version to Flutter 3.7/Dart 2.19.
+- Adds pub topics to package metadata.
+- Updates minimum supported SDK version to Flutter 3.7/Dart 2.19.
 
 ## 2.0.18
 
-* Removes nested third_party Safari check.
+- Removes nested third_party Safari check.
 
 ## 2.0.17
 
-* Removes obsolete null checks on non-nullable values.
-* Updates minimum Flutter version to 3.3.
+- Removes obsolete null checks on non-nullable values.
+- Updates minimum Flutter version to 3.3.
 
 ## 2.0.16
 
-* Clarifies explanation of endorsement in README.
-* Aligns Dart and Flutter SDK constraints.
+- Clarifies explanation of endorsement in README.
+- Aligns Dart and Flutter SDK constraints.
 
 ## 2.0.15
 
-* Updates links for the merge of flutter/plugins into flutter/packages.
-* Updates minimum Flutter version to 3.0.
+- Updates links for the merge of flutter/plugins into flutter/packages.
+- Updates minimum Flutter version to 3.0.
 
 ## 2.0.14
 
-* Updates code for stricter lint checks.
-* Updates minimum Flutter version to 2.10.
+- Updates code for stricter lint checks.
+- Updates minimum Flutter version to 2.10.
 
 ## 2.0.13
 
-* Updates `url_launcher_platform_interface` constraint to the correct minimum
+- Updates `url_launcher_platform_interface` constraint to the correct minimum
   version.
 
 ## 2.0.12
 
-* Fixes call to `setState` after dispose on the `Link` widget.
-[Issue](https://github.com/flutter/flutter/issues/102741).
-* Removes unused `BuildContext` from the `LinkViewController`.
+- Fixes call to `setState` after dispose on the `Link` widget.
+  [Issue](https://github.com/flutter/flutter/issues/102741).
+- Removes unused `BuildContext` from the `LinkViewController`.
 
 ## 2.0.11
 
-* Minor fixes for new analysis options.
+- Minor fixes for new analysis options.
 
 ## 2.0.10
 
-* Fixes library_private_types_in_public_api, sort_child_properties_last and use_key_in_widget_constructors
+- Fixes library_private_types_in_public_api, sort_child_properties_last and use_key_in_widget_constructors
   lint warnings.
 
 ## 2.0.9
@@ -98,20 +98,20 @@
 
 ## 2.0.8
 
-* Updates the minimum Flutter version to 2.10, which is required by the change
+- Updates the minimum Flutter version to 2.10, which is required by the change
   in 2.0.7.
 
 ## 2.0.7
 
-* Marks the `Link` widget as invisible so it can be optimized by the engine.
+- Marks the `Link` widget as invisible so it can be optimized by the engine.
 
 ## 2.0.6
 
-* Removes dependency on `meta`.
+- Removes dependency on `meta`.
 
 ## 2.0.5
 
-* Updates code for new analysis options.
+- Updates code for new analysis options.
 
 ## 2.0.4
 

@@ -7,14 +7,13 @@ A redirect is a callback of the type
 To change incoming location based on some application state, add a callback to
 either the GoRouter or GoRoute constructor:
 
-
 ```dart
 redirect: (BuildContext context, GoRouterState state) {
   if (!AuthState.of(context).isSignedIn) {
     return '/signin';
   } else {
     return null;
-  }   
+  }
 },
 ```
 
@@ -22,6 +21,7 @@ To display the intended route without redirecting, return `null` or the original
 route path.
 
 ## Top-level vs route-level redirection
+
 There are two types of redirection:
 
 - Top-level redirection: Defined on the `GoRouter` constructor. Called before
@@ -30,9 +30,11 @@ There are two types of redirection:
   constructor. Called when a navigation event is about to display the route.
 
 ## Named routes
+
 You can also redirect using [Named routes].
 
 ## Considerations
+
 - You can specify a `redirectLimit` to configure the maximum number of redirects
   that are expected to occur in your app. By default, this value is set to 5.
   GoRouter will display the error screen if this redirect limit is exceeded (See

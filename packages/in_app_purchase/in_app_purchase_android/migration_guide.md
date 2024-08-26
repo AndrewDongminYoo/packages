@@ -1,4 +1,5 @@
 <?code-excerpt path-base="example/lib"?>
+
 # Migration Guide from 0.2.x to 0.3.0
 
 Starting November 2023, Android Billing Client V4 is no longer supported,
@@ -49,6 +50,7 @@ if (sku.type == SkuType.inapp) {
 Code after migration:
 
 <?code-excerpt "migration_guide_examples.dart (one-time-purchase-price)"?>
+
 ```dart
 /// Handles the one time purchase price of a product.
 void handleOneTimePurchasePrice(ProductDetails productDetails) {
@@ -85,6 +87,7 @@ if (sku.type == SkuType.subs) {
 Code after migration:
 
 <?code-excerpt "migration_guide_examples.dart (subscription-free-trial)"?>
+
 ```dart
 /// Handles the free trial period of a subscription.
 void handleFreeTrialPeriod(ProductDetails productDetails) {
@@ -124,6 +127,7 @@ if (sku.type == SkuType.subs) {
 Code after migration:
 
 <?code-excerpt "migration_guide_examples.dart (subscription-introductory-price)"?>
+
 ```dart
 /// Handles the introductory price period of a subscription.
 void handleIntroductoryPricePeriod(ProductDetails productDetails) {
@@ -152,6 +156,7 @@ Play Store automatically. See [subscription price changes][3] for more
 information.
 
 <!-- References -->
+
 [1]: https://support.google.com/googleplay/android-developer/answer/12124625
 [2]: https://developer.android.com/google/play/billing/migrate-gpblv6#5-or-6
 [3]: https://developer.android.com/google/play/billing/subscriptions#price-change

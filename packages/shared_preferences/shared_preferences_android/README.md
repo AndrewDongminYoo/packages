@@ -1,4 +1,4 @@
-# shared\_preferences\_android
+# shared_preferences_android
 
 The Android implementation of [`shared_preferences`][1].
 

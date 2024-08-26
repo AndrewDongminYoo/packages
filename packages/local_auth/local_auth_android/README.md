@@ -1,4 +1,4 @@
-# local\_auth\_android
+# local_auth_android
 
 The Android implementation of [`local_auth`][1].
 

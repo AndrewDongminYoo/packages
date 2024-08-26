@@ -35,6 +35,7 @@ TextButton(
 To learn more about navigation, see the [Navigation][] topic.
 
 ## Redirecting to a named route
+
 To redirect to a named route, use the `namedLocation` API:
 
 ```dart
@@ -43,7 +44,7 @@ redirect: (BuildContext context, GoRouterState state) {
     return context.namedLocation('signIn');
   } else {
     return null;
-  }   
+  }
 },
 ```
 
