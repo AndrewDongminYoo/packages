@@ -8,8 +8,8 @@ targets:
         - $package$
         - lib/$lib$
       exclude:
-        - '**/.*/**'
-        - '**/build/**'
+        - "**/.*/**"
+        - "**/build/**"
     builders:
       code_excerpter|code_excerpter:
         enabled: true

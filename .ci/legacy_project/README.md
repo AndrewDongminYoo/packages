@@ -3,6 +3,7 @@ intended to replace the corresponding parts of a newly Flutter-created project
 to allow testing plugin builds with a legacy project.
 
 It was originally created with Flutter 2.0.6. In general the guidelines are:
+
 - Pieces here should be largely self-contained rather than portions of
   major project components; for instance, it currently contains the entire
   `android/` directory from a legacy project, rather than a subset of it

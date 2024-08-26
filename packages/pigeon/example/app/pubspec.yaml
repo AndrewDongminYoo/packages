@@ -1,6 +1,6 @@
 name: pigeon_example_app
 description: An example of using Pigeon in an application.
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0
 
 environment:

@@ -93,7 +93,7 @@ platform_properties:
       os: Mac-13|Mac-14
       device_type: none
       cpu: arm64
-      $flutter/osx_sdk : >-
+      $flutter/osx_sdk: >-
         {
           "sdk_version": "15a240d"
         }
@@ -106,7 +106,7 @@ platform_properties:
       os: Mac-13|Mac-14
       device_type: none
       cpu: x86
-      $flutter/osx_sdk : >-
+      $flutter/osx_sdk: >-
         {
           "sdk_version": "15a240d"
         }

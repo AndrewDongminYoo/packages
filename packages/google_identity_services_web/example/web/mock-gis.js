@@ -13,20 +13,37 @@ class PromptMomentNotification {
     this.getSkippedReason = this._getReason;
     this.getDismissedReason = this._getReason;
   }
-  getMomentType() { return this.momentType; }
-  _getReason() { return this.reason; }
-  isDismissedMoment() { return this.momentType === "dismissed" }
-  isDisplayMoment() { return this.momentType === "display" }
-  isSkippedMoment() { return this.momentType === "skipped" }
-  isDisplayed() { return this.isDisplayMoment() && !this.reason; }
-  isNotDisplayed() { return this.isDisplayMoment() && this.reason; }
+  getMomentType() {
+    return this.momentType;
+  }
+  _getReason() {
+    return this.reason;
+  }
+  isDismissedMoment() {
+    return this.momentType === "dismissed";
+  }
+  isDisplayMoment() {
+    return this.momentType === "display";
+  }
+  isSkippedMoment() {
+    return this.momentType === "skipped";
+  }
+  isDisplayed() {
+    return this.isDisplayMoment() && !this.reason;
+  }
+  isNotDisplayed() {
+    return this.isDisplayMoment() && this.reason;
+  }
 }
 
-const CREDENTIAL_RETURNED = new PromptMomentNotification("dismissed", "credential_returned");
+const CREDENTIAL_RETURNED = new PromptMomentNotification(
+  "dismissed",
+  "credential_returned",
+);
 const USER_CANCEL = new PromptMomentNotification("skipped", "user_cancel");
 
 function callAsync(func, timeout = 100) {
-  window.setTimeout(func, timeout)
+  window.setTimeout(func, timeout);
 }
 
 class Id {
@@ -37,7 +54,7 @@ class Id {
     // Simulate rendering a button.
     target.replaceChildren();
     target.dataset.buttonConfig = config;
-    let button = document.createElement('button');
+    let button = document.createElement("button");
     target.append(button);
   }
   prompt(momentListener) {
@@ -72,9 +89,9 @@ class Id {
     callAsync(() => {
       callback({
         successful: true,
-        error: 'Revoked ' + hint,
+        error: "Revoked " + hint,
       });
-    })
+    });
   }
 }
 
@@ -101,7 +118,7 @@ class TokenClient {
     this.config = config;
   }
   requestAccessToken(overridableConfig) {
-    this.config = {...this.config, ...overridableConfig};
+    this.config = { ...this.config, ...overridableConfig };
     let callback = this.config.callback;
     if (!callback) {
       return;
@@ -116,8 +133,8 @@ class TokenClient {
   setMockTokenResponse(access_token) {
     this.tokenResponse = {
       access_token: access_token,
-      token_type: access_token != null ? 'Bearer' : null,
-      error: access_token == null ? 'unauthorized' : null,
+      token_type: access_token != null ? "Bearer" : null,
+      error: access_token == null ? "unauthorized" : null,
     };
   }
 }
@@ -130,7 +147,7 @@ class Oauth2 {
     return new TokenClient(config);
   }
   hasGrantedAllScopes(tokenResponse, scope, ...scopes) {
-    return tokenResponse != null && !scope.startsWith('not-granted-');
+    return tokenResponse != null && !scope.startsWith("not-granted-");
   }
   hasGrantedAnyScopes(tokenResponse, scope, ...scopes) {
     return false; // Unused in the lib
@@ -143,16 +160,16 @@ class Oauth2 {
       done({
         success: true,
       });
-    })
+    });
   }
 }
 
-(function() {
+(function () {
   let goog = {
     accounts: {
       id: new Id(),
       oauth2: new Oauth2(),
-    }
+    },
   };
-  globalThis['google'] = goog;
-}());
+  globalThis["google"] = goog;
+})();

@@ -1,6 +1,6 @@
 name: example
 description: Example for image_picker_macos implementation.
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0
 
 environment:

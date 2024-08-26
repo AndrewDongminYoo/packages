@@ -1,6 +1,6 @@
 name: camera_windows_example
 description: Demonstrates how to use the camera_windows plugin.
-publish_to: 'none'
+publish_to: "none"
 
 environment:
   sdk: ^3.3.0

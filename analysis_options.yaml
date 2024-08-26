@@ -18,8 +18,8 @@ analyzer:
     deprecated_member_use_from_same_package: ignore
   exclude: # DIFFERENT FROM FLUTTER/FLUTTER
     # Ignore generated files
-    - '**/*.g.dart'
-    - '**/*.mocks.dart' # Mockito @GenerateMocks
+    - "**/*.g.dart"
+    - "**/*.mocks.dart" # Mockito @GenerateMocks
 
 linter:
   rules:

@@ -38,7 +38,7 @@ topics:
   - payment
 
 screenshots:
-  - description: 'Example of in-app purchase on ios'
+  - description: "Example of in-app purchase on ios"
     path: doc/iap_ios.gif
-  - description: 'Example of in-app purchase on android'
+  - description: "Example of in-app purchase on android"
     path: doc/iap_android.gif

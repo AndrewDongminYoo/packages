@@ -1,6 +1,6 @@
 name: google_identity_services_web_example
 description: An example for the google_identity_services_web package, OneTap.
-publish_to: 'none'
+publish_to: "none"
 
 environment:
   sdk: ^3.4.0

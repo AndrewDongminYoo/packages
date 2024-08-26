@@ -22,7 +22,7 @@ flutter:
     - assets/
 
   fonts:
-    - family: 'Roboto Mono'
+    - family: "Roboto Mono"
       fonts:
         - asset: fonts/RobotoMono-Regular.ttf
 

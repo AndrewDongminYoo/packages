@@ -8,5 +8,5 @@ targets:
       source_gen|combining_builder:
         options:
           ignore_for_file:
-          - always_specify_types
-          - public_member_api_docs
+            - always_specify_types
+            - public_member_api_docs

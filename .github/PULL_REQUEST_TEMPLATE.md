@@ -1,6 +1,6 @@
-*Replace this paragraph with a description of what this PR is changing or adding, and why. Consider including before/after screenshots.*
+_Replace this paragraph with a description of what this PR is changing or adding, and why. Consider including before/after screenshots._
 
-*List which issues are fixed by this PR. You must list at least one issue.*
+_List which issues are fixed by this PR. You must list at least one issue._
 
 ## Pre-launch Checklist
 
@@ -19,6 +19,7 @@
 If you need help, consider asking for advice on the #hackers-new channel on [Discord].
 
 <!-- Links -->
+
 [Contributor Guide]: https://github.com/flutter/packages/blob/main/CONTRIBUTING.md
 [Tree Hygiene]: https://github.com/flutter/flutter/blob/master/docs/contributing/Tree-hygiene.md
 [relevant style guides]: https://github.com/flutter/packages/blob/main/CONTRIBUTING.md#style

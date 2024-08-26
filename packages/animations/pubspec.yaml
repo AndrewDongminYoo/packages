@@ -22,11 +22,11 @@ topics:
   - ui
 
 screenshots:
-  - description: 'Examples of the container transform pattern.'
+  - description: "Examples of the container transform pattern."
     path: example/screenshots/container_transform_lineup.webp
-  - description: 'Examples of the fade pattern.'
+  - description: "Examples of the fade pattern."
     path: example/screenshots/fade_lineup.webp
-  - description: 'Examples of the fade through pattern.'
+  - description: "Examples of the fade through pattern."
     path: example/screenshots/fade_through_lineup.webp
-  - description: 'Examples of the shared axis pattern.'
+  - description: "Examples of the shared axis pattern."
     path: example/screenshots/shared_axis_lineup.webp

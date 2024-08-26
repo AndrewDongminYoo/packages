@@ -1,6 +1,6 @@
 name: alternate_language_test_plugin_example
 description: Pigeon test harness for alternate plugin languages.
-publish_to: 'none'
+publish_to: "none"
 
 environment:
   sdk: ^3.3.0

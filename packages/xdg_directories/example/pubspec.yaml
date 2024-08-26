@@ -1,6 +1,6 @@
 name: xdg_directories_example
 description: Demonstrates how to use the xdg_directories package.
-publish_to: 'none'
+publish_to: "none"
 
 environment:
   sdk: ^3.3.0
